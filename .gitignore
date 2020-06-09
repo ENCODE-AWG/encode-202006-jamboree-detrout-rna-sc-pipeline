@@ -1,0 +1,11 @@
+# Ignore temporary and log files
+*~
+Log.out
+*.fastq.gz
+# Ignore files downloaded from elsewhere
+genome/mm10-M21-male/gencode.vM21-tRNAs-ERCC.gff
+genome/mm10-M21-male/mm10-M21-ercc+phix.fa
+# Ignore cell ranger index directory
+genome/mm10-M21-male/mm10-M21-male-cellranger-3.1.0/
+# Ignore cellranger directory. Important results are in synapse
+ENCSR874BOF_e10_5_limb/ENCSR874BOF-10x-e10_5-count-cells10000/
