@@ -1,0 +1,83 @@
+* Jamboree
+
+This is a VM for the June 2020 ENCODE jamboree. I should remember to grab my
+notes out before they shut the VM down.
+
+I am working on trying to figure out a single cell RNA-seq pipepline
+
+Notes I'm sharing with other people are in this google doc
+https://docs.google.com/document/d/1ZFPmoHS7Ce_8mgPfNMo620wkq47HRhU2wp57_HwH4TU/edit#
+
+* Updates to environment.
+
+I installed msmtp and configured an account on chaos so I can send
+myself email when jobs finish running.
+
+I set up file:~/.msmtprc with a temporary account and created a small
+script to send myself an email
+
+#+begin_example
+#!/bin/bash
+
+printf "From: diane@ghic.org\nTo: diane@caltech.edu\nSubject: $1\n\n$2\n" | msmtp -t
+#+end_example
+
+* Data
+
+In the google doc it looks like our best dataset shared among all
+technologies is the e10.5 timepoint
+
+* Cellranger
+
+One comparison that needs to be done is to run cellranger with a newer
+annotation set.
+
+** Download cell ranger
+
+I filled out their license agreement and downloaded the current
+version of cellranger. The ticket will probably be expired anytime
+anyone else looks at this.
+
+#+begin_src bash
+curl -o cellranger-3.1.0.tar.gz "http://cf.10xgenomics.com/releases/cell-exp/cellranger-3.1.0.tar.gz?Expires=1591692955&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cDovL2NmLjEweGdlbm9taWNzLmNvbS9yZWxlYXNlcy9jZWxsLWV4cC9jZWxscmFuZ2VyLTMuMS4wLnRhci5neiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTU5MTY5Mjk1NX19fV19&Signature=kVpABUeGN2MZPTfGXzFoWyVjIKeRUXbBBYKGMsa5eNeT3iSF50Dy5cB7fmbXfI2E8yjObDAI1KTXa3KYsD3WkcxI~SfmN8A6vCYfkTl4XutcdIhdCWdXU2ywbjoijbaMyhOjYXtU5ZzUD7v4-Kz1WMtczUs8hAfFu~QYmlNyey~9JNTQxBQ8EhY02pQziQrvHzJzbEw88282Sklltg8eQDCx~dxTXxFIVBYyMNqzMhOdI4MQa66lmnQ6d-YUT5M4aj5JxtCVjkJVbeCjCXkHHQh0fjhMgy6t-BNdzIhq6yfXici0bdjw26GZxy6w0YwWFGVuaB-VyDyPkTnrHxI9Cg__&Key-Pair-Id=APKAI7S6A5RYOXBWRPDA"
+#+end_src
+
+** Build new cell ranger index
+
+#+begin_src bash
+mkdir ~/proj/mm10-M21-male
+cd ~/proj/mm10-M21-male
+curl -L -O http://woldlab.caltech.edu/~diane/genome/mm10-M21-male/mm10-M21-ercc+phix.fa
+curl -L -O http://woldlab.caltech.edu/~diane/genome/mm10-M21-male/gencode.vM21-tRNAs-ERCC.gff
+./build-cellranger.sh ; ~/bin/notify.sh "finished" "finished"
+#+end_src
+
+** Download data
+
+#+begin_src bash
+mkdir ~/proj/ENCSR874BOF_e10_5_limb
+cd ~/proj/ENCSR874BOF_e10_5_limb
+curl -L -o ENCFF294PZE_R1.fastq.gz https://www.encodeproject.org/files/ENCFF294PZE/@@download/ENCFF294PZE.fastq.gz
+curl -L -o ENCFF111ISS_R2.fastq.gz https://www.encodeproject.org/files/ENCFF111ISS/@@download/ENCFF111ISS.fastq.gz
+mv ENCFF294PZE_R1.fastq.gz ENCSR874BOF_S1_L001_R1_001.fastq.gz
+mv ENCFF111ISS_R2.fastq.gz ENCSR874BOF_S1_L001_R2_001.fastq.gz
+#+end_src
+
+** Run cell ranger
+
+[[file:proj/ENCSR874BOF-10x-10.5-limb/run-cellranger.sh]]
+
+#+begin_src bash
+cd ~/proj/ENCSR874BOF_e10_5_limb
+./run-cellranger.sh ; ~/bin/notify.sh "cellranger count finished" "CR finished"
+#+end_src
+
+real    922m34.656s
+user    5206m31.687s
+sys     385m19.170s
+
+Results stored in
+https://www.synapse.org/#!Synapse:syn22150185
+
+Minimimum genes detected
+fraction mitochondria
