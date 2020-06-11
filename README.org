@@ -87,3 +87,209 @@ https://www.synapse.org/#!Synapse:syn22150185
 
 Minimimum genes detected
 fraction mitochondria
+
+* Kallisto
+
+** Download
+
+ENCODE is using 0.44.0 but the newer versions did some work on bus
+tools so try that one
+https://github.com/pachterlab/kallisto/releases/download/v0.44.0/kallisto_linux-v0.44.0.tar.gz
+Latest version is: 0.46.2
+https://github.com/pachterlab/kallisto/releases/download/v0.46.2/kallisto_linux-v0.46.2.tar.gz
+
+** Build 0.46.2 index
+
+We need the transcriptome file. RSEM has a copy laying around in it.
+
+ENCFF363TFV is the bulk ENCODE rsem index.
+
+#+begin_src bash
+push genome
+curl -L -O https://www.encodeproject.org/files/ENCFF363TFV/@@download/ENCFF363TFV.tar.gz
+pushd mm10-M21-male
+tar xavf ../ENCFF363TFV.tar.gz --strip=1
+#+end_src
+
+#+begin_src bash
+time ~/kallisto_linux-v0.46.2/kallisto index -i mm10-M21-male-kallisto-0.46.2.idx rsem.transcripts.fa ; ~/bin/notify.sh "kallisto finished" "inde
+xing done"
+#+end_src
+
+#+RESULTS:
+| [build] loading fasta file rsem.transcripts.fa                                  |
+| [build] k-mer length: 31                                                        |
+| [build] warning: clipped off poly-A tail (longer than 10)                       |
+| from 837 target sequences                                                       |
+| [build] warning: replaced 5619 non-ACGUT characters in the input sequence       |
+| with pseudorandom nucleotides                                                   |
+| [build] counting k-mers ... done.                                               |
+| [build] building target de Bruijn graph ...  done                               |
+| [build] creating equivalence classes ...  done                                  |
+| [build] target de Bruijn graph has 904564 contigs and contains 120997101 k-mers |
+|                                                                                 |
+| real    10m55.235s                                                              |
+| user    8m35.672s                                                               |
+| sys     0m18.461s                                                               |
+
+** Count
+
+First build the bus file
+#+begin_src bash
+time ~/kallisto_linux-v0.46.2/kallisto bus \
+    -t 32 \
+    -i ~/proj/genome/mm10-M21-male/mm10-M21-male-kallisto-0.46.2.idx \
+    -o mm10-M21-male-kallisto-0.46.2 \
+    -x 10xv2 \
+    ENCSR874BOF_S1_L001_R1_001.fastq.gz ENCSR874BOF_S1_L001_R2_001.fastq.gz
+#+end_src
+
+#+RESULTS:
+| [index] k-mer length: 31                                             |
+| [index] number of targets: 168,207                                   |
+| [index] number of k-mers: 120,997,101                                |
+| [index] number of equivalence classes: 555,826                       |
+| [quant] will process sample 1: ENCSR874BOF_S1_L001_R1_001.fastq.gz   |
+| ENCSR874BOF_S1_L001_R2_001.fastq.gz                                  |
+| [quant] finding pseudoalignments for the reads ... done              |
+| [quant] processed 432,950,142 reads, 359,437,471 reads pseudoaligned |
+|                                                                      |
+|                                                                      |
+| real    42m14.986s                                                   |
+| user    191m37.795s                                                  |
+| sys     2m13.412s                                                    |
+
+Downloaded
+Bustools
+
+https://github.com/BUStools/bustools/releases/download/v0.39.3/bustools_linux-v0.39.3.tar.gz
+
+Following hints from
+https://www.kallistobus.tools/getting_started_explained.html
+
+Download 10xv2 whitelist
+curl -L -O https://github.com/bustools/getting_started/releases/download/getting_started/10xv2_whitelist.txt
+
+#+begin_src bash
+
+curl -L -O https://github.com/BUStools/getting_started/releases/download/getting_started/t2g.py
+
+cat ~/proj/genome/mm10-M21-male/gencode.vM21-tRNAs-ERCC.gff | python3 ~/bustools_linux-v0.39.3t2g.py  > ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt
+
+#+end_src
+
+
+time ~/bustools_linux-v0.39.3/bustools correct -w ~/proj/genome/10xv2_whitelist.txt -o output.correct.bus output.bus
+Found 737280 barcodes in the whitelist
+Number of hamming dist 1 barcodes = 20550336
+Processed 359437471 bus records
+In whitelist = 342274396
+Corrected = 5260521
+Uncorrected = 11902554
+
+real    2m59.417s
+user    1m10.048s
+sys     0m17.139s
+
+time ~/bustools_linux-v0.39.3/bustools sort -t 32 -o output.correct.sort.bus  output.correct.bus
+Read in 347534917 BUS records
+
+real    5m11.484s
+user    1m33.653s
+sys     0m29.536s
+
+(base) diane@ip-172-31-30-226:~/proj/ENCSR874BOF_e10_5_limb/mm10-M21-male-kallisto-0.46.2$ time ~/bustools_linux-v0.39.3/bustools count -o eqcount/tcc -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus 
+
+real    0m32.146s
+user    0m20.013s
+sys     0m3.980s
+(base) diane@ip-172-31-30-226:~/proj/ENCSR874BOF_e10_5_limb/mm10-M21-male-kallisto-0.46.2$ time ~/bustools_linux-v0.39.3/bustools count -o genecount/gene -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus 
+
+real    0m10.240s
+user    0m8.063s
+sys     0m1.697s
+
+** Count try 2
+
+The above run didn't generate many results, I wonder if the order of
+the fastq confused it.
+
+#+begin_src bash
+time ~/kallisto_linux-v0.46.2/kallisto bus \
+    -t 32 \
+    -i ~/proj/genome/mm10-M21-male/mm10-M21-male-kallisto-0.46.2.idx \
+    -o mm10-M21-male-kallisto-0.46.2-reverse \
+    -x 10xv2 \
+    ENCSR874BOF_S1_L001_R2_001.fastq.gz ENCSR874BOF_S1_L001_R1_001.fastq.gz
+#+end_src
+
+#+RESULTS:
+| [index] k-mer length: 31                                            |
+| [index] number of targets: 168,207                                  |
+| [index] number of k-mers: 120,997,101                               |
+| [index] number of equivalence classes: 555,826                      |
+| [quant] will process sample 1: ENCSR874BOF_S1_L001_R2_001.fastq.gz  |
+| ENCSR874BOF_S1_L001_R1_001.fastq.gz                                 |
+| [quant] finding pseudoalignments for the reads ... done             |
+| [quant] processed 432,950,142 reads, 31,470,855 reads pseudoaligned |
+|                                                                     |
+|                                                                     |
+| real    38m52.357s                                                  |
+| user    417m4.345s                                                  |
+| sys     4m24.291s                                                   |
+|                                                                     |
+|                                                                     |
+
+time ~/bustools_linux-v0.39.3/bustools correct -w ~/proj/genome/10xv2_whitelist.txt -o output.correct.bus output.bus
+Found 737280 barcodes in the whitelist
+Number of hamming dist 1 barcodes = 20550336
+Processed 31470855 bus records
+In whitelist = 5755
+Corrected = 141370
+Uncorrected = 31323730
+
+real    0m21.745s
+user    0m18.491s
+sys     0m1.825s
+
+time ~/bustools_linux-v0.39.3/bustools sort -t 32 -o output.correct.sort.bus  output.correct.bus
+Read in 147125 BUS records
+
+real    0m2.247s
+user    0m0.540s
+sys     0m1.514s
+
+time ~/bustools_linux-v0.39.3/bustools count -o eqcount/tcc -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus 
+
+real    0m2.294s
+user    0m1.901s
+sys     0m0.152s
+
+time ~/bustools_linux-v0.39.3/bustools count -o genecount/gene -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
+
+real    0m1.519s
+user    0m1.289s
+sys     0m0.132s
+
+** Try 3
+
+does it work with kallisto provided index?
+
+
+#+name: ENCSR874BOF_e10_5_limb/run-kallisto-upstream-idx.sh
+#+begin_src bash
+#!/bin/bash
+time ~/kallisto_linux-v0.46.2/kallisto bus \
+    -t 32 \
+    -i ~/proj/genome/mus_musculus/transcriptome.idx \
+    -o mm10-M21-male-kallisto-0.46.2-upstream-idx \
+    -x 10xv2 \
+    ENCSR874BOF_S1_L001_R1_001.fastq.gz ENCSR874BOF_S1_L001_R2_001.fastq.gz
+cd mm10-M21-male-kallisto-0.46.2-upstream-idx
+time ~/bustools_linux-v0.39.3/bustools correct -w ~/proj/genome/10xv2_whitelist.txt -o output.correct.bus output.bus
+time ~/bustools_linux-v0.39.3/bustools sort -t 32 -o output.correct.sort.bus  output.correct.bus
+mkdir eqcount genecount
+time ~/bustools_linux-v0.39.3/bustools count -o eqcount/tcc -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus 
+time ~/bustools_linux-v0.39.3/bustools count -o genecount/gene -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
+
+#+end_src
