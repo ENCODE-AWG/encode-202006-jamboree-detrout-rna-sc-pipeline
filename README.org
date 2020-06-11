@@ -8,6 +8,12 @@ I am working on trying to figure out a single cell RNA-seq pipepline
 Notes I'm sharing with other people are in this google doc
 https://docs.google.com/document/d/1ZFPmoHS7Ce_8mgPfNMo620wkq47HRhU2wp57_HwH4TU/edit#
 
+* Ali
+
+pick a pipeline that also works with
+split-bio & dd-seq
+Liz has split-bio c2c12 data
+
 * Updates to environment.
 
 I installed msmtp and configured an account on chaos so I can send
