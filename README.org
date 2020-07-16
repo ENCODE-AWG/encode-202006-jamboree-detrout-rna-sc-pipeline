@@ -543,3 +543,74 @@ time singularity run ${SALMON} alevin \
   --tgMap ${GENOME_DIR}/txp2gene.tsv
 #+end_src
 
+** TODO we need to compare the spearmans & relative differences to the star values.
+
+
+* How do tools handle multi-mapping reads?
+
+Anshul thinks this is import
+
+Important paperCompression of quantification
+uncertainty for scRNA-seq counts
+https://www.biorxiv.org/content/10.1101/2020.07.06.189639v1
+
+Quantification estimates of gene expression from single-cell RNA-seq
+(scRNA-seq) data have inherent uncertainty due to reads that map to
+multiple genes. Many existing scRNA-seq quantification pipelines
+ignore multi-mapping reads and therefore underestimate expected read
+counts for many genes. alevin accounts for multi-mapping reads and
+allows for the generation of "inferential replicates", which reflect
+quantification uncertainty. Previous methods have shown improved
+performance when incorporating these replicates into statistical
+analyses, but storage and use of these replicates increases
+computation time and memory requirements. We demonstrate that storing
+only the mean and variance from a set of inferential replicates
+("compression") is sufficient to capture gene-level quantification
+uncertainty. Using these values, we generate "pseudo-inferential"
+replicates from a negative binomial distribution and propose a general
+procedure for incorporating these replicates into a proposed
+statistical testing framework. We show reduced false positives when
+applying this procedure to trajectory-based differential expression
+analyses. We additionally extend the Swish method to incorporate
+pseudo-inferential replicates and demonstrate improvements in
+computation time and memory consumption without any loss in
+performance. Lastly, we show that the removal of multi-mapping reads
+can result in significant underestimation of counts for functionally
+important genes in a real dataset. makeInfReps and splitSwish are
+implemented in the development branch of the R/Bioconductor fishpond
+package available at
+http://bioconductor.org/packages/devel/bioc/html/fishpond.html. Sample
+code to calculate the uncertainty-aware p-values can be found on
+GitHub at
+https://github.com/skvanburen/scUncertaintyPaperCode. (edited)
+
+** RSEM invented the use of an EM process to allocate multi-mapping reads
+** Salmon/Alevin
+
+** Does Kalisto handle multi-mapping reads?
+
+From https://arxiv.org/pdf/1505.02710.pdf
+
+While the direct use of k-mers is inadequate for accurate
+quantification, the speed of hashing provides hope for much faster,
+yet accurate, RNA-Seq processing. We therefore asked whether
+information from k-mer within a read could be combined efficiently in
+a manner that would maintain the accuracy of alignment-based
+quantification. To address this question, we examined the central
+difficulty and key requirement for accurate quantification, which is
+the assignment of reads that cannot be uniquely aligned6. Typically,
+these multi-mapping reads are accounted for using a statistical model
+of RNA-Seq6 which probabilistically assigns such reads while inferring
+maximum likelihood estimates of transcript abundances. However it has
+been observed that the sufficient statistics for the simplest such
+models are the compatibilities of reads with transcripts7. That is,
+the necessary information is not whereinside transcripts the reads may
+have originated from, but onlywhich transcripts could have generated
+them. This led us to formulate the concept of pseudoalignment of reads
+and fragments.
+
+** Review paper
+
+Handling multi-mapped reads in RNA-seq
+Gabrielle Deschamps-Francoeur, Joël Simoneau, Michelle S.Scott
+https://www.sciencedirect.com/science/article/pii/S2001037020303032
