@@ -134,6 +134,16 @@ xing done"
 | user    8m35.672s                                                               |
 | sys     0m18.461s                                                               |
 
+** Rebuild index on galvar
+
+#+begin_src bash
+GENOME_DIR=~/proj/genome
+ENCODE_GENOME=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21-male
+time ~/proj/kallisto/build/src/kallisto index \
+  -i ${ENCODE_GENOME}/mm10-M21-male-kallisto-0.46.2.idx \
+  ${GENOME_DIR}/mm10-M21-male/rsem.transcripts.fa
+#+end_src
+
 ** Count
 
 First build the bus file
@@ -295,3 +305,49 @@ time ~/bustools_linux-v0.39.3/bustools count -o eqcount/tcc -g ~/proj/genome/mm1
 time ~/bustools_linux-v0.39.3/bustools count -o genecount/gene -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
 
 #+end_src
+
+** Quantify locally using kallisto
+
+#+begin_src bash
+GENOME_DIR=~/proj/genome
+ENCODE_GENOME=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21-male
+time ~/proj/kallisto/build/src/kallisto bus \
+  -t 20 \
+  -i ${ENCODE_GENOME}/mm10-M21-male-kallisto-0.46.2.idx \
+  -o ENCSR874BOF_e10_5_limb/kallisto \
+  -x 10xv2 \
+  ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R1_001.fastq.gz \
+  ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R2_001.fastq.gz
+#+end_src
+
+#+begin_src bash
+BUS_DIR=~/proj/bustools/build/src
+TARGET_DIR=ENCSR874BOF_e10_5_limb/kallisto
+time ${BUS_DIR}/bustools correct \
+  -w 10xv2_whitelist.txt \
+  -o ${TARGET_DIR}/output.correct.bus \
+  ${TARGET_DIR}/output.bus
+
+mkdir ${TARGET_DIR}/{eqcount,genecount}
+
+time ${BUS_DIR}/bustools sort \
+  -t 20 \
+  -o ${TARGET_DIR}/output.correct.sort.bus \
+  ${TARGET_DIR}/output.correct.bus
+
+time ${BUS_DIR}/bustools count \
+  -o ${TARGET_DIR}/eqcount/tcc \
+  -g ${ENCODE_GENOME}/txp2gene.tsv \
+  -e ${TARGET_DIR}/matrix.ec \
+  -t ${TARGET_DIR}/transcripts.txt \
+  ${TARGET_DIR}/output.correct.sort.bus
+
+time ${BUS_DIR}/bustools count \
+  -o ${TARGET_DIR}/genecount/gene \
+  -g ${ENCODE_GENOME}/txp2gene.tsv \
+  -e ${TARGET_DIR}/matrix.ec \
+  -t ${TARGET_DIR}/transcripts.txt \
+  --genecounts ${TARGET_DIR}/output.correct.sort.bus
+
+#+end_src
+
