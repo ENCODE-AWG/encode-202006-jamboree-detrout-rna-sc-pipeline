@@ -14,7 +14,7 @@ pick a pipeline that also works with
 split-bio & dd-seq
 Liz has split-bio c2c12 data
 
-* Updates to environment.
+* Updates to jamboree environment.
 
 I installed msmtp and configured an account on chaos so I can send
 myself email when jobs finish running.
