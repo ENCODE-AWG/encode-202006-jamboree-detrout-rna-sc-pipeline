@@ -61,12 +61,14 @@ curl -L -O http://woldlab.caltech.edu/~diane/genome/mm10-M21-male/gencode.vM21-t
 ** Download data
 
 #+begin_src bash
-mkdir ~/proj/ENCSR874BOF_e10_5_limb
-cd ~/proj/ENCSR874BOF_e10_5_limb
+TARGET=ENCSR874BOF_e10_5_limb
+if [ ! -e ${TARGET} ] ; then mkdir ${TARGET} ; fi
+pushd ${TARGET}
 curl -L -o ENCFF294PZE_R1.fastq.gz https://www.encodeproject.org/files/ENCFF294PZE/@@download/ENCFF294PZE.fastq.gz
 curl -L -o ENCFF111ISS_R2.fastq.gz https://www.encodeproject.org/files/ENCFF111ISS/@@download/ENCFF111ISS.fastq.gz
 mv ENCFF294PZE_R1.fastq.gz ENCSR874BOF_S1_L001_R1_001.fastq.gz
 mv ENCFF111ISS_R2.fastq.gz ENCSR874BOF_S1_L001_R2_001.fastq.gz
+popd
 #+end_src
 
 ** Run cell ranger
