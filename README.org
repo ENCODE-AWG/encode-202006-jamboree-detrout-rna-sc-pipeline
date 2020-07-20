@@ -621,3 +621,31 @@ and fragments.
 Handling multi-mapped reads in RNA-seq
 Gabrielle Deschamps-Francoeur, Joël Simoneau, Michelle S.Scott
 https://www.sciencedirect.com/science/article/pii/S2001037020303032
+
+* After jamboree notes
+
+I'm struggling with how to record notes as I try to understand things
+vs notes to make a coherent story how to run the analysis.
+
+Maybe it'd be better to put journal notes into a separate heading?
+
+** <2020-07-16 Thu>
+
+*** Spikein expression found
+
+I did discover the last spikein does have some expression.
+
+*** Cellranger & STAR Solo missing tRNAs
+I discovered the Cellranger & Alex's STAR runs didn't have the tRNAs
+in their index.
+
+I modified the gff to replace all instances of type tRNA with exon.
+
+I wonder if this means the ENCODE run didn't work?
+
+#+begin_src bash
+sed 's/\ttRNA\t/\texon\t/' ~/proj/genome/mm10-M21-male/gencode.vM21-tRNAs-ERCC.gff > gencode.vM21-tRNAs-exon-ERCC.gff
+#+end_src
+
+Whatever this means I need to rerun Cellranger and STAR solo
+
