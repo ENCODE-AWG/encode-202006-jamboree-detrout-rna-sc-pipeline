@@ -553,7 +553,6 @@ time singularity run ${SALMON} alevin \
 
 ** TODO we need to compare the spearmans & relative differences to the star values.
 
-
 * How do tools handle multi-mapping reads?
 
 Anshul thinks this is import
