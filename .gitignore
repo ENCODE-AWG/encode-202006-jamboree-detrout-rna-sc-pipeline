@@ -29,3 +29,5 @@ genome/mm10-M21-male/sjdbInfo.txt
 genome/mm10-M21-male/sjdbList.fromGTF.out.tab
 genome/mm10-M21-male/sjdbList.out.tab
 genome/mm10-M21-male/transcriptInfo.tab
+# Ignore ipython checkpoints
+.ipynb_checkpoints/
