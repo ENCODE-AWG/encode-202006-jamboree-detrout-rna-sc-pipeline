@@ -31,3 +31,5 @@ genome/mm10-M21-male/sjdbList.out.tab
 genome/mm10-M21-male/transcriptInfo.tab
 # Ignore ipython checkpoints
 .ipynb_checkpoints/
+# Ignore alevin runs
+ENCSR874BOF_e10_5_limb/alevin_output*/
