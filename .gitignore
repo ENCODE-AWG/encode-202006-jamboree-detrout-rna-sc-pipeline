@@ -9,3 +9,20 @@ genome/mm10-M21-male/mm10-M21-ercc+phix.fa
 genome/mm10-M21-male/mm10-M21-male-cellranger-3.1.0/
 # Ignore cellranger directory. Important results are in synapse
 ENCSR874BOF_e10_5_limb/ENCSR874BOF-10x-e10_5-count-cells10000/
+
+# Ignore star index
+genome/mm10-M21-male/Genome
+genome/mm10-M21-male/SA
+genome/mm10-M21-male/SAindex
+genome/mm10-M21-male/chrLength.txt
+genome/mm10-M21-male/chrName.txt
+genome/mm10-M21-male/chrNameLength.txt
+genome/mm10-M21-male/chrStart.txt
+genome/mm10-M21-male/exonGeTrInfo.tab
+genome/mm10-M21-male/exonInfo.tab
+genome/mm10-M21-male/geneInfo.tab
+genome/mm10-M21-male/genomeParameters.txt
+genome/mm10-M21-male/sjdbInfo.txt
+genome/mm10-M21-male/sjdbList.fromGTF.out.tab
+genome/mm10-M21-male/sjdbList.out.tab
+genome/mm10-M21-male/transcriptInfo.tab
