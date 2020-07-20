@@ -1,5 +1,7 @@
 # Ignore temporary and log files
 *~
+*.py[co]
+__pycache__/
 Log.out
 *.fastq.gz
 # Ignore files downloaded from elsewhere
