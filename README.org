@@ -90,6 +90,14 @@ https://www.synapse.org/#!Synapse:syn22150185
 Minimimum genes detected
 fraction mitochondria
 
+* Star Solo
+** Build index
+[[file:genome/mm10-M21-male/build-star.sh::#!/bin/bash][build-star.sh]]
+
+** Run star solo
+
+[[file:align-star-solo-ENCSR874BOF.condor][file:align-star-solo-ENCSR874BOF.condor]]
+
 * Kallisto
 
 ** Download
