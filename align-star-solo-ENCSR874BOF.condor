@@ -42,7 +42,7 @@ arguments="--genomeDir $(GENOME_DIR) \
 	   --outSAMheaderHD @HD VN:1.4 SO:coordinate \
 	   --outSAMunmapped Within \
 	   --outFilterType BySJout \
-	   --outSAMattributes NH HI AS NM MD \
+	   --outSAMattributes NH HI AS NM MD CB UB \
 	   --outSAMtype BAM SortedByCoordinate \
            --soloType CB_UMI_Simple \
            --soloBarcodeReadLength 0 \
