@@ -316,21 +316,22 @@ time ~/bustools_linux-v0.39.3/bustools count -o genecount/gene -g ~/proj/genome/
 
 ** Quantify locally using kallisto
 
+This run was without enabling EM
+
 #+begin_src bash
 GENOME_DIR=~/proj/genome
 ENCODE_GENOME=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21-male
+TARGET_DIR=ENCSR874BOF_e10_5_limb/kallisto
+BUS_DIR=~/proj/bustools/build/src
+
 time ~/proj/kallisto/build/src/kallisto bus \
   -t 20 \
   -i ${ENCODE_GENOME}/mm10-M21-male-kallisto-0.46.2.idx \
-  -o ENCSR874BOF_e10_5_limb/kallisto \
+  -o ${TARGET_DIR} \
   -x 10xv2 \
   ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R1_001.fastq.gz \
   ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R2_001.fastq.gz
-#+end_src
 
-#+begin_src bash
-BUS_DIR=~/proj/bustools/build/src
-TARGET_DIR=ENCSR874BOF_e10_5_limb/kallisto
 time ${BUS_DIR}/bustools correct \
   -w 10xv2_whitelist.txt \
   -o ${TARGET_DIR}/output.correct.bus \
@@ -356,8 +357,74 @@ time ${BUS_DIR}/bustools count \
   -e ${TARGET_DIR}/matrix.ec \
   -t ${TARGET_DIR}/transcripts.txt \
   --genecounts ${TARGET_DIR}/output.correct.sort.bus
-
 #+end_src
+
+Enable single cell EM
+
+#+begin_src bash
+GENOME_DIR=~/proj/genome
+ENCODE_GENOME=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21-male
+TARGET_DIR=ENCSR874BOF_e10_5_limb/kallisto_em
+BUS_DIR=~/proj/bustools/build/src
+
+time ~/proj/kallisto/build/src/kallisto bus \
+  -t 20 \
+  -i ${ENCODE_GENOME}/mm10-M21-male-kallisto-0.46.2.idx \
+  -o ${TARGET_DIR} \
+  -x 10xv2 \
+  ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R1_001.fastq.gz \
+  ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R2_001.fastq.gz
+
+time ${BUS_DIR}/bustools correct \
+  -w 10xv2_whitelist.txt \
+  -o ${TARGET_DIR}/output.correct.bus \
+  ${TARGET_DIR}/output.bus
+
+mkdir ${TARGET_DIR}/{eqcount,genecount}
+
+time ${BUS_DIR}/bustools sort \
+  -t 20 \
+  -o ${TARGET_DIR}/output.correct.sort.bus \
+  ${TARGET_DIR}/output.correct.bus
+
+time ${BUS_DIR}/bustools count --em \
+  -o ${TARGET_DIR}/eqcount/tcc \
+  -g ${ENCODE_GENOME}/txp2gene.tsv \
+  -e ${TARGET_DIR}/matrix.ec \
+  -t ${TARGET_DIR}/transcripts.txt \
+  ${TARGET_DIR}/output.correct.sort.bus
+
+time ${BUS_DIR}/bustools count --em \
+  -o ${TARGET_DIR}/genecount/gene \
+  -g ${ENCODE_GENOME}/txp2gene.tsv \
+  -e ${TARGET_DIR}/matrix.ec \
+  -t ${TARGET_DIR}/transcripts.txt \
+  --genecounts ${TARGET_DIR}/output.correct.sort.bus
+#+end_src
+
+Kallisto bus runtime
+real    35m44.081s
+user    123m13.511s
+sys     0m42.385s
+
+bustools correct runtime
+
+real    1m57.074s
+user    0m56.817s
+sys     0m10.216s
+
+bustools count --em (transcript)
+
+real    1m10.530s
+user    0m57.881s
+sys     0m2.444s
+
+bustools count --em (gene)
+
+real    3m28.821s
+user    3m23.627s
+sys     0m1.993s
+
 
 * Salmon/Alevin
 
