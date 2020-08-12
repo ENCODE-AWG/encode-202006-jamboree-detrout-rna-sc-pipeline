@@ -425,7 +425,6 @@ real    3m28.821s
 user    3m23.627s
 sys     0m1.993s
 
-
 * Salmon/Alevin
 
 Ben had originally tried to get Salmon/Alevin to run but it was
@@ -434,8 +433,6 @@ segfaulting on the AWG hosts.
 Instead of salmon's prebuilt version, I'm going to use the version
 built by Debian, the version in buster is 0.12.0+ds1-1, but I want the
 version in unstable 1.2.1+ds1-1+b2.
-
-
 
 Sounds like it's time for singularity.
 
@@ -716,3 +713,46 @@ sed 's/\ttRNA\t/\texon\t/' ~/proj/genome/mm10-M21-male/gencode.vM21-tRNAs-ERCC.g
 
 Whatever this means I need to rerun Cellranger and STAR solo
 
+** <2020-07-20 Mon> Trying to build a better salmon index
+
+After some experimenting the small program I wrote to generate a
+transcriptome that included the tRNAs occasionally found the there
+were regions in the gtf file whose coordinates didn't fit the length
+of the contig.
+
+
+#+begin_src bash
+python3 salmon-index.py \
+  -f ~/proj/genome/mm10-M21-male/mm10-M21-ercc+phix.fa  \
+  -g ~/proj/genome/mm10-M21-male/mm10-M21-male.h5 \
+  -o mm10-M21-male-transcriptome.fa ; grep -c '^>' mm10-M21-male-transcriptome.fa
+#+end_src
+
+Seq is empty chr1_GL456213_random 39340 s ENSMUST00000115924.2 128554 129000 -1  0
+Seq is empty chrUn_GL456359 22974 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn_GL456360 31704 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn_GL456366 47073 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn_GL456367 42057 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn_GL456368 20208 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn_GL456370 26764 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn_GL456378 31602 s ENSMUST00000178366.1 13261 13382 -1  0
+Seq is empty chrUn_GL456379 72385 s ENSMUST00000178366.1 13261 13382 -1  0
+Seq is empty chrUn_GL456382 23158 s ENSMUST00000184505.1 16622 16721 -1  0
+Seq is empty chrUn_GL456383 38659 s ENSMUST00000184505.1 16622 16721 -1  0
+Seq is empty chrUn_GL456387 24685 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn_GL456389 28772 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn_GL456390 24668 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn_GL456392 23629 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn_GL456393 55711 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn_GL456394 24323 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn_GL456396 21240 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrY_JH584300_random 182347 s ENSMUST00000179623.1 90838868 90839177 -1  0
+Seq is empty chrY_JH584301_random 259875 s ENSMUST00000179623.1 90838868 90839177 -1  0
+Seq is empty chrY_JH584302_random 155838 s ENSMUST00000179623.1 90838868 90839177 -1  0
+
+Add decoy
+
+#+begin_src bash
+head -n -1583 ~/proj/genome/mm10-M21-male/mm10-M21-ercc+phix.fa >> mm10-M21-male-transcriptome.fa
+
+#+end_src
