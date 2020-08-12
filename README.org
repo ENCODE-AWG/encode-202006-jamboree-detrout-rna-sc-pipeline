@@ -756,3 +756,22 @@ Add decoy
 head -n -1583 ~/proj/genome/mm10-M21-male/mm10-M21-ercc+phix.fa >> mm10-M21-male-transcriptome.fa
 
 #+end_src
+
+** <2020-07-24 Fri> Current problems
+
+I had a bunch of difficulties getting the shape of the alevin matrix
+to match the others. Eventually I came up with a set of
+transformations to get it to fit.
+
+Then I needed to regenerate the h5ad files to get the alevin_diff matrix to be
+have the right dimensions as well.
+
+Next I started trying to work on getting a bam filtered to just the
+common barcodes so I could run RSEM on it and compare to the other
+different algorithms.
+
+Unfortunately my first STAR Solo run didn't include the CB tag with
+the cell barcode. I thought I'd try cell ranger run, but it is only
+genome coordinates. So I needed to add CB UB to the star condor file
+and try again.
+
