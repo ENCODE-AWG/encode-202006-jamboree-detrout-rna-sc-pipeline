@@ -110,3 +110,6 @@ genome/mm10-M21_minimal-male/
 # some smart world there'd be a program that just generated this file
 # instead of it being in a notebook that does other stuff too
 fastqs-used-in-c1-e10.5.txt
+
+# Ignore file downloaded from synapse
+ENCSR874BOF_e10_5_limb/alex-star-solo/
