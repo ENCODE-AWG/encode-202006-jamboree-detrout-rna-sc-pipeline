@@ -11,6 +11,7 @@ def check_triplet(genome_triplet):
     """
     assert genome_triplet in [
         'mm10-M21-male',
+        'GRCh38-V24-male',
     ]
 
 
