@@ -1,0 +1,10 @@
+#!/usr/bin/condor_submit -
+
+universe=vanilla
+output=cutadat.$(process).out
+error=cutadat.$(process).out
+log=cutadat.$(process).log
+
+executable=/usr/bin/cutadapt
+arguments="-u 27 --cores 0 -o ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R1_27\:None.fastq.gz ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R1_001.fastq.gz"
+queue
