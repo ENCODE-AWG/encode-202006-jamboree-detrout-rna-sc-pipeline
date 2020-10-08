@@ -1,0 +1,1855 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-10-08 Thu 10:52 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Diane Trout" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org046cf39">1. Jamboree</a></li>
+<li><a href="#orgb95312b">2. Ali</a></li>
+<li><a href="#org022ac94">3. Updates to jamboree environment.</a></li>
+<li><a href="#org5e5cc68">4. Data</a></li>
+<li><a href="#org1d026c0">5. Cellranger</a>
+<ul>
+<li><a href="#org715bbbf">5.1. Download cell ranger</a></li>
+<li><a href="#orgab99d81">5.2. Build new cell ranger index</a></li>
+<li><a href="#org4a6ea51">5.3. Download data</a></li>
+<li><a href="#org2e2434c">5.4. Run cell ranger</a></li>
+</ul>
+</li>
+<li><a href="#org08651a8">6. Star Solo</a>
+<ul>
+<li><a href="#org6920759">6.1. Build index</a></li>
+<li><a href="#org8620186">6.2. Run star solo</a></li>
+</ul>
+</li>
+<li><a href="#org0dff7b7">7. Kallisto</a>
+<ul>
+<li><a href="#org9551161">7.1. Download</a></li>
+<li><a href="#org1f60e87">7.2. Build 0.46.2 index</a></li>
+<li><a href="#org2fe190a">7.3. Rebuild index on galvar</a></li>
+<li><a href="#orgd230c4d">7.4. Count</a></li>
+<li><a href="#org5d90652">7.5. Count try 2</a></li>
+<li><a href="#org8c2595f">7.6. Try 3</a></li>
+<li><a href="#orge469161">7.7. Quantify locally using kallisto</a></li>
+</ul>
+</li>
+<li><a href="#org9219734">8. Salmon/Alevin</a>
+<ul>
+<li><a href="#org072192e">8.1. Building salmon reference from GENCOE</a></li>
+<li><a href="#org98e94f8">8.2. Building salmon reference from ENCODE files.</a></li>
+<li><a href="#orga028254">8.3. Make transcript to gene map</a></li>
+<li><a href="#org3f051b3">8.4. Alevin 10x style alignment</a>
+<ul>
+<li><a href="#org9b24977">8.4.1. third try, with encode annotation files</a></li>
+</ul>
+</li>
+<li><a href="#orgc6f49d1">8.5. <span class="todo TODO">TODO</span> we need to compare the spearmans &amp; relative differences to the star values.</a></li>
+</ul>
+</li>
+<li><a href="#orgb9bc3d8">9. How do tools handle multi-mapping reads?</a>
+<ul>
+<li><a href="#orgf40968d">9.1. RSEM invented the use of an EM process to allocate multi-mapping reads</a></li>
+<li><a href="#orgcef2a05">9.2. Salmon/Alevin</a></li>
+<li><a href="#orgf205204">9.3. Does Kalisto handle multi-mapping reads?</a></li>
+<li><a href="#org0e393d9">9.4. Review paper</a></li>
+</ul>
+</li>
+<li><a href="#orgf7373bc">10. Redo everything with 10x's smaller annotation set.</a>
+<ul>
+<li><a href="#org4b0f234">10.1. Generate smaller GTF file</a></li>
+<li><a href="#org0ec7cf1">10.2. Building salmon reference from 10x files.</a>
+<ul>
+<li><a href="#org75276d3">10.2.1. Version with decoy</a></li>
+<li><a href="#orgd234567">10.2.2. Version without decoy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgc8801f1">11. After jamboree notes</a>
+<ul>
+<li><a href="#orgd844a54">11.1. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-16 Thu&gt;</span></span></a>
+<ul>
+<li><a href="#org568b824">11.1.1. Spikein expression found</a></li>
+<li><a href="#org76b79c0">11.1.2. Cellranger &amp; STAR Solo missing tRNAs</a></li>
+</ul>
+</li>
+<li><a href="#org46e1859">11.2. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-20 Mon&gt; </span></span> Trying to build a better salmon index</a></li>
+<li><a href="#org5147472">11.3. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-24 Fri&gt; </span></span> Current problems</a></li>
+<li><a href="#org40d7e8d">11.4. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-03 Mon&gt; </span></span> Once again RSEM fails with the same error that read maps and doesn't map.</a></li>
+<li><a href="#org351f810">11.5. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-11 Tue&gt; </span></span> Trying to build minimal index.</a></li>
+<li><a href="#org16b6847">11.6. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-27 Thu&gt; </span></span> Summary of things that went wrong</a></li>
+<li><a href="#orgbf2beef">11.7. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-02 Wed&gt; </span></span> Finished the C1 branch</a></li>
+<li><a href="#org6ba3a2a">11.8. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-03 Thu&gt; </span></span> Work on analyzing 10x</a></li>
+<li><a href="#org987bbfd">11.9. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-25 Fri&gt; </span></span> lets rerun kallisto with a different fragment &amp; sd number</a></li>
+<li><a href="#org38719dd">11.10. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-25 Fri&gt; </span></span> Also how well does kallisto match the spike in concentrations?</a></li>
+<li><a href="#orgfcd5b20">11.11. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-06 Tue&gt; </span></span> Presented spike in results to group</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org046cf39" class="outline-2">
+<h2 id="org046cf39"><span class="section-number-2">1</span> Jamboree</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+This is a VM for the June 2020 ENCODE jamboree. I should remember to grab my
+notes out before they shut the VM down.
+</p>
+
+<p>
+I am working on trying to figure out a single cell RNA-seq pipepline
+</p>
+
+<p>
+Notes I'm sharing with other people are in this google doc
+<a href="https://docs.google.com/document/d/1ZFPmoHS7Ce_8mgPfNMo620wkq47HRhU2wp57_HwH4TU/edit">https://docs.google.com/document/d/1ZFPmoHS7Ce_8mgPfNMo620wkq47HRhU2wp57_HwH4TU/edit</a>#
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb95312b" class="outline-2">
+<h2 id="orgb95312b"><span class="section-number-2">2</span> Ali</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+pick a pipeline that also works with
+split-bio &amp; dd-seq
+Liz has split-bio c2c12 data
+</p>
+</div>
+</div>
+
+<div id="outline-container-org022ac94" class="outline-2">
+<h2 id="org022ac94"><span class="section-number-2">3</span> Updates to jamboree environment.</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+I installed msmtp and configured an account on chaos so I can send
+myself email when jobs finish running.
+</p>
+
+<p>
+I set up <a href="file:///woldlab/loxcyc/home/diane/.msmtprc">file:///woldlab/loxcyc/home/diane/.msmtprc</a> with a temporary account and created a small
+script to send myself an email
+</p>
+
+<pre class="example">
+#!/bin/bash
+
+printf "From: diane@ghic.org\nTo: diane@caltech.edu\nSubject: $1\n\n$2\n" | msmtp -t
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5e5cc68" class="outline-2">
+<h2 id="org5e5cc68"><span class="section-number-2">4</span> Data</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+In the google doc it looks like our best dataset shared among all
+technologies is the e10.5 timepoint
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1d026c0" class="outline-2">
+<h2 id="org1d026c0"><span class="section-number-2">5</span> Cellranger</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+One comparison that needs to be done is to run cellranger with a newer
+annotation set.
+</p>
+</div>
+
+<div id="outline-container-org715bbbf" class="outline-3">
+<h3 id="org715bbbf"><span class="section-number-3">5.1</span> Download cell ranger</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+I filled out their license agreement and downloaded the current
+version of cellranger. The ticket will probably be expired anytime
+anyone else looks at this.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">curl -o cellranger-3.1.0.tar.gz <span style="font-style: italic;">"http://cf.10xgenomics.com/releases/cell-exp/cellranger-3.1.0.tar.gz?Expires=1591692955&amp;Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cDovL2NmLjEweGdlbm9taWNzLmNvbS9yZWxlYXNlcy9jZWxsLWV4cC9jZWxscmFuZ2VyLTMuMS4wLnRhci5neiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTU5MTY5Mjk1NX19fV19&amp;Signature=kVpABUeGN2MZPTfGXzFoWyVjIKeRUXbBBYKGMsa5eNeT3iSF50Dy5cB7fmbXfI2E8yjObDAI1KTXa3KYsD3WkcxI~SfmN8A6vCYfkTl4XutcdIhdCWdXU2ywbjoijbaMyhOjYXtU5ZzUD7v4-Kz1WMtczUs8hAfFu~QYmlNyey~9JNTQxBQ8EhY02pQziQrvHzJzbEw88282Sklltg8eQDCx~dxTXxFIVBYyMNqzMhOdI4MQa66lmnQ6d-YUT5M4aj5JxtCVjkJVbeCjCXkHHQh0fjhMgy6t-BNdzIhq6yfXici0bdjw26GZxy6w0YwWFGVuaB-VyDyPkTnrHxI9Cg__&amp;Key-Pair-Id=APKAI7S6A5RYOXBWRPDA"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgab99d81" class="outline-3">
+<h3 id="orgab99d81"><span class="section-number-3">5.2</span> Build new cell ranger index</h3>
+<div class="outline-text-3" id="text-5-2">
+<div class="org-src-container">
+<pre class="src src-bash">mkdir ~/proj/mm10-M21-male
+<span style="font-weight: bold;">cd</span> ~/proj/mm10-M21-male
+curl -L -O http://woldlab.caltech.edu/~diane/genome/mm10-M21-male/mm10-M21-ercc+phix.fa
+curl -L -O http://woldlab.caltech.edu/~diane/genome/mm10-M21-male/gencode.vM21-tRNAs-ERCC.gff
+./build-cellranger.sh ; ~/bin/notify.sh <span style="font-style: italic;">"finished"</span> <span style="font-style: italic;">"finished"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4a6ea51" class="outline-3">
+<h3 id="org4a6ea51"><span class="section-number-3">5.3</span> Download data</h3>
+<div class="outline-text-3" id="text-5-3">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">TARGET</span>=ENCSR874BOF_e10_5_limb
+<span style="font-weight: bold;">if</span> [ ! -e ${<span style="font-weight: bold; font-style: italic;">TARGET</span>} ] ; <span style="font-weight: bold;">then</span> mkdir ${<span style="font-weight: bold; font-style: italic;">TARGET</span>} ; <span style="font-weight: bold;">fi</span>
+<span style="font-weight: bold;">pushd</span> ${<span style="font-weight: bold; font-style: italic;">TARGET</span>}
+curl -L -o ENCFF294PZE_R1.fastq.gz https://www.encodeproject.org/files/ENCFF294PZE/@@download/ENCFF294PZE.fastq.gz
+curl -L -o ENCFF111ISS_R2.fastq.gz https://www.encodeproject.org/files/ENCFF111ISS/@@download/ENCFF111ISS.fastq.gz
+mv ENCFF294PZE_R1.fastq.gz ENCSR874BOF_S1_L001_R1_001.fastq.gz
+mv ENCFF111ISS_R2.fastq.gz ENCSR874BOF_S1_L001_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2e2434c" class="outline-3">
+<h3 id="org2e2434c"><span class="section-number-3">5.4</span> Run cell ranger</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+<a href="proj/ENCSR874BOF-10x-10.5-limb/run-cellranger.sh">proj/ENCSR874BOF-10x-10.5-limb/run-cellranger.sh</a>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">cd</span> ~/proj/ENCSR874BOF_e10_5_limb
+./run-cellranger.sh ; ~/bin/notify.sh <span style="font-style: italic;">"cellranger count finished"</span> <span style="font-style: italic;">"CR finished"</span>
+</pre>
+</div>
+
+<p>
+real    922m34.656s
+user    5206m31.687s
+sys     385m19.170s
+</p>
+
+<p>
+Results stored in
+<a href="https://www.synapse.org/#!Synapse:syn22150185">https://www.synapse.org/#!Synapse:syn22150185</a>
+</p>
+
+<p>
+Minimimum genes detected
+fraction mitochondria
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org08651a8" class="outline-2">
+<h2 id="org08651a8"><span class="section-number-2">6</span> Star Solo</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org6920759" class="outline-3">
+<h3 id="org6920759"><span class="section-number-3">6.1</span> Build index</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+<a href="genome/mm10-M21-male/build-star.sh#!/bin/bash">build-star.sh</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8620186" class="outline-3">
+<h3 id="org8620186"><span class="section-number-3">6.2</span> Run star solo</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+<a href="align-star-solo-ENCSR874BOF.condor">file:align-star-solo-ENCSR874BOF.condor</a>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0dff7b7" class="outline-2">
+<h2 id="org0dff7b7"><span class="section-number-2">7</span> Kallisto</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org9551161" class="outline-3">
+<h3 id="org9551161"><span class="section-number-3">7.1</span> Download</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+ENCODE is using 0.44.0 but the newer versions did some work on bus
+tools so try that one
+<a href="https://github.com/pachterlab/kallisto/releases/download/v0.44.0/kallisto_linux-v0.44.0.tar.gz">https://github.com/pachterlab/kallisto/releases/download/v0.44.0/kallisto_linux-v0.44.0.tar.gz</a>
+Latest version is: 0.46.2
+<a href="https://github.com/pachterlab/kallisto/releases/download/v0.46.2/kallisto_linux-v0.46.2.tar.gz">https://github.com/pachterlab/kallisto/releases/download/v0.46.2/kallisto_linux-v0.46.2.tar.gz</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1f60e87" class="outline-3">
+<h3 id="org1f60e87"><span class="section-number-3">7.2</span> Build 0.46.2 index</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+We need the transcriptome file. RSEM has a copy laying around in it.
+</p>
+
+<p>
+ENCFF363TFV is the bulk ENCODE rsem index.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">push genome
+curl -L -O https://www.encodeproject.org/files/ENCFF363TFV/@@download/ENCFF363TFV.tar.gz
+<span style="font-weight: bold;">pushd</span> mm10-M21-male
+tar xavf ../ENCFF363TFV.tar.gz --strip=1
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">time</span> ~/kallisto_linux-v0.46.2/kallisto index -i mm10-M21-male-kallisto-0.46.2.idx rsem.transcripts.fa ; ~/bin/notify.sh <span style="font-style: italic;">"kallisto finished"</span> <span style="font-style: italic;">"inde</span>
+<span style="font-style: italic;">xing done"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2fe190a" class="outline-3">
+<h3 id="org2fe190a"><span class="section-number-3">7.3</span> Rebuild index on galvar</h3>
+<div class="outline-text-3" id="text-7-3">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>=~/proj/genome
+<span style="font-weight: bold; font-style: italic;">ENCODE_GENOME</span>=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21-male
+<span style="font-weight: bold;">time</span> ~/proj/kallisto/build/src/kallisto index <span style="font-style: italic;">\</span>
+  -i ${<span style="font-weight: bold; font-style: italic;">ENCODE_GENOME</span>}/mm10-M21-male-kallisto-0.46.2.idx <span style="font-style: italic;">\</span>
+  ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/mm10-M21-male/rsem.transcripts.fa
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd230c4d" class="outline-3">
+<h3 id="orgd230c4d"><span class="section-number-3">7.4</span> Count</h3>
+<div class="outline-text-3" id="text-7-4">
+<p>
+First build the bus file
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">time</span> ~/kallisto_linux-v0.46.2/kallisto bus <span style="font-style: italic;">\</span>
+    -t 32 <span style="font-style: italic;">\</span>
+    -i ~/proj/genome/mm10-M21-male/mm10-M21-male-kallisto-0.46.2.idx <span style="font-style: italic;">\</span>
+    -o mm10-M21-male-kallisto-0.46.2 <span style="font-style: italic;">\</span>
+    -x 10xv2 <span style="font-style: italic;">\</span>
+    ENCSR874BOF_S1_L001_R1_001.fastq.gz ENCSR874BOF_S1_L001_R2_001.fastq.gz
+</pre>
+</div>
+
+<p>
+Downloaded
+Bustools
+</p>
+
+<p>
+<a href="https://github.com/BUStools/bustools/releases/download/v0.39.3/bustools_linux-v0.39.3.tar.gz">https://github.com/BUStools/bustools/releases/download/v0.39.3/bustools_linux-v0.39.3.tar.gz</a>
+</p>
+
+<p>
+Following hints from
+<a href="https://www.kallistobus.tools/getting_started_explained.html">https://www.kallistobus.tools/getting_started_explained.html</a>
+</p>
+
+<p>
+Download 10xv2 whitelist
+curl -L -O <a href="https://github.com/bustools/getting_started/releases/download/getting_started/10xv2_whitelist.txt">https://github.com/bustools/getting_started/releases/download/getting_started/10xv2_whitelist.txt</a>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">
+curl -L -O https://github.com/BUStools/getting_started/releases/download/getting_started/t2g.py
+
+cat ~/proj/genome/mm10-M21-male/gencode.vM21-tRNAs-ERCC.gff | python3 ~/bustools_linux-v0.39.3t2g.py  &gt; ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt
+
+</pre>
+</div>
+
+
+<p>
+time ~/bustools<sub>linux</sub>-v0.39.3/bustools correct -w ~/proj/genome/10xv2<sub>whitelist.txt</sub> -o output.correct.bus output.bus
+Found 737280 barcodes in the whitelist
+Number of hamming dist 1 barcodes = 20550336
+Processed 359437471 bus records
+In whitelist = 342274396
+Corrected = 5260521
+Uncorrected = 11902554
+</p>
+
+<p>
+real    2m59.417s
+user    1m10.048s
+sys     0m17.139s
+</p>
+
+<p>
+time ~/bustools<sub>linux</sub>-v0.39.3/bustools sort -t 32 -o output.correct.sort.bus  output.correct.bus
+Read in 347534917 BUS records
+</p>
+
+<p>
+real    5m11.484s
+user    1m33.653s
+sys     0m29.536s
+</p>
+
+<p>
+(base) diane@ip-172-31-30-226:~/proj/ENCSR874BOF<sub>e10</sub><sub>5</sub><sub>limb</sub>/mm10-M21-male-kallisto-0.46.2$ time ~/bustools<sub>linux</sub>-v0.39.3/bustools count -o eqcount/tcc -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus 
+</p>
+
+<p>
+real    0m32.146s
+user    0m20.013s
+sys     0m3.980s
+(base) diane@ip-172-31-30-226:~/proj/ENCSR874BOF<sub>e10</sub><sub>5</sub><sub>limb</sub>/mm10-M21-male-kallisto-0.46.2$ time ~/bustools<sub>linux</sub>-v0.39.3/bustools count -o genecount/gene -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt &#x2013;genecounts output.correct.sort.bus 
+</p>
+
+<p>
+real    0m10.240s
+user    0m8.063s
+sys     0m1.697s
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5d90652" class="outline-3">
+<h3 id="org5d90652"><span class="section-number-3">7.5</span> Count try 2</h3>
+<div class="outline-text-3" id="text-7-5">
+<p>
+The above run didn't generate many results, I wonder if the order of
+the fastq confused it.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">time</span> ~/kallisto_linux-v0.46.2/kallisto bus <span style="font-style: italic;">\</span>
+    -t 32 <span style="font-style: italic;">\</span>
+    -i ~/proj/genome/mm10-M21-male/mm10-M21-male-kallisto-0.46.2.idx <span style="font-style: italic;">\</span>
+    -o mm10-M21-male-kallisto-0.46.2-reverse <span style="font-style: italic;">\</span>
+    -x 10xv2 <span style="font-style: italic;">\</span>
+    ENCSR874BOF_S1_L001_R2_001.fastq.gz ENCSR874BOF_S1_L001_R1_001.fastq.gz
+</pre>
+</div>
+
+<p>
+time ~/bustools<sub>linux</sub>-v0.39.3/bustools correct -w ~/proj/genome/10xv2<sub>whitelist.txt</sub> -o output.correct.bus output.bus
+Found 737280 barcodes in the whitelist
+Number of hamming dist 1 barcodes = 20550336
+Processed 31470855 bus records
+In whitelist = 5755
+Corrected = 141370
+Uncorrected = 31323730
+</p>
+
+<p>
+real    0m21.745s
+user    0m18.491s
+sys     0m1.825s
+</p>
+
+<p>
+time ~/bustools<sub>linux</sub>-v0.39.3/bustools sort -t 32 -o output.correct.sort.bus  output.correct.bus
+Read in 147125 BUS records
+</p>
+
+<p>
+real    0m2.247s
+user    0m0.540s
+sys     0m1.514s
+</p>
+
+<p>
+time ~/bustools<sub>linux</sub>-v0.39.3/bustools count -o eqcount/tcc -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus 
+</p>
+
+<p>
+real    0m2.294s
+user    0m1.901s
+sys     0m0.152s
+</p>
+
+<p>
+time ~/bustools<sub>linux</sub>-v0.39.3/bustools count -o genecount/gene -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt &#x2013;genecounts output.correct.sort.bus
+</p>
+
+<p>
+real    0m1.519s
+user    0m1.289s
+sys     0m0.132s
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8c2595f" class="outline-3">
+<h3 id="org8c2595f"><span class="section-number-3">7.6</span> Try 3</h3>
+<div class="outline-text-3" id="text-7-6">
+<p>
+does it work with kallisto provided index?
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-bash" id="org92bf4af"><span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">!/bin/</span><span style="font-weight: bold;">bash</span>
+<span style="font-weight: bold;">time</span> ~/kallisto_linux-v0.46.2/kallisto bus <span style="font-style: italic;">\</span>
+    -t 32 <span style="font-style: italic;">\</span>
+    -i ~/proj/genome/mus_musculus/transcriptome.idx <span style="font-style: italic;">\</span>
+    -o mm10-M21-male-kallisto-0.46.2-upstream-idx <span style="font-style: italic;">\</span>
+    -x 10xv2 <span style="font-style: italic;">\</span>
+    ENCSR874BOF_S1_L001_R1_001.fastq.gz ENCSR874BOF_S1_L001_R2_001.fastq.gz
+<span style="font-weight: bold;">cd</span> mm10-M21-male-kallisto-0.46.2-upstream-idx
+<span style="font-weight: bold;">time</span> ~/bustools_linux-v0.39.3/bustools correct -w ~/proj/genome/10xv2_whitelist.txt -o output.correct.bus output.bus
+<span style="font-weight: bold;">time</span> ~/bustools_linux-v0.39.3/bustools sort -t 32 -o output.correct.sort.bus  output.correct.bus
+mkdir eqcount genecount
+<span style="font-weight: bold;">time</span> ~/bustools_linux-v0.39.3/bustools count -o eqcount/tcc -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus 
+<span style="font-weight: bold;">time</span> ~/bustools_linux-v0.39.3/bustools count -o genecount/gene -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge469161" class="outline-3">
+<h3 id="orge469161"><span class="section-number-3">7.7</span> Quantify locally using kallisto</h3>
+<div class="outline-text-3" id="text-7-7">
+<p>
+This run was without enabling EM
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>=~/proj/genome
+<span style="font-weight: bold; font-style: italic;">ENCODE_GENOME</span>=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21-male
+<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>=ENCSR874BOF_e10_5_limb/kallisto
+<span style="font-weight: bold; font-style: italic;">BUS_DIR</span>=~/proj/bustools/build/src
+
+<span style="font-weight: bold;">time</span> ~/proj/kallisto/build/src/kallisto bus <span style="font-style: italic;">\</span>
+  -t 20 <span style="font-style: italic;">\</span>
+  -i ${<span style="font-weight: bold; font-style: italic;">ENCODE_GENOME</span>}/mm10-M21-male-kallisto-0.46.2.idx <span style="font-style: italic;">\</span>
+  -o ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>} <span style="font-style: italic;">\</span>
+  -x 10xv2 <span style="font-style: italic;">\</span>
+  ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R1_001.fastq.gz <span style="font-style: italic;">\</span>
+  ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R2_001.fastq.gz
+
+<span style="font-weight: bold;">time</span> ${<span style="font-weight: bold; font-style: italic;">BUS_DIR</span>}/bustools correct <span style="font-style: italic;">\</span>
+  -w 10xv2_whitelist.txt <span style="font-style: italic;">\</span>
+  -o ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.correct.bus <span style="font-style: italic;">\</span>
+  ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.bus
+
+mkdir ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/{eqcount,genecount}
+
+<span style="font-weight: bold;">time</span> ${<span style="font-weight: bold; font-style: italic;">BUS_DIR</span>}/bustools sort <span style="font-style: italic;">\</span>
+  -t 20 <span style="font-style: italic;">\</span>
+  -o ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.correct.sort.bus <span style="font-style: italic;">\</span>
+  ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.correct.bus
+
+<span style="font-weight: bold;">time</span> ${<span style="font-weight: bold; font-style: italic;">BUS_DIR</span>}/bustools count <span style="font-style: italic;">\</span>
+  -o ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/eqcount/tcc <span style="font-style: italic;">\</span>
+  -g ${<span style="font-weight: bold; font-style: italic;">ENCODE_GENOME</span>}/txp2gene.tsv <span style="font-style: italic;">\</span>
+  -e ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/matrix.ec <span style="font-style: italic;">\</span>
+  -t ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/transcripts.txt <span style="font-style: italic;">\</span>
+  ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.correct.sort.bus
+
+<span style="font-weight: bold;">time</span> ${<span style="font-weight: bold; font-style: italic;">BUS_DIR</span>}/bustools count <span style="font-style: italic;">\</span>
+  -o ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/genecount/gene <span style="font-style: italic;">\</span>
+  -g ${<span style="font-weight: bold; font-style: italic;">ENCODE_GENOME</span>}/txp2gene.tsv <span style="font-style: italic;">\</span>
+  -e ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/matrix.ec <span style="font-style: italic;">\</span>
+  -t ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/transcripts.txt <span style="font-style: italic;">\</span>
+  --genecounts ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.correct.sort.bus
+</pre>
+</div>
+
+<p>
+Enable single cell EM
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>=~/proj/genome
+<span style="font-weight: bold; font-style: italic;">ENCODE_GENOME</span>=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21-male
+<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>=ENCSR874BOF_e10_5_limb/kallisto_em
+<span style="font-weight: bold; font-style: italic;">BUS_DIR</span>=~/proj/bustools/build/src
+
+<span style="font-weight: bold;">time</span> ~/proj/kallisto/build/src/kallisto bus <span style="font-style: italic;">\</span>
+  -t 20 <span style="font-style: italic;">\</span>
+  -i ${<span style="font-weight: bold; font-style: italic;">ENCODE_GENOME</span>}/mm10-M21-male-kallisto-0.46.2.idx <span style="font-style: italic;">\</span>
+  -o ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>} <span style="font-style: italic;">\</span>
+  -x 10xv2 <span style="font-style: italic;">\</span>
+  ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R1_001.fastq.gz <span style="font-style: italic;">\</span>
+  ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R2_001.fastq.gz
+
+<span style="font-weight: bold;">time</span> ${<span style="font-weight: bold; font-style: italic;">BUS_DIR</span>}/bustools correct <span style="font-style: italic;">\</span>
+  -w 10xv2_whitelist.txt <span style="font-style: italic;">\</span>
+  -o ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.correct.bus <span style="font-style: italic;">\</span>
+  ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.bus
+
+mkdir ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/{eqcount,genecount}
+
+<span style="font-weight: bold;">time</span> ${<span style="font-weight: bold; font-style: italic;">BUS_DIR</span>}/bustools sort <span style="font-style: italic;">\</span>
+  -t 20 <span style="font-style: italic;">\</span>
+  -o ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.correct.sort.bus <span style="font-style: italic;">\</span>
+  ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.correct.bus
+
+<span style="font-weight: bold;">time</span> ${<span style="font-weight: bold; font-style: italic;">BUS_DIR</span>}/bustools count --em <span style="font-style: italic;">\</span>
+  -o ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/eqcount/tcc <span style="font-style: italic;">\</span>
+  -g ${<span style="font-weight: bold; font-style: italic;">ENCODE_GENOME</span>}/txp2gene.tsv <span style="font-style: italic;">\</span>
+  -e ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/matrix.ec <span style="font-style: italic;">\</span>
+  -t ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/transcripts.txt <span style="font-style: italic;">\</span>
+  ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.correct.sort.bus
+
+<span style="font-weight: bold;">time</span> ${<span style="font-weight: bold; font-style: italic;">BUS_DIR</span>}/bustools count --em <span style="font-style: italic;">\</span>
+  -o ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/genecount/gene <span style="font-style: italic;">\</span>
+  -g ${<span style="font-weight: bold; font-style: italic;">ENCODE_GENOME</span>}/txp2gene.tsv <span style="font-style: italic;">\</span>
+  -e ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/matrix.ec <span style="font-style: italic;">\</span>
+  -t ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/transcripts.txt <span style="font-style: italic;">\</span>
+  --genecounts ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.correct.sort.bus
+</pre>
+</div>
+
+<p>
+Kallisto bus runtime
+real    35m44.081s
+user    123m13.511s
+sys     0m42.385s
+</p>
+
+<p>
+bustools correct runtime
+</p>
+
+<p>
+real    1m57.074s
+user    0m56.817s
+sys     0m10.216s
+</p>
+
+<p>
+bustools count &#x2013;em (transcript)
+</p>
+
+<p>
+real    1m10.530s
+user    0m57.881s
+sys     0m2.444s
+</p>
+
+<p>
+bustools count &#x2013;em (gene)
+</p>
+
+<p>
+real    3m28.821s
+user    3m23.627s
+sys     0m1.993s
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9219734" class="outline-2">
+<h2 id="org9219734"><span class="section-number-2">8</span> Salmon/Alevin</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Ben had originally tried to get Salmon/Alevin to run but it was
+segfaulting on the AWG hosts.
+</p>
+
+<p>
+Instead of salmon's prebuilt version, I'm going to use the version
+built by Debian, the version in buster is 0.12.0+ds1-1, but I want the
+version in unstable 1.2.1+ds1-1+b2.
+</p>
+
+<p>
+Sounds like it's time for singularity.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> salmon-container
+sudo singularity build /tmp/salmon-unstable.simg salmon-unstable.def
+cp /tmp/salmon-unstable.simg .
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash">singularity run salmon-container/salmon-unstable.simg --version
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org072192e" class="outline-3">
+<h3 id="org072192e"><span class="section-number-3">8.1</span> Building salmon reference from GENCOE</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+I'd suggested using the transcriptome file generated by RSEM, but
+maybe that wasn't working correctly. I spent some time reading
+Salmon's documentation and am going to try building an index based on
+their recommendations. <a href="https://combine-lab.github.io/alevin-tutorial/2019/selective-alignment/">Downloading Reference</a>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> genome/mm10-M21-for-salmon
+singularity run ../../salmon-container/salmon-unstable.simg --version
+wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M21/gencode.vM21.transcripts.fa.gz
+wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M21/GRCm38.primary_assembly.genome.fa.gz
+grep <span style="font-style: italic;">"^&gt;"</span> &lt;(gunzip -c GRCm38.primary_assembly.genome.fa.gz) | cut -d <span style="font-style: italic;">" "</span> -f 1 &gt; decoys.txt
+sed -i.bak -e <span style="font-style: italic;">'s/&gt;//g'</span> decoys.txt
+cat gencode.vM21.transcripts.fa.gz GRCm38.primary_assembly.genome.fa.gz &gt; gentrome.fa.gz
+singularity run ../../salmon-container/salmon-unstable.simg index -t gentrome.fa.gz -d decoys.txt -p 12 -i salmon_index --gencode
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+<p>
+That eventually finished.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org98e94f8" class="outline-3">
+<h3 id="org98e94f8"><span class="section-number-3">8.2</span> Building salmon reference from ENCODE files.</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+(This is the version using the decoy&#x2026; but I don't want the spikes to
+be the decoy)
+</p>
+
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-04 Fri&gt; </span></span> But I need the spikes to have the tSpikein_ prefix or
+else they don't show up in the matrix.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>=~/proj/genome/
+<span style="font-weight: bold;">pushd</span> genome/mm10-M21-male
+head -n 336220 ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/mm10-M21-male/rsem.transcripts.fa | gzip -9 &gt; mm10-M21-male-gentrome.gz
+zcat ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/ENCFF001RTP.fasta.gz | sed <span style="font-style: italic;">'s/ERCC-/tSpikein_ERCC-/'</span> | gzip -9 &gt;&gt; mm10-M21-male-gentrome.gz
+zcat ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/ENCFF335FFV.fasta.gz | sed <span style="font-style: italic;">'s/phiX174/tSpikein_phiX174/'</span> | gzip -9 &gt;&gt; mm10-M21-male-gentrome.gz
+cat ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/mm10_no_alt_analysis_set_ENCODE.fasta.gz &gt;&gt;  mm10-M21-male-gentrome.gz
+zgrep <span style="font-style: italic;">"^&gt;"</span> ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/mm10_no_alt_analysis_set_ENCODE.fasta.gz | cut -d <span style="font-style: italic;">" "</span> -f 1 &gt; decoys.txt
+sed -i.bak -e <span style="font-style: italic;">'s/&gt;//g'</span> decoys.txt
+singularity run ../../salmon-container/salmon-unstable.simg index <span style="font-style: italic;">\</span>
+  -t mm10-M21-male-gentrome.gz <span style="font-style: italic;">\</span>
+  -d decoys.txt <span style="font-style: italic;">\</span>
+  -p 16 <span style="font-style: italic;">\</span>
+  -i salmon_index_decoy
+rm decoys.txt.bak
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>=~/proj/genome/mm10-M21-male
+<span style="font-weight: bold;">pushd</span> genome/mm10-M21-male
+singularity run ../../salmon-container/salmon-unstable.simg index <span style="font-style: italic;">\</span>
+  -t ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/rsem.idx.fa <span style="font-style: italic;">\</span>
+  -p 16 <span style="font-style: italic;">\</span>
+  -i salmon_index
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga028254" class="outline-3">
+<h3 id="orga028254"><span class="section-number-3">8.3</span> Make transcript to gene map</h3>
+<div class="outline-text-3" id="text-8-3">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> genome/mm10-M21-for-salmon
+zgrep <span style="font-style: italic;">'&gt;'</span> gencode.vM21.transcripts.fa.gz | cut -c 2- | cut -d <span style="font-style: italic;">'|'</span> -f 1,2 | tr <span style="font-style: italic;">'|'</span> <span style="font-style: italic;">'\t'</span> &gt; txp2gene.tsv
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3f051b3" class="outline-3">
+<h3 id="org3f051b3"><span class="section-number-3">8.4</span> Alevin 10x style alignment</h3>
+<div class="outline-text-3" id="text-8-4">
+<p>
+It looks like they repurposed paired end sequencing to deal with
+chromium reads.
+</p>
+
+<p>
+<a href="https://salmon.readthedocs.io/en/latest/alevin.html#using-alevin">https://salmon.readthedocs.io/en/latest/alevin.html#using-alevin</a>
+</p>
+
+<p>
+-1 argument is the paired reads that contains the CB+UMI fastq while
+ -2 is the sequence.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>=ENCSR874BOF_e10_5_limb
+<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>=genome/mm10-M21-for-salmon
+<span style="font-weight: bold; font-style: italic;">SALMON</span>=salmon-container/salmon-unstable.simg
+
+<span style="font-weight: bold;">time</span> singularity run ${<span style="font-weight: bold; font-style: italic;">SALMON</span>} alevin <span style="font-style: italic;">\</span>
+  -l ISR <span style="font-style: italic;">\</span>
+  -1 ${<span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>}/ENCSR874BOF_S1_L001_R2_001.fastq.gz <span style="font-style: italic;">\</span>
+  -2 ${<span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>}/ENCSR874BOF_S1_L001_R1_001.fastq.gz <span style="font-style: italic;">\</span>
+  --chromium <span style="font-style: italic;">\</span>
+  -i ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/salmon_index <span style="font-style: italic;">\</span>
+  -p 16 <span style="font-style: italic;">\</span>
+  -o ${<span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>}/alevin_output <span style="font-style: italic;">\</span>
+  --tgMap ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/txp2gene.tsv
+</pre>
+</div>
+
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">[2020-07-07 Tue 12:10] </span></span> [alevinLog] [info] Total 21964.00 UMI after deduplicating.
+<span class="timestamp-wrapper"><span class="timestamp">[2020-07-07 Tue 12:10] </span></span> [alevinLog] [info] Total 12764 BiDirected Edges.
+<span class="timestamp-wrapper"><span class="timestamp">[2020-07-07 Tue 12:10] </span></span> [alevinLog] [info] Total 4536 UniDirected Edges.
+On Galvar
+real    60m47.402s
+user    540m9.813s
+sys     3m32.461s
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>=ENCSR874BOF_e10_5_limb
+du -shc ${<span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>}/alevin_output
+</pre>
+</div>
+
+<p>
+That doesn't seem like a real result, lets try swapping the fastqs.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>=ENCSR874BOF_e10_5_limb
+<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>=genome/mm10-M21-for-salmon
+<span style="font-weight: bold; font-style: italic;">SALMON</span>=salmon-container/salmon-unstable.simg
+
+<span style="font-weight: bold;">time</span> singularity run ${<span style="font-weight: bold; font-style: italic;">SALMON</span>} alevin <span style="font-style: italic;">\</span>
+  -l ISR <span style="font-style: italic;">\</span>
+  -1 ${<span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>}/ENCSR874BOF_S1_L001_R1_001.fastq.gz <span style="font-style: italic;">\</span>
+  -2 ${<span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>}/ENCSR874BOF_S1_L001_R2_001.fastq.gz <span style="font-style: italic;">\</span>
+  --chromium <span style="font-style: italic;">\</span>
+  -i ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/salmon_index <span style="font-style: italic;">\</span>
+  -p 16 <span style="font-style: italic;">\</span>
+  -o ${<span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>}/alevin_output_R1_R2 <span style="font-style: italic;">\</span>
+  --tgMap ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/txp2gene.tsv
+</pre>
+</div>
+
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">[2020-07-07 Tue 14:11] </span></span> [alevinLog] [info] Total 141537317.00 UMI after deduplicating.
+<span class="timestamp-wrapper"><span class="timestamp">[2020-07-07 Tue 14:11] </span></span> [alevinLog] [info] Total 29915993 BiDirected Edges.
+<span class="timestamp-wrapper"><span class="timestamp">[2020-07-07 Tue 14:11] </span></span> [alevinLog] [info] Total 1535489 UniDirected Edges.
+</p>
+
+<p>
+real    91m53.868s
+user    999m44.076s
+sys     4m0.639s
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>=ENCSR874BOF_e10_5_limb
+du -shc ${<span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>}/alevin_output_R1_R2
+</pre>
+</div>
+
+<p>
+That looks much more promising.
+</p>
+
+<p>
+Hm&#x2026; but non-standard output file format.
+</p>
+
+<p>
+so again.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>=ENCSR874BOF_e10_5_limb
+<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>=genome/mm10-M21-for-salmon
+<span style="font-weight: bold; font-style: italic;">SALMON</span>=salmon-container/salmon-unstable.simg
+
+<span style="font-weight: bold;">time</span> singularity run ${<span style="font-weight: bold; font-style: italic;">SALMON</span>} alevin <span style="font-style: italic;">\</span>
+  -l ISR <span style="font-style: italic;">\</span>
+  -1 ${<span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>}/ENCSR874BOF_S1_L001_R1_001.fastq.gz <span style="font-style: italic;">\</span>
+  -2 ${<span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>}/ENCSR874BOF_S1_L001_R2_001.fastq.gz <span style="font-style: italic;">\</span>
+  --chromium <span style="font-style: italic;">\</span>
+  -i ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/salmon_index <span style="font-style: italic;">\</span>
+  -p 16 <span style="font-style: italic;">\</span>
+  -o ${<span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>}/alevin_output_R1_R2 <span style="font-style: italic;">\</span>
+  --dumpMtx <span style="font-style: italic;">\</span>
+  --tgMap ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/txp2gene.tsv
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9b24977" class="outline-4">
+<h4 id="org9b24977"><span class="section-number-4">8.4.1</span> third try, with encode annotation files</h4>
+<div class="outline-text-4" id="text-8-4-1">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>=ENCSR874BOF_e10_5_limb
+<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>=genome/mm10-M21-male
+<span style="font-weight: bold; font-style: italic;">SALMON</span>=salmon-container/salmon-unstable.simg
+
+<span style="font-weight: bold;">time</span> singularity run ${<span style="font-weight: bold; font-style: italic;">SALMON</span>} alevin <span style="font-style: italic;">\</span>
+  -l ISR <span style="font-style: italic;">\</span>
+  -1 ${<span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>}/ENCSR874BOF_S1_L001_R1_001.fastq.gz <span style="font-style: italic;">\</span>
+  -2 ${<span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>}/ENCSR874BOF_S1_L001_R2_001.fastq.gz <span style="font-style: italic;">\</span>
+  --chromium <span style="font-style: italic;">\</span>
+  -i ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/salmon_index <span style="font-style: italic;">\</span>
+  -p 16 <span style="font-style: italic;">\</span>
+  -o ${<span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>}/alevin_output_encode_R1_R2 <span style="font-style: italic;">\</span>
+  --dumpMtx <span style="font-style: italic;">\</span>
+  --tgMap ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/txp2gene.tsv
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc6f49d1" class="outline-3">
+<h3 id="orgc6f49d1"><span class="section-number-3">8.5</span> <span class="todo TODO">TODO</span> we need to compare the spearmans &amp; relative differences to the star values.</h3>
+</div>
+</div>
+
+<div id="outline-container-orgb9bc3d8" class="outline-2">
+<h2 id="orgb9bc3d8"><span class="section-number-2">9</span> How do tools handle multi-mapping reads?</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+Anshul thinks this is import
+</p>
+
+<p>
+Important paperCompression of quantification
+uncertainty for scRNA-seq counts
+<a href="https://www.biorxiv.org/content/10.1101/2020.07.06.189639v1">https://www.biorxiv.org/content/10.1101/2020.07.06.189639v1</a>
+</p>
+
+<p>
+Quantification estimates of gene expression from single-cell RNA-seq
+(scRNA-seq) data have inherent uncertainty due to reads that map to
+multiple genes. Many existing scRNA-seq quantification pipelines
+ignore multi-mapping reads and therefore underestimate expected read
+counts for many genes. alevin accounts for multi-mapping reads and
+allows for the generation of "inferential replicates", which reflect
+quantification uncertainty. Previous methods have shown improved
+performance when incorporating these replicates into statistical
+analyses, but storage and use of these replicates increases
+computation time and memory requirements. We demonstrate that storing
+only the mean and variance from a set of inferential replicates
+("compression") is sufficient to capture gene-level quantification
+uncertainty. Using these values, we generate "pseudo-inferential"
+replicates from a negative binomial distribution and propose a general
+procedure for incorporating these replicates into a proposed
+statistical testing framework. We show reduced false positives when
+applying this procedure to trajectory-based differential expression
+analyses. We additionally extend the Swish method to incorporate
+pseudo-inferential replicates and demonstrate improvements in
+computation time and memory consumption without any loss in
+performance. Lastly, we show that the removal of multi-mapping reads
+can result in significant underestimation of counts for functionally
+important genes in a real dataset. makeInfReps and splitSwish are
+implemented in the development branch of the R/Bioconductor fishpond
+package available at
+<a href="http://bioconductor.org/packages/devel/bioc/html/fishpond.html">http://bioconductor.org/packages/devel/bioc/html/fishpond.html</a>. Sample
+code to calculate the uncertainty-aware p-values can be found on
+GitHub at
+<a href="https://github.com/skvanburen/scUncertaintyPaperCode">https://github.com/skvanburen/scUncertaintyPaperCode</a>. (edited)
+</p>
+</div>
+
+<div id="outline-container-orgf40968d" class="outline-3">
+<h3 id="orgf40968d"><span class="section-number-3">9.1</span> RSEM invented the use of an EM process to allocate multi-mapping reads</h3>
+</div>
+<div id="outline-container-orgcef2a05" class="outline-3">
+<h3 id="orgcef2a05"><span class="section-number-3">9.2</span> Salmon/Alevin</h3>
+</div>
+
+<div id="outline-container-orgf205204" class="outline-3">
+<h3 id="orgf205204"><span class="section-number-3">9.3</span> Does Kalisto handle multi-mapping reads?</h3>
+<div class="outline-text-3" id="text-9-3">
+<p>
+From <a href="https://arxiv.org/pdf/1505.02710.pdf">https://arxiv.org/pdf/1505.02710.pdf</a>
+</p>
+
+<p>
+While the direct use of k-mers is inadequate for accurate
+quantification, the speed of hashing provides hope for much faster,
+yet accurate, RNA-Seq processing. We therefore asked whether
+information from k-mer within a read could be combined efficiently in
+a manner that would maintain the accuracy of alignment-based
+quantification. To address this question, we examined the central
+difficulty and key requirement for accurate quantification, which is
+the assignment of reads that cannot be uniquely aligned6. Typically,
+these multi-mapping reads are accounted for using a statistical model
+of RNA-Seq6 which probabilistically assigns such reads while inferring
+maximum likelihood estimates of transcript abundances. However it has
+been observed that the sufficient statistics for the simplest such
+models are the compatibilities of reads with transcripts7. That is,
+the necessary information is not whereinside transcripts the reads may
+have originated from, but onlywhich transcripts could have generated
+them. This led us to formulate the concept of pseudoalignment of reads
+and fragments.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0e393d9" class="outline-3">
+<h3 id="org0e393d9"><span class="section-number-3">9.4</span> Review paper</h3>
+<div class="outline-text-3" id="text-9-4">
+<p>
+Handling multi-mapped reads in RNA-seq
+Gabrielle Deschamps-Francoeur, Joël Simoneau, Michelle S.Scott
+<a href="https://www.sciencedirect.com/science/article/pii/S2001037020303032">https://www.sciencedirect.com/science/article/pii/S2001037020303032</a>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf7373bc" class="outline-2">
+<h2 id="orgf7373bc"><span class="section-number-2">10</span> Redo everything with 10x's smaller annotation set.</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+The analysis in count<sub>matrix</sub><sub>comparison</sub> found that
+cellranger/solo/alevin found quite a few fewer records than kallisto.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">non-zero rows</td>
+</tr>
+
+<tr>
+<td class="org-left">cellranger</td>
+<td class="org-right">24839</td>
+</tr>
+
+<tr>
+<td class="org-left">solo</td>
+<td class="org-right">25268</td>
+</tr>
+
+<tr>
+<td class="org-left">alevin</td>
+<td class="org-right">24996</td>
+</tr>
+
+<tr>
+<td class="org-left">kallisto</td>
+<td class="org-right">38269</td>
+</tr>
+
+<tr>
+<td class="org-left">kallisto EM</td>
+<td class="org-right">38269</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-org4b0f234" class="outline-3">
+<h3 id="org4b0f234"><span class="section-number-3">10.1</span> Generate smaller GTF file</h3>
+<div class="outline-text-3" id="text-10-1">
+<p>
+An earlier comparison found they were more similar, but it used the
+smaller 10x set, so we need to try building a much smaller index.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">from</span> pathlib <span style="font-weight: bold;">import</span> Path
+<span style="font-weight: bold;">import</span> re
+
+<span style="font-weight: bold; font-style: italic;">refdata</span> = Path(<span style="font-style: italic;">'~/proj/illumina/refdata-cellranger-mm10-3.0.0/genes'</span>).expanduser()
+<span style="font-weight: bold; font-style: italic;">minimal_dir</span> = Path(<span style="font-style: italic;">'~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21_minimal-male'</span>).expanduser()
+<span style="font-weight: bold;">with</span> <span style="font-weight: bold;">open</span>(refdata / <span style="font-style: italic;">'genes.gtf'</span>, <span style="font-style: italic;">'rt'</span>) <span style="font-weight: bold;">as</span> instream:
+    <span style="font-weight: bold;">with</span> <span style="font-weight: bold;">open</span>(minimal_dir / <span style="font-style: italic;">'10x_genes.gtf'</span>, <span style="font-style: italic;">'wt'</span>) <span style="font-weight: bold;">as</span> outstream:
+        <span style="font-weight: bold;">for</span> line <span style="font-weight: bold;">in</span> instream:
+            <span style="font-weight: bold;">if</span> re.search(<span style="font-style: italic;">'^[0-9]+\t'</span>, line):
+                <span style="font-weight: bold; font-style: italic;">line</span> = <span style="font-style: italic;">'chr'</span> + line
+            outstream.write(line)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0ec7cf1" class="outline-3">
+<h3 id="org0ec7cf1"><span class="section-number-3">10.2</span> Building salmon reference from 10x files.</h3>
+<div class="outline-text-3" id="text-10-2">
+</div>
+<div id="outline-container-org75276d3" class="outline-4">
+<h4 id="org75276d3"><span class="section-number-4">10.2.1</span> Version with decoy</h4>
+<div class="outline-text-4" id="text-10-2-1">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21_minimal-male
+<span style="font-weight: bold;">pushd</span> ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}
+cat ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/rsem.transcripts.fa ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/mm10-M21-ercc+phix.fa | gzip -9 &gt; mm10-M21_minimal-male-gentrome.gz
+grep <span style="font-style: italic;">"^&gt;"</span> ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/mm10-M21-ercc+phix.fa | cut -d <span style="font-style: italic;">" "</span> -f 1 &gt; decoys.txt
+sed -i.bak -e <span style="font-style: italic;">'s/&gt;//g'</span> decoys.txt
+singularity run ../../salmon-container/salmon-unstable.simg index <span style="font-style: italic;">\</span>
+  -t mm10-M21-male-gentrome.gz <span style="font-style: italic;">\</span>
+  -d decoys.txt <span style="font-style: italic;">\</span>
+  -p 16 <span style="font-style: italic;">\</span>
+  -i salmon_index_gentrome
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd234567" class="outline-4">
+<h4 id="orgd234567"><span class="section-number-4">10.2.2</span> Version without decoy</h4>
+<div class="outline-text-4" id="text-10-2-2">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21_minimal-male
+<span style="font-weight: bold;">pushd</span> ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}
+singularity run ../../salmon-container/salmon-unstable.simg index <span style="font-style: italic;">\</span>
+  -t ${<span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>}/rsem.transcripts.fa <span style="font-style: italic;">\</span>
+  -p 16 <span style="font-style: italic;">\</span>
+  -i salmon_index_transcriptome
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc8801f1" class="outline-2">
+<h2 id="orgc8801f1"><span class="section-number-2">11</span> After jamboree notes</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+I'm struggling with how to record notes as I try to understand things
+vs notes to make a coherent story how to run the analysis.
+</p>
+
+<p>
+Maybe it'd be better to put journal notes into a separate heading?
+</p>
+</div>
+
+<div id="outline-container-orgd844a54" class="outline-3">
+<h3 id="orgd844a54"><span class="section-number-3">11.1</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-16 Thu&gt;</span></span></h3>
+<div class="outline-text-3" id="text-11-1">
+</div>
+<div id="outline-container-org568b824" class="outline-4">
+<h4 id="org568b824"><span class="section-number-4">11.1.1</span> Spikein expression found</h4>
+<div class="outline-text-4" id="text-11-1-1">
+<p>
+I did discover the last spikein does have some expression.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org76b79c0" class="outline-4">
+<h4 id="org76b79c0"><span class="section-number-4">11.1.2</span> Cellranger &amp; STAR Solo missing tRNAs</h4>
+<div class="outline-text-4" id="text-11-1-2">
+<p>
+I discovered the Cellranger &amp; Alex's STAR runs didn't have the tRNAs
+in their index.
+</p>
+
+<p>
+I modified the gff to replace all instances of type tRNA with exon.
+</p>
+
+<p>
+I wonder if this means the ENCODE run didn't work?
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">sed <span style="font-style: italic;">'s/\ttRNA\t/\texon\t/'</span> ~/proj/genome/mm10-M21-male/gencode.vM21-tRNAs-ERCC.gff &gt; gencode.vM21-tRNAs-exon-ERCC.gff
+</pre>
+</div>
+
+<p>
+Whatever this means I need to rerun Cellranger and STAR solo
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org46e1859" class="outline-3">
+<h3 id="org46e1859"><span class="section-number-3">11.2</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-20 Mon&gt; </span></span> Trying to build a better salmon index</h3>
+<div class="outline-text-3" id="text-11-2">
+<p>
+After some experimenting the small program I wrote to generate a
+transcriptome that included the tRNAs occasionally found the there
+were regions in the gtf file whose coordinates didn't fit the length
+of the contig.
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-bash">python3 salmon-index.py <span style="font-style: italic;">\</span>
+  -f ~/proj/genome/mm10-M21-male/mm10-M21-ercc+phix.fa  <span style="font-style: italic;">\</span>
+  -g ~/proj/genome/mm10-M21-male/mm10-M21-male.h5 <span style="font-style: italic;">\</span>
+  -o mm10-M21-male-transcriptome.fa ; grep -c <span style="font-style: italic;">'^&gt;'</span> mm10-M21-male-transcriptome.fa
+</pre>
+</div>
+
+<p>
+Seq is empty chr1<sub>GL456213</sub><sub>random</sub> 39340 s ENSMUST00000115924.2 128554 129000 -1  0
+Seq is empty chrUn<sub>GL456359</sub> 22974 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn<sub>GL456360</sub> 31704 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn<sub>GL456366</sub> 47073 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn<sub>GL456367</sub> 42057 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn<sub>GL456368</sub> 20208 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn<sub>GL456370</sub> 26764 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn<sub>GL456378</sub> 31602 s ENSMUST00000178366.1 13261 13382 -1  0
+Seq is empty chrUn<sub>GL456379</sub> 72385 s ENSMUST00000178366.1 13261 13382 -1  0
+Seq is empty chrUn<sub>GL456382</sub> 23158 s ENSMUST00000184505.1 16622 16721 -1  0
+Seq is empty chrUn<sub>GL456383</sub> 38659 s ENSMUST00000184505.1 16622 16721 -1  0
+Seq is empty chrUn<sub>GL456387</sub> 24685 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn<sub>GL456389</sub> 28772 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn<sub>GL456390</sub> 24668 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn<sub>GL456392</sub> 23629 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn<sub>GL456393</sub> 55711 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn<sub>GL456394</sub> 24323 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn<sub>GL456396</sub> 21240 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrY<sub>JH584300</sub><sub>random</sub> 182347 s ENSMUST00000179623.1 90838868 90839177 -1  0
+Seq is empty chrY<sub>JH584301</sub><sub>random</sub> 259875 s ENSMUST00000179623.1 90838868 90839177 -1  0
+Seq is empty chrY<sub>JH584302</sub><sub>random</sub> 155838 s ENSMUST00000179623.1 90838868 90839177 -1  0
+</p>
+
+<p>
+Add decoy
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">head -n -1583 ~/proj/genome/mm10-M21-male/mm10-M21-ercc+phix.fa &gt;&gt; mm10-M21-male-transcriptome.fa
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5147472" class="outline-3">
+<h3 id="org5147472"><span class="section-number-3">11.3</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-24 Fri&gt; </span></span> Current problems</h3>
+<div class="outline-text-3" id="text-11-3">
+<p>
+I had a bunch of difficulties getting the shape of the alevin matrix
+to match the others. Eventually I came up with a set of
+transformations to get it to fit.
+</p>
+
+<p>
+Then I needed to regenerate the h5ad files to get the alevin<sub>diff</sub> matrix to be
+have the right dimensions as well.
+</p>
+
+<p>
+Next I started trying to work on getting a bam filtered to just the
+common barcodes so I could run RSEM on it and compare to the other
+different algorithms.
+</p>
+
+<p>
+Unfortunately my first STAR Solo run didn't include the CB tag with
+the cell barcode. I thought I'd try cell ranger run, but it is only
+genome coordinates. So I needed to add CB UB to the star condor file
+and try again.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org40d7e8d" class="outline-3">
+<h3 id="org40d7e8d"><span class="section-number-3">11.4</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-03 Mon&gt; </span></span> Once again RSEM fails with the same error that read maps and doesn't map.</h3>
+<div class="outline-text-3" id="text-11-4">
+<p>
+So I went looking for the read:
+</p>
+
+<p>
+samtools view c1<sub>e10.5</sub>-mm10-M21-male-star2.7.5a<sub>anno.bam</sub>  | grep HISEQ:616:H5KWGBCXY:1:1101:10188:71310
+HISEQ:616:H5KWGBCXY:1:1101:10188:71310  516     *       0       0       *       *       0       0       GGATGTTGTTGTTAGCCACTTCTTTTTGTCTTTAAATATAAGGCGTGGTAGAATTACTGGCACCCAATTTGTTCCTTATACAGTCCTTAATGGACTTTAA    &lt;0&lt;@0GEEF11&lt;CCH11&lt;11F1DC1&lt;F?1&lt;DGH1&lt;1&lt;D1DF1FCCHCC&lt;111@@FF?&lt;11111101D1&lt;111&lt;1C111&lt;11111&lt;111D@&lt;111&lt;1&lt;111    NH:i:0  HI:i:0  AS:i:60 nM:i:1  uT:A:1
+HISEQ:616:H5KWGBCXY:1:1101:10188:71310  528     tSpikein<sub>ERCC</sub>-00046     247     255     50M     *       0       0      TACCACGCCTTATATTTAAAGACAAAAAGAAGTGGCTAACAACAACATCC       1&lt;CCHCCF1FD1D&lt;1&lt;1HGD&lt;1?F&lt;1CD1F11&lt;11HCC&lt;11FEEG0@&lt;0&lt;      NH:i:1 HI:i:1
+diane@galvar:~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/c1<sub>e10.5</sub>$ zgrep -A 3 'HISEQ:616:H5KWGBCXY:1:1101:10188:71310' c1<sub>e10.5.fastq.gz</sub> 
+@HISEQ:616:H5KWGBCXY:1:1101:10188:71310 1:Y:0:GTAGAGGAAAGGATTA
+GGATGTTGTTGTTAGCCACTTCTTTTTGTCTTTAAATATAAGGCGTGGTAGAATTACTGGCACCCAATTTGTTCCTTATACAGTCCTTAATGGACTTTAA
+</p>
+<ul class="org-ul">
+<li></li>
+</ul>
+<p>
+&lt;0&lt;@0GEEF11&lt;CCH11&lt;11F1DC1&lt;F?1&lt;DGH1&lt;1&lt;D1DF1FCCHCC&lt;111@@FF?&lt;11111101D1&lt;111&lt;1C111&lt;11111&lt;111D@&lt;111&lt;1&lt;111
+&#x2013;
+@HISEQ:616:H5KWGBCXY:1:1101:10188:71310 1:Y:0:GTAGAGGAAAGGATTA
+GGATGTTGTTGTTAGCCACTTCTTTTTGTCTTTAAATATAAGGCGTGGTA
+</p>
+<ul class="org-ul">
+<li></li>
+</ul>
+<p>
+&lt;0&lt;@0GEEF11&lt;CCH11&lt;11F1DC1&lt;F?1&lt;DGH1&lt;1&lt;D1DF1FCCHCC&lt;1
+</p>
+
+
+<p>
+GGATGTTGTTGTTAGCCACTTCTTTTTGTCTTTAAATATAAGGCGTGGTAGAATTACTGGCACCCAATTTGTTCCTTATACAGTCCTTAATGGACTTTAA
+GGATGTTGTTGTTAGCCACTTCTTTTTGTCTTTAAATATAAGGCGTGGTA
+</p>
+
+<p>
+Turns out the problem was my search included some of the C1
+experiments where multiple cells had been pooled together. The answer
+was to download them again skipping those 6 experiments.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org351f810" class="outline-3">
+<h3 id="org351f810"><span class="section-number-3">11.5</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-11 Tue&gt; </span></span> Trying to build minimal index.</h3>
+<div class="outline-text-3" id="text-11-5">
+<p>
+After a discussion in slack we decided we need to test against a
+minimal annotation set.
+</p>
+
+<p>
+I tried to just use the genes.gtf file from the 10x directory, but
+when I tried to use rsem to generate my transcript file it failed
+because it doesn't have a transcript id.
+</p>
+
+<p>
+So I need to apply the filtering myself.
+</p>
+
+<p>
+<a href="what-is-in-10x-gtf-file.ipynb">file:/scp:pongo:/woldlab/loxcyc/home/diane/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/what-is-in-10x-gtf-file.ipynb</a>
+</p>
+
+<p>
+Well&#x2026; that's embarrassing, it worked. There were warnings about the
+gene annotations not having a transcript id. but that's to be
+expected. The real problem is I had a typo in the condor file so
+the index was saved to the wrong location.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org16b6847" class="outline-3">
+<h3 id="org16b6847"><span class="section-number-3">11.6</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-27 Thu&gt; </span></span> Summary of things that went wrong</h3>
+<div class="outline-text-3" id="text-11-6">
+<p>
+I had a bunch of trouble getting the 10x population level run to work,
+when I tried to synthesize a fastq file I used the wrong start of
+record mark, and star thought they were 300bp fasta reads where 0% of
+them aligned.
+</p>
+
+<p>
+The symptom was weird in that rsem would start to run but then fail
+because the expected aligned.fq file didn't exist.
+</p>
+
+<p>
+Then I remembered to check STAR's bam files and discovered all the
+reads were NM:i:0 in both the genome and transcriptome files.
+</p>
+
+<p>
+I corrected my fastq file and now it's running better.
+</p>
+
+<p>
+Next I wrote. <a href="compare-c1-sum-vs-population.ipynb">compare-c1-sum-vs-population.ipynb</a> to compare the sum vs
+the population run.
+</p>
+
+<p>
+Interestingly the star results were more reproducible between the
+methods than the rsem results.
+</p>
+
+<p>
+I also had some problems as in my first few attempts I was comparing
+the wrong sets of results. (I was loading all of the rsem results, not
+just the 271 ones that went into the population fastq.
+</p>
+
+<p>
+I think I should try to run the population fastq through kallisto &amp;
+salmon.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbf2beef" class="outline-3">
+<h3 id="orgbf2beef"><span class="section-number-3">11.7</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-02 Wed&gt; </span></span> Finished the C1 branch</h3>
+<div class="outline-text-3" id="text-11-7">
+<p>
+I ended up comparing, the single cell sum, and running the bulk
+pipelines using rsem and star I also ran kallisto and salmon (with and
+without the recommended decoy).
+</p>
+
+<p>
+<a href="https://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/compare-c1-sum-vs-population.slides.html#">slides</a>
+<a href="https://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/compare-c1-sum-vs-population.html#">notebook</a>
+</p>
+
+<p>
+Oops turned out I was wrong about being done the salmon decoy index
+wasn't built correctly and didn't have any reads.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6ba3a2a" class="outline-3">
+<h3 id="org6ba3a2a"><span class="section-number-3">11.8</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-03 Thu&gt; </span></span> Work on analyzing 10x</h3>
+<div class="outline-text-3" id="text-11-8">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">single cell through cellranger</td>
+<td class="org-left">ENCSR874BOF<sub>e10</sub><sub>5</sub><sub>limb</sub>/ENCSR874BOF-10x-e10<sub>5</sub>-count-cells10000</td>
+</tr>
+
+<tr>
+<td class="org-left">single cell through STAR</td>
+<td class="org-left">ENCSR874BOF<sub>e10</sub><sub>5</sub><sub>limb</sub>/diane<sub>star</sub><sub>solo</sub></td>
+</tr>
+
+<tr>
+<td class="org-left">single cell through kallisto</td>
+<td class="org-left">ENCSR874BOF<sub>e10</sub><sub>5</sub><sub>limb</sub>/kallisto<sub>em</sub></td>
+</tr>
+
+<tr>
+<td class="org-left">single cell through salmon</td>
+<td class="org-left">ENCSR874BOF<sub>e10</sub><sub>5</sub><sub>limb</sub>/alevin<sub>output</sub><sub>encode</sub><sub>R1</sub><sub>R2</sub>?</td>
+</tr>
+
+<tr>
+<td class="org-left">population through RSEM</td>
+<td class="org-left">10x<sub>e10.5</sub>/10x<sub>e10.5</sub>-mm10-M21-male<sub>anno</sub><sub>rsem.genes.results</sub></td>
+</tr>
+
+<tr>
+<td class="org-left">population through STAR</td>
+<td class="org-left">10x<sub>e10.5</sub>/ReadsPerGene.out.tab</td>
+</tr>
+
+<tr>
+<td class="org-left">population through kallisto</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">population through salmon</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+It looks like I already ran the single cell runs and may have even
+combined them.
+</p>
+
+<p>
+Kallisto's demand for the fragment length is kind of annoying.
+</p>
+
+<p>
+Rerunning the single cell version since it uses both ends.
+</p>
+
+<p>
+~/proj/kallisto/build/src/kallisto bus -t 16 \
+  -i ${ENCODE<sub>GENOME</sub>}/mm10-M21-male-kallisto-0.46.2.idx \
+  -o kallisto<sub>em</sub><sub>temp</sub> \
+  -x 10xv2 \
+  ENCSR874BOF<sub>S1</sub><sub>L001</sub><sub>R1</sub><sub>001.fastq.gz</sub> \
+  ENCSR874BOF<sub>S1</sub><sub>L001</sub><sub>R2</sub><sub>001.fastq.gz</sub>
+</p>
+
+
+<p>
+[index] k-mer length: 31
+[index] number of targets: 168,207
+[index] number of k-mers: 120,997,101
+[index] number of equivalence classes: 555,826
+[quant] will process sample 1: ENCSR874BOF<sub>S1</sub><sub>L001</sub><sub>R1</sub><sub>001.fastq.gz</sub>
+                               ENCSR874BOF<sub>S1</sub><sub>L001</sub><sub>R2</sub><sub>001.fastq.gz</sub>
+[quant] finding pseudoalignments for the reads &#x2026; done
+[quant] processed 432,950,142 reads, 359,437,471 reads pseudoaligned
+</p>
+
+<p>
+Log didn't give me the fragment size.
+</p>
+
+<p>
+So next idea was to trim off the barcodes and and map as paired end
+reads with the rest of the read (Since the sequences much more than
+10x expects)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">cutadpt -u 27 --cores 0 -o ENCSR874BOF_S1_L001_R1_27<span style="font-style: italic;">\:</span>None.fastq.gz ENCSR874BOF_S1_L001_R1_001.fastq.gz
+
+</pre>
+</div>
+
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-08 Tue&gt;</span></span>
+</p>
+
+
+<p>
+My best guess was make a pseudobam, but that crashed with a signal 11.
+</p>
+
+<p>
+So then I tried upping the required memory on kallisto and also
+telling star to map the paired end reads&#x2026; (with hopefully the CB+UMI
+removed)
+</p>
+
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-09 Wed&gt;</span></span>
+</p>
+
+<p>
+Even after rebuilding the stripped fastq kallisto sefaulted again, but
+at least STAR finished.
+</p>
+
+<p>
+I got the details with samtools stats (after indexing) and it looks
+like there's a lot of interesting information in there. Might be
+useful to investigate samstats coverage calculation.
+</p>
+
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-10 Thu&gt;</span></span>
+</p>
+
+<p>
+The scatter plots don't look that great except between star solo &amp;
+cell ranger.
+</p>
+
+<p>
+I wonder if they peeked at the second end and that's why their
+quantifications were better?
+</p>
+
+<p>
+I'm not sure how best to filter the paired reads to match&#x2026;. the
+common barcode set, but I can see what happens with giving all paired
+end reads to the bulk pipeline &amp; kallisto
+</p>
+</div>
+</div>
+
+<div id="outline-container-org987bbfd" class="outline-3">
+<h3 id="org987bbfd"><span class="section-number-3">11.9</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-25 Fri&gt; </span></span> lets rerun kallisto with a different fragment &amp; sd number</h3>
+<div class="outline-text-3" id="text-11-9">
+<p>
+A few days ago I presented this to my coworkers, one suggestion was to
+see what happens when you alter the fragment size
+</p>
+
+<p>
+bustools bonus em mode is rare, so lets ignore that.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org38719dd" class="outline-3">
+<h3 id="org38719dd"><span class="section-number-3">11.10</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-25 Fri&gt; </span></span> Also how well does kallisto match the spike in concentrations?</h3>
+<div class="outline-text-3" id="text-11-10">
+<p>
+Interesting&#x2026; it looks like kallisto handles them better?
+</p>
+
+<p>
+New question lets try rerunning the RNA evaluation set and seeing how
+kallisto does with the spikes there?
+</p>
+
+<p>
+&#x2026; Remember the RNA evaluation set is human, not mouse?
+the human encode version was GRCh38-V24-male.
+I need a new kallisto index
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfcd5b20" class="outline-3">
+<h3 id="orgfcd5b20"><span class="section-number-3">11.11</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-06 Tue&gt; </span></span> Presented spike in results to group</h3>
+<div class="outline-text-3" id="text-11-11">
+<p>
+<a href="http://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/compare-rsem-kallisto-spike-performance.slides.html#/">compare-rsem-kallisto-spike-performance</a>
+</p>
+
+<p>
+Suggestions were:
+</p>
+
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> show how salmon's decoy mode works,to see if it catches the
+overexpressed spikes.</li>
+<li class="off"><code>[&#xa0;]</code> show gravely spike performance even though it's different from 
+the others.</li>
+<li class="off"><code>[&#xa0;]</code> are the reads that map to the overexpressed spike multimappers?
+if they are do they come from a similar place?</li>
+<li class="off"><code>[&#xa0;]</code> How consistent are the spike ratios in the C1 data?</li>
+<li class="off"><code>[&#xa0;]</code> How consistent is the predict spike slope in the C1 data</li>
+<li class="off"><code>[&#xa0;]</code> How close is the resulting spikes slope to what we expect?</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Diane Trout</p>
+<p class="date">Created: 2020-10-08 Thu 10:52</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
