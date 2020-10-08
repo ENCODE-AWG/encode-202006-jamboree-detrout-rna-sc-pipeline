@@ -1,0 +1,19 @@
+###########################################
+# Username: diane
+# Timestamp: 2020-08-26T16:28:23.929358
+# Version: 1.1+0.g974e7de.dirty
+
+JOB madqc       /woldlab/loxcyc/home/diane/proj/long-rna-seq-condor/woldrnaseq/madqc.condor
+JOB makersemcsv /woldlab/loxcyc/home/diane/proj/long-rna-seq-condor/woldrnaseq/makersemcsv.condor
+JOB report      /woldlab/loxcyc/home/diane/proj/long-rna-seq-condor/woldrnaseq/report.condor
+
+SPLICE 10x_e10.5_splice /woldlab/loxcyc/home/diane/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/10x_e10.5/10x_e10.5.dagman
+
+PARENT 10x_e10.5_splice  CHILD madqc
+PARENT madqc CHILD makersemcsv 
+PARENT madqc CHILD report
+
+VARS all_nodes    experiments="-e experiments_10x_e10.5_merged.tsv"
+VARS all_nodes    libraries="-l libraries_10x_e10.5.merged.tsv"
+
+VARS makersemcsv  genome_dir="/woldlab/loxcyc/home/diane/proj/genome/"

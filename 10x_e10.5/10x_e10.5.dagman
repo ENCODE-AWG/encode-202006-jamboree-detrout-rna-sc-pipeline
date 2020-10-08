@@ -1,0 +1,54 @@
+###########################################
+# Processing 10x_e10.5 in /woldlab/loxcyc/home/diane/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/10x_e10.5 with
+# Username: diane
+# Timestamp: 2020-08-26T16:28:23.923426
+# Version: 1.1+0.g974e7de.dirty
+
+JOB 10x_e10.5_align-star /woldlab/loxcyc/home/diane/proj/long-rna-seq-condor/woldrnaseq/align-star.condor
+JOB 10x_e10.5_sort-samtools /woldlab/loxcyc/home/diane/proj/long-rna-seq-condor/woldrnaseq/sort-samtools.condor
+JOB 10x_e10.5_quant-rsem /woldlab/loxcyc/home/diane/proj/long-rna-seq-condor/woldrnaseq/quant-rsem.condor
+JOB 10x_e10.5_index-samtools /woldlab/loxcyc/home/diane/proj/long-rna-seq-condor/woldrnaseq/index-samtools.condor
+JOB 10x_e10.5_qc-samstats /woldlab/loxcyc/home/diane/proj/long-rna-seq-condor/woldrnaseq/qc-samstats.condor
+JOB 10x_e10.5_bedgraph-star /woldlab/loxcyc/home/diane/proj/long-rna-seq-condor/woldrnaseq/bedgraph-star.condor
+JOB 10x_e10.5_qc-coverage /woldlab/loxcyc/home/diane/proj/long-rna-seq-condor/woldrnaseq/qc-coverage.condor
+JOB 10x_e10.5_qc-distribution /woldlab/loxcyc/home/diane/proj/long-rna-seq-condor/woldrnaseq/qc-distribution.condor
+JOB 10x_e10.5_bedgraph2bigwig /woldlab/loxcyc/home/diane/proj/long-rna-seq-condor/woldrnaseq/bedgraph2bigwig.condor
+
+PARENT 10x_e10.5_align-star  CHILD 10x_e10.5_sort-samtools
+PARENT 10x_e10.5_align-star  CHILD 10x_e10.5_index-samtools
+PARENT 10x_e10.5_align-star  CHILD 10x_e10.5_bedgraph-star
+PARENT 10x_e10.5_index-samtools CHILD 10x_e10.5_qc-samstats
+PARENT 10x_e10.5_index-samtools CHILD 10x_e10.5_qc-distribution
+PARENT 10x_e10.5_sort-samtools  CHILD 10x_e10.5_quant-rsem
+PARENT 10x_e10.5_bedgraph-star  CHILD 10x_e10.5_qc-coverage
+PARENT 10x_e10.5_bedgraph-star  CHILD 10x_e10.5_bedgraph2bigwig
+
+# Common to all analysis
+VARS ALL_NODES                  ucsc_tools_dir="/woldlab/castor/proj/programs/x86_64/"
+VARS ALL_NODES                  star_dir="/woldlab/castor/proj/programs/STAR-2.5.1b/bin/Linux_x86_64/"
+VARS ALL_NODES                  georgi_dir="/woldlab/loxcyc/home/diane/proj/GeorgiScripts/"
+VARS ALL_NODES                  rsem_dir="/woldlab/castor/proj/programs/RSEM-1.2.31/"
+VARS ALL_NODES                  genome_root="/woldlab/loxcyc/home/diane/proj/genome/"
+
+# Common to this analysis
+VARS ALL_NODES                  analysis_name="10x_e10.5"
+VARS ALL_NODES                  curdir="/woldlab/loxcyc/home/diane/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/10x_e10.5"
+VARS ALL_NODES                  genome="mm10" annotation="M21" sex="male"
+
+
+VARS 10x_e10.5_align-star      library_id="10x_e10.5"
+VARS 10x_e10.5_align-star      pre_star="/woldlab/loxcyc/home/diane/proj/long-rna-seq-condor/woldrnaseq/pre_star"
+VARS 10x_e10.5_align-star      post_star="/woldlab/loxcyc/home/diane/proj/long-rna-seq-condor/woldrnaseq/post_star"
+VARS 10x_e10.5_align-star      star_request_memory_megabytes="89909"
+VARS 10x_e10.5_align-star      star_request_memory_bytes="94277027658"
+VARS 10x_e10.5_align-star      star_request_disk_kilobytes="122756546"
+VARS 10x_e10.5_align-star      read1="/woldlab/loxcyc/home/diane/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/10x_e10.5/ENCSR874BOF_common_reads.fastq.gz"
+VARS 10x_e10.5_sort-samtools   sort_samtools="/woldlab/loxcyc/home/diane/proj/long-rna-seq-condor/woldrnaseq/sort-samtools.sh"
+
+VARS 10x_e10.5_quant-rsem      paired_end=""
+VARS 10x_e10.5_quant-rsem      strand_probability="--forward-prob 0.5"
+VARS 10x_e10.5_quant-rsem      request_disk="214823956"
+
+VARS 10x_e10.5_bedgraph-star   reference_prefix="chr"
+VARS 10x_e10.5_bedgraph-star   bedsort_sh="/woldlab/loxcyc/home/diane/proj/long-rna-seq-condor/woldrnaseq/bedsort.sh"
+

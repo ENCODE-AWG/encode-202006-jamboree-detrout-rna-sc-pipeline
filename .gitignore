@@ -42,3 +42,40 @@ mm10-M21-male_id2name.tsv
 ENCSR874BOF_e10_5_limb/align-star-0.log
 ENCSR874BOF_e10_5_limb/align-star-0.out
 ENCSR874BOF_e10_5_limb/diane_star_solo/
+
+# Bulk runs of either all reads run as paired ended (with barcodes trimmed
+run-10x-paired-all.dagman.*
+10x_e10.5_paired_all_*.h5
+10x_e10.5_paired_all_*.csv
+# Or just the common reads run single ended
+run-10x.dagman.*
+10x_e10.5_merged_*.h5
+10x_e10.5_merged_*.csv
+# Run C1 files as bulk
+run-c1.dagman
+c1_e10.5_pool_*.h5
+c1_e10.5_pool_*.csv
+# Ignore log files from one of the dagman runs.
+madqc-0.log
+madqc-0.out
+makersemcsv-0.log
+makersemcsv-0.out
+report-0.log
+report-0.out
+10x_e10.5/10x_e10.5-mm10-M21-male*
+10x_e10.5/COfile.txt
+10x_e10.5/*.log
+10x_e10.5/*.out
+10x_e10.5/*.tab
+10x_e10.5_paired_all/10x_e10.5_paired_all-mm10-M21-male*
+10x_e10.5_paired_all/COfile.txt
+10x_e10.5_paired_all/*.log
+10x_e10.5_paired_all/*.out
+10x_e10.5_paired_all/*.tab
+c1_e10.5/c1_e10.5-mm10-M21-male*
+c1_e10.5/COfile.txt
+c1_e10.5/*.log
+c1_e10.5/*.out
+c1_e10.5/*.tab
+c1_e10.5/*.loom
+
