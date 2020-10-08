@@ -98,3 +98,9 @@ c1_e10.5/salmon_e10.5/
 # ignore cutadapt log files
 cutadat.0.log
 cutadat.0.out
+
+# Ignore generated genome indexes
+genome/GRCh38-V24-male/
+genome/mm10-M21-for-salmon/
+genome/mm10-M21-male/
+genome/mm10-M21_minimal-male/
