@@ -473,15 +473,36 @@ That eventually finished.
 
 ** Building salmon reference from ENCODE files.
 
+(This is the version using the decoy... but I don't want the spikes to
+be the decoy)
+
+<2020-09-04 Fri> But I need the spikes to have the tSpikein_ prefix or
+else they don't show up in the matrix.
+
 #+begin_src bash
-GENOME_DIR=~/proj/genome/mm10-M21-male
+GENOME_DIR=~/proj/genome/
 pushd genome/mm10-M21-male
-cat ${GENOME_DIR}/rsem.idx.fa ${GENOME_DIR}/mm10-M21-ercc+phix.fa | gzip -9 > mm10-M21-male-gentrome.gz
-grep "^>" ${GENOME_DIR}/mm10-M21-ercc+phix.fa | cut -d " " -f 1 > decoys.txt
+head -n 336220 ${GENOME_DIR}/mm10-M21-male/rsem.transcripts.fa | gzip -9 > mm10-M21-male-gentrome.gz
+zcat ${GENOME_DIR}/ENCFF001RTP.fasta.gz | sed 's/ERCC-/tSpikein_ERCC-/' | gzip -9 >> mm10-M21-male-gentrome.gz
+zcat ${GENOME_DIR}/ENCFF335FFV.fasta.gz | sed 's/phiX174/tSpikein_phiX174/' | gzip -9 >> mm10-M21-male-gentrome.gz
+cat ${GENOME_DIR}/mm10_no_alt_analysis_set_ENCODE.fasta.gz >>  mm10-M21-male-gentrome.gz
+zgrep "^>" ${GENOME_DIR}/mm10_no_alt_analysis_set_ENCODE.fasta.gz | cut -d " " -f 1 > decoys.txt
 sed -i.bak -e 's/>//g' decoys.txt
 singularity run ../../salmon-container/salmon-unstable.simg index \
   -t mm10-M21-male-gentrome.gz \
   -d decoys.txt \
+  -p 16 \
+  -i salmon_index_decoy
+rm decoys.txt.bak
+popd
+#+end_src
+
+
+#+begin_src bash
+GENOME_DIR=~/proj/genome/mm10-M21-male
+pushd genome/mm10-M21-male
+singularity run ../../salmon-container/salmon-unstable.simg index \
+  -t ${GENOME_DIR}/rsem.idx.fa \
   -p 16 \
   -i salmon_index
 popd
@@ -686,6 +707,69 @@ Handling multi-mapped reads in RNA-seq
 Gabrielle Deschamps-Francoeur, Joël Simoneau, Michelle S.Scott
 https://www.sciencedirect.com/science/article/pii/S2001037020303032
 
+* Redo everything with 10x's smaller annotation set.
+
+The analysis in count_matrix_comparison found that
+cellranger/solo/alevin found quite a few fewer records than kallisto.
+
+|             | non-zero rows |
+| cellranger  |         24839 |
+| solo        |         25268 |
+| alevin      |         24996 |
+| kallisto    |         38269 |
+| kallisto EM |         38269 |
+
+** Generate smaller GTF file
+An earlier comparison found they were more similar, but it used the
+smaller 10x set, so we need to try building a much smaller index.
+
+#+begin_src python
+  from pathlib import Path
+  import re
+
+  refdata = Path('~/proj/illumina/refdata-cellranger-mm10-3.0.0/genes').expanduser()
+  minimal_dir = Path('~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21_minimal-male').expanduser()
+  with open(refdata / 'genes.gtf', 'rt') as instream:
+      with open(minimal_dir / '10x_genes.gtf', 'wt') as outstream:
+          for line in instream:
+              if re.search('^[0-9]+\t', line):
+                  line = 'chr' + line
+              outstream.write(line)
+#+end_src
+
+#+RESULTS:
+: None
+
+** Building salmon reference from 10x files.
+
+*** Version with decoy
+
+#+begin_src bash
+GENOME_DIR=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21_minimal-male
+pushd ${GENOME_DIR}
+cat ${GENOME_DIR}/rsem.transcripts.fa ${GENOME_DIR}/mm10-M21-ercc+phix.fa | gzip -9 > mm10-M21_minimal-male-gentrome.gz
+grep "^>" ${GENOME_DIR}/mm10-M21-ercc+phix.fa | cut -d " " -f 1 > decoys.txt
+sed -i.bak -e 's/>//g' decoys.txt
+singularity run ../../salmon-container/salmon-unstable.simg index \
+  -t mm10-M21-male-gentrome.gz \
+  -d decoys.txt \
+  -p 16 \
+  -i salmon_index_gentrome
+popd
+#+end_src
+
+*** Version without decoy
+
+#+begin_src bash
+GENOME_DIR=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21_minimal-male
+pushd ${GENOME_DIR}
+singularity run ../../salmon-container/salmon-unstable.simg index \
+  -t ${GENOME_DIR}/rsem.transcripts.fa \
+  -p 16 \
+  -i salmon_index_transcriptome
+popd
+#+end_src
+
 * After jamboree notes
 
 I'm struggling with how to record notes as I try to understand things
@@ -802,3 +886,170 @@ experiments where multiple cells had been pooled together. The answer
 was to download them again skipping those 6 experiments.
 
 
+** <2020-08-11 Tue> Trying to build minimal index.
+
+After a discussion in slack we decided we need to test against a
+minimal annotation set.
+
+I tried to just use the genes.gtf file from the 10x directory, but
+when I tried to use rsem to generate my transcript file it failed
+because it doesn't have a transcript id.
+
+So I need to apply the filtering myself.
+
+[[file:what-is-in-10x-gtf-file.ipynb][file:/scp:pongo:/woldlab/loxcyc/home/diane/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/what-is-in-10x-gtf-file.ipynb]]
+
+Well... that's embarrassing, it worked. There were warnings about the
+gene annotations not having a transcript id. but that's to be
+expected. The real problem is I had a typo in the condor file so
+the index was saved to the wrong location.
+
+** <2020-08-27 Thu> Summary of things that went wrong
+
+I had a bunch of trouble getting the 10x population level run to work,
+when I tried to synthesize a fastq file I used the wrong start of
+record mark, and star thought they were 300bp fasta reads where 0% of
+them aligned.
+
+The symptom was weird in that rsem would start to run but then fail
+because the expected aligned.fq file didn't exist.
+
+Then I remembered to check STAR's bam files and discovered all the
+reads were NM:i:0 in both the genome and transcriptome files.
+
+I corrected my fastq file and now it's running better.
+
+Next I wrote. [[file:compare-c1-sum-vs-population.ipynb]] to compare the sum vs
+the population run.
+
+Interestingly the star results were more reproducible between the
+methods than the rsem results.
+
+I also had some problems as in my first few attempts I was comparing
+the wrong sets of results. (I was loading all of the rsem results, not
+just the 271 ones that went into the population fastq.
+
+I think I should try to run the population fastq through kallisto &
+salmon.
+
+** <2020-09-02 Wed> Finished the C1 branch
+
+I ended up comparing, the single cell sum, and running the bulk
+pipelines using rsem and star I also ran kallisto and salmon (with and
+without the recommended decoy).
+
+[[https://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/compare-c1-sum-vs-population.slides.html#][slides]]
+[[https://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/compare-c1-sum-vs-population.html#][notebook]]
+
+Oops turned out I was wrong about being done the salmon decoy index
+wasn't built correctly and didn't have any reads.
+
+** <2020-09-03 Thu> Work on analyzing 10x
+
+| single cell through cellranger | ENCSR874BOF_e10_5_limb/ENCSR874BOF-10x-e10_5-count-cells10000 |
+| single cell through STAR       | ENCSR874BOF_e10_5_limb/diane_star_solo                        |
+| single cell through kallisto   | ENCSR874BOF_e10_5_limb/kallisto_em                            |
+| single cell through salmon     | ENCSR874BOF_e10_5_limb/alevin_output_encode_R1_R2?            |
+| population through RSEM        | 10x_e10.5/10x_e10.5-mm10-M21-male_anno_rsem.genes.results                                                             |
+| population through STAR        | 10x_e10.5/ReadsPerGene.out.tab                                |
+| population through kallisto    |                                                               |
+| population through salmon      |                                                               |
+
+It looks like I already ran the single cell runs and may have even
+combined them.
+
+Kallisto's demand for the fragment length is kind of annoying.
+
+Rerunning the single cell version since it uses both ends.
+
+~/proj/kallisto/build/src/kallisto bus -t 16 \
+  -i ${ENCODE_GENOME}/mm10-M21-male-kallisto-0.46.2.idx \
+  -o kallisto_em_temp \
+  -x 10xv2 \
+  ENCSR874BOF_S1_L001_R1_001.fastq.gz \
+  ENCSR874BOF_S1_L001_R2_001.fastq.gz
+
+
+[index] k-mer length: 31
+[index] number of targets: 168,207
+[index] number of k-mers: 120,997,101
+[index] number of equivalence classes: 555,826
+[quant] will process sample 1: ENCSR874BOF_S1_L001_R1_001.fastq.gz
+                               ENCSR874BOF_S1_L001_R2_001.fastq.gz
+[quant] finding pseudoalignments for the reads ... done
+[quant] processed 432,950,142 reads, 359,437,471 reads pseudoaligned
+
+Log didn't give me the fragment size.
+
+So next idea was to trim off the barcodes and and map as paired end
+reads with the rest of the read (Since the sequences much more than
+10x expects)
+
+#+begin_src bash
+cutadpt -u 27 --cores 0 -o ENCSR874BOF_S1_L001_R1_27\:None.fastq.gz ENCSR874BOF_S1_L001_R1_001.fastq.gz
+
+#+end_src
+
+<2020-09-08 Tue>
+
+
+My best guess was make a pseudobam, but that crashed with a signal 11.
+
+So then I tried upping the required memory on kallisto and also
+telling star to map the paired end reads... (with hopefully the CB+UMI
+removed)
+
+<2020-09-09 Wed>
+
+Even after rebuilding the stripped fastq kallisto sefaulted again, but
+at least STAR finished.
+
+I got the details with samtools stats (after indexing) and it looks
+like there's a lot of interesting information in there. Might be
+useful to investigate samstats coverage calculation.
+
+<2020-09-10 Thu>
+
+The scatter plots don't look that great except between star solo &
+cell ranger.
+
+I wonder if they peeked at the second end and that's why their
+quantifications were better?
+
+I'm not sure how best to filter the paired reads to match.... the
+common barcode set, but I can see what happens with giving all paired
+end reads to the bulk pipeline & kallisto
+
+** <2020-09-25 Fri> lets rerun kallisto with a different fragment & sd number
+
+A few days ago I presented this to my coworkers, one suggestion was to
+see what happens when you alter the fragment size
+
+bustools bonus em mode is rare, so lets ignore that.
+
+** <2020-09-25 Fri> Also how well does kallisto match the spike in concentrations?
+
+Interesting... it looks like kallisto handles them better?
+
+New question lets try rerunning the RNA evaluation set and seeing how
+kallisto does with the spikes there?
+
+... Remember the RNA evaluation set is human, not mouse?
+the human encode version was GRCh38-V24-male.
+I need a new kallisto index
+
+** <2020-10-06 Tue> Presented spike in results to group
+
+[[http://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/compare-rsem-kallisto-spike-performance.slides.html#/][compare-rsem-kallisto-spike-performance]]
+
+Suggestions were:
+
+- [ ] show how salmon's decoy mode works,to see if it catches the
+      overexpressed spikes.
+- [ ] show gravely spike performance even though it's different from
+      the others.
+- [ ] are the reads that map to the overexpressed spike multimappers?
+      if they are do they come from a similar place?
+- [ ] How consistent are the spike ratios in the C1 data?
+- [ ] How consistent is the predict spike slope in the C1 data
+- [ ] How close is the resulting spikes slope to what we expect?
