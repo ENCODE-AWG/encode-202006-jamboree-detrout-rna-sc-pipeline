@@ -1,0 +1,117 @@
+#!/usr/bin/condor_submit
+
+universe=vanilla
+log=logs/kallisto_eval_25m.log
+output=logs/kallisto_eval_25m.$(process).out
+error=logs/kallisto_eval_25m.$(process).out
+
+THREADS=16
+HOME=/woldlab/loxcyc/home/diane
+ENCODE_GENOME=$(HOME)/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/GRCh38-V24-male
+
+request_cpus=$(THREADS)
+executable=/woldlab/loxcyc/home/diane/proj/kallisto/build/src/kallisto 
+
+
+arguments="quant \
+  -t $(THREADS) \
+  -i $(ENCODE_GENOME)/GRCh38-V24-male-kallisto-0.46.2.idx \
+  -o ENCLB035ZZZ \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB035ZZZ/ENCFF001RFH_25m_R1.fastq.gz \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB035ZZZ/ENCFF001RFG_25m_R2.fastq.gz \
+"
+queue
+
+arguments="quant \
+  -t $(THREADS) \
+  -i $(ENCODE_GENOME)/GRCh38-V24-male-kallisto-0.46.2.idx \
+  -o ENCLB036ZZZ \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB036ZZZ/ENCFF001RFB_25m_R1.fastq.gz \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB036ZZZ/ENCFF001RFA_25m_R2.fastq.gz \
+"
+queue
+
+arguments="quant \
+  -t $(THREADS) \
+  -i $(ENCODE_GENOME)/GRCh38-V24-male-kallisto-0.46.2.idx \
+  -o ENCLB037ZZZ \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB037ZZZ/ENCFF001REK_25m_R1.fastq.gz \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB037ZZZ/ENCFF001REJ_25m_R2.fastq.gz \
+"
+queue
+arguments="quant \
+  -t $(THREADS) \
+  -i $(ENCODE_GENOME)/GRCh38-V24-male-kallisto-0.46.2.idx \
+  -o ENCLB038ZZZ \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB038ZZZ/ENCFF001REI_25m_R1.fastq.gz \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB038ZZZ/ENCFF001REH_25m_R2.fastq.gz \
+"
+queue
+arguments="quant \
+  -t $(THREADS) \
+  -i $(ENCODE_GENOME)/GRCh38-V24-male-kallisto-0.46.2.idx \
+  -o ENCLB039ZZZ \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB039ZZZ/ENCFF001RDI_25m_R1.fastq.gz \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB039ZZZ/ENCFF001RDA_25m_R2.fastq.gz \
+"
+queue
+arguments="quant \
+  -t $(THREADS) \
+  -i $(ENCODE_GENOME)/GRCh38-V24-male-kallisto-0.46.2.idx \
+  -o ENCLB040ZZZ \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB040ZZZ/ENCFF001RDH_25m_R1.fastq.gz \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB040ZZZ/ENCFF001RCZ_25m_R2.fastq.gz \
+"
+queue
+arguments="quant \
+  -t $(THREADS) \
+  -i $(ENCODE_GENOME)/GRCh38-V24-male-kallisto-0.46.2.idx \
+  -o ENCLB041ZZZ \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB041ZZZ/ENCFF001RDG_25m_R1.fastq.gz \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB041ZZZ/ENCFF001RCY_25m_R2.fastq.gz \
+"
+queue
+arguments="quant \
+  -t $(THREADS) \
+  -i $(ENCODE_GENOME)/GRCh38-V24-male-kallisto-0.46.2.idx \
+  -o ENCLB042ZZZ \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB042ZZZ/ENCFF001RDF_25m_R1.fastq.gz \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB042ZZZ/ENCFF001RCX_25m_R2.fastq.gz \
+"
+queue
+
+arguments="quant \
+  -t $(THREADS) \
+  -i $(ENCODE_GENOME)/GRCh38-V24-male-kallisto-0.46.2.idx \
+  -o  \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB043ZZZ/ENCFF001RVY_25m_R1.fastq.gz \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB043ZZZ/ENCFF001RVR_25m_R2.fastq.gz \
+"
+queue
+
+arguments="quant \
+  -t $(THREADS) \
+  -i $(ENCODE_GENOME)/GRCh38-V24-male-kallisto-0.46.2.idx \
+  -o ENCLB045ZZZ \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB044ZZZ/ENCFF001RVS_25m_R1.fastq.gz \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB044ZZZ/ENCFF001RVW_25m_R2.fastq.gz \
+"
+queue
+
+arguments="quant \
+  -t $(THREADS) \
+  -i $(ENCODE_GENOME)/GRCh38-V24-male-kallisto-0.46.2.idx \
+  -o ENCLB045ZZZ \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB045ZZZ/ENCFF001RVT_25m_R1.fastq.gz \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB045ZZZ/ENCFF001RVZ_25m_R2.fastq.gz \
+"
+queue
+
+arguments="quant \
+  -t $(THREADS) \
+  -i $(ENCODE_GENOME)/GRCh38-V24-male-kallisto-0.46.2.idx \
+  -o ENCLB046ZZZ \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB046ZZZ/ENCFF001RVX_25m_R1.fastq.gz \
+  ../../encode3-rna-evaluation/long-rna-seq-condor/ENCLB046ZZZ/ENCFF001RWB_25m_R2.fastq.gz \
+"
+queue

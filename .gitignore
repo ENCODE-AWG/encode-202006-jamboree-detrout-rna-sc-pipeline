@@ -127,3 +127,18 @@ ENCSR874BOF_e10_5_limb/common_barcodes.txt
 
 # ignore singularity container built from .def file
 salmon-container/salmon-unstable.simg
+
+# Ignore output files from testing kallisto on ENCODE3 RNA evaluation
+encode3-rna-evaluation-kallisto/ENCLB035ZZZ/
+encode3-rna-evaluation-kallisto/ENCLB036ZZZ/
+encode3-rna-evaluation-kallisto/ENCLB037ZZZ/
+encode3-rna-evaluation-kallisto/ENCLB038ZZZ/
+encode3-rna-evaluation-kallisto/ENCLB039ZZZ/
+encode3-rna-evaluation-kallisto/ENCLB040ZZZ/
+encode3-rna-evaluation-kallisto/ENCLB041ZZZ/
+encode3-rna-evaluation-kallisto/ENCLB042ZZZ/
+encode3-rna-evaluation-kallisto/ENCLB043ZZZ/
+encode3-rna-evaluation-kallisto/ENCLB044ZZZ/
+encode3-rna-evaluation-kallisto/ENCLB045ZZZ/
+encode3-rna-evaluation-kallisto/ENCLB046ZZZ/
+encode3-rna-evaluation-kallisto/logs/
