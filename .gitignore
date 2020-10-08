@@ -11,6 +11,7 @@ genome/mm10-M21-male/mm10-M21-ercc+phix.fa
 genome/mm10-M21-male/mm10-M21-male-cellranger-3.1.0/
 # Ignore cellranger directory. Important results are in synapse
 ENCSR874BOF_e10_5_limb/ENCSR874BOF-10x-e10_5-count-cells10000/
+ENCSR874BOF_e10_5_limb/cellranger.out
 # Ignore kallisto index
 genome/mm10-M21-male/mm10-M21-male-kallisto-0.46.2.idx
 # Ignore star index

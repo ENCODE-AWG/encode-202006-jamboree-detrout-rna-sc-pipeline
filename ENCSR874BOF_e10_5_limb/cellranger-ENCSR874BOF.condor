@@ -1,0 +1,24 @@
+universe=vanilla
+
+CURDIR=ENCSR874BOF_e10_5_limb
+log=cellranger.out
+output=cellragner.$(process).out
+error=cellragner.$(process).out
+
+environment="PATH=/woldlab/loxcyc/home/diane/proj/illumina/cellranger-3.1.0:/woldlab/castor/proj/programs/bcl2fastq-2.19.1/bin:/woldlab/loxcyc/home/diane/bin:/woldlab/loxcyc/home/diane/.local/bin:/usr/bin:/bin"
+
+request_cpus=16
+request_memory=100G
+request_disk=800G
+
+executable=/woldlab/loxcyc/home/diane/proj/illumina/cellranger-3.1.0/cellranger
+
+initial_dir=$(curdir)
+arguments="count \
+  --id=ENCSR874BOF-10x-e10_5-count-cells10000 \
+  --sample ENCSR874BOF \
+  --transcriptome /woldlab/loxcyc/home/diane/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21-male/mm10-M21-male-cellranger-3.1.0/ \
+  --expect-cells 10000 \
+  --fastqs . \
+"
+queue
