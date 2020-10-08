@@ -1,0 +1,57 @@
+universe=vanilla
+
+STAR_DIR=/woldlab/loxcyc/home/diane//proj/STAR/bin/Linux_x86_64
+PROJECT_ROOT=/woldlab/loxcyc/home/diane/proj/encode-202006-jamboree-detrout-rna-sc-pipeline
+
+GENOME_ROOT=$(PROJECT_ROOT)/genome
+GENOME=mm10
+ANNOTATION=M21
+SEX=male
+GENOME_TRIPLET=$(GENOME)-$(ANNOTATION)-$(SEX)
+GENOME_DIR=$(GENOME_ROOT)/$(GENOME_TRIPLET)
+THREADS=16
+
+CURDIR=$(PROJECT_ROOT)/ENCSR874BOF_e10_5_limb/
+OUTDIR=$(CURDIR)/align-star-bulk-paired
+
+READ1=$(CURDIR)/ENCSR874BOF_S1_L001_R1_27-None.fastq.gz
+READ2=$(CURDIR)/ENCSR874BOF_S1_L001_R2_001.fastq.gz
+
+log=$(OUTDIR)/align-star-bulk-paired-$(Process).log
+output=$(OUTDIR)/align-star-bulk-paired-$(Process).out
+error=$(OUTDIR)/align-star-bulk-paired-$(Process).out
+
+request_cpus=$(THREADS)
+request_memory=60G
+request_disk=60G
+
+executable=$(STAR_DIR)/STAR
+transfer_executable=false
+
+arguments="--genomeDir $(GENOME_DIR) \
+           --readFilesIn $(READ1) $(READ2) \
+           --readFilesCommand zcat \
+	   --runThreadN $(THREADS) \
+	   --genomeLoad NoSharedMemory \
+	   --outFilterMultimapNmax 20 \
+	   --alignSJoverhangMin 8 \
+	   --alignSJDBoverhangMin 1 \
+	   --outFilterMismatchNmax 999 \
+	   --outFilterMismatchNoverReadLmax 0.04 \
+	   --alignIntronMin 20 \
+	   --alignIntronMax 1000000 \
+	   --alignMatesGapMax 1000000 \
+	   --outSAMheaderCommentFile COfile.txt \
+	   --outSAMheaderHD @HD VN:1.4 SO:coordinate \
+	   --outSAMunmapped Within \
+	   --outFilterType BySJout \
+	   --outSAMattributes NH HI AS NM MD \
+	   --outSAMtype BAM SortedByCoordinate \
+	   --quantMode TranscriptomeSAM GeneCounts \
+	   --sjdbScore 1 \
+           --outTmpDir $(OUTDIR)/_STARtmp/ \
+	   --outFileNamePrefix $(OUTDIR)/ \
+	   --limitBAMsortRAM 90000000000 \
+           $(EXTRA_ARGS) \
+"
+queue
