@@ -142,3 +142,6 @@ encode3-rna-evaluation-kallisto/ENCLB044ZZZ/
 encode3-rna-evaluation-kallisto/ENCLB045ZZZ/
 encode3-rna-evaluation-kallisto/ENCLB046ZZZ/
 encode3-rna-evaluation-kallisto/logs/
+
+# Ignore pdf files (They're binary and harder to store)
+*.pdf
