@@ -124,3 +124,6 @@ ENCSR874BOF_e10_5_limb/common_barcodes.txt
 
 # Ignore whitelist file downloaded from elsewhere
 10xv2_whitelist.txt
+
+# ignore singularity container built from .def file
+salmon-container/salmon-unstable.simg

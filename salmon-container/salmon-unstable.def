@@ -1,0 +1,11 @@
+Bootstrap: debootstrap
+OSVersion: unstable
+MirrorURL: http://deb.debian.org/debian
+
+%post
+        apt -y update
+        apt -y upgrade
+        apt -y install -t unstable salmon
+
+%runscript
+        /usr/bin/salmon "$@"
