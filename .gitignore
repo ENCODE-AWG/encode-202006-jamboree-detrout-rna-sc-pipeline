@@ -113,3 +113,8 @@ fastqs-used-in-c1-e10.5.txt
 
 # Ignore file downloaded from synapse
 ENCSR874BOF_e10_5_limb/alex-star-solo/
+
+# Ignore kallisto runs done from org mode
+ENCSR874BOF_e10_5_limb/kallisto/
+ENCSR874BOF_e10_5_limb/kallisto_em/
+ENCSR874BOF_e10_5_limb/kallisto_em_temp/
