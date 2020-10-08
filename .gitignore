@@ -79,3 +79,8 @@ c1_e10.5/*.out
 c1_e10.5/*.tab
 c1_e10.5/*.loom
 
+# ignore processed files from pseudomapper runs
+10x_e10.5/kallisto_e10.5/
+10x_e10.5/salmon_decoy_e10.5/
+10x_e10.5/salmon_e10.5/
+ENCSR874BOF_e10_5_limb/kallisto_paired_bulk_e10.5/

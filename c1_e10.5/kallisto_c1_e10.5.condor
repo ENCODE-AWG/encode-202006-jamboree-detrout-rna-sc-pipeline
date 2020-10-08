@@ -1,0 +1,25 @@
+#!/usr/bin/condor_submit
+
+universe=vanilla
+log=kallisto_e10.5/kallisto_c1_e10.5.log
+output=kallisto_e10.5/kallisto_c1_e10.5.out
+error=kallisto_e10.5/kallisto_c1_e10.5.out
+
+THREADS=16
+HOME=/woldlab/loxcyc/home/diane
+ENCODE_GENOME=$(HOME)/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21-male
+TARGET_DIR=kallisto_e10.5
+
+request_cpus=$(THREADS)
+executable=/woldlab/loxcyc/home/diane/proj/kallisto/build/src/kallisto 
+
+
+arguments="quant \
+  -t $(THREADS) \
+  -i $(ENCODE_GENOME)/mm10-M21-male-kallisto-0.46.2.idx \
+  -o $(TARGET_DIR) \
+  --single \
+  --fragment-length=477.11 \
+  --sd=120.927 \
+  c1_e10.5.fastq.gz"
+queue
