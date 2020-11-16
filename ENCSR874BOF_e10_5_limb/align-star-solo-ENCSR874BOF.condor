@@ -1,23 +1,25 @@
 universe=vanilla
-CURDIR=ENCSR874BOF_e10_5_limb/
 
-log=$(CURDIR)/align-star-$(Process).log
-output=$(CURDIR)/align-star-$(Process).out
-error=$(CURDIR)/align-star-$(Process).out
 
-STAR_DIR=/woldlab/loxcyc/home/diane//proj/STAR/bin/Linux_x86_64
-PROJECT_ROOT=/woldlab/loxcyc/home/diane/proj/encode-202006-jamboree-detrout-rna-sc-pipeline
+HOME=/woldlab/loxcyc/home/diane
+STAR_DIR=$(HOME)/proj/STAR/bin/Linux_x86_64
+PROJECT_ROOT=$(HOME)/proj/encode-202006-jamboree-detrout-rna-sc-pipeline
+CURDIR=$(PROJECT_ROOT)/ENCSR874BOF_e10_5_limb
 GENOME_ROOT=$(PROJECT_ROOT)/genome
 GENOME=mm10
 ANNOTATION=M21
 SEX=male
 GENOME_TRIPLET=$(GENOME)-$(ANNOTATION)-$(SEX)
 GENOME_DIR=$(GENOME_ROOT)/$(GENOME_TRIPLET)
-THREADS=16
 
 READ1=$(CURDIR)/ENCSR874BOF_S1_L001_R2_001.fastq.gz
 READ2=$(CURDIR)/ENCSR874BOF_S1_L001_R1_001.fastq.gz
 
+log=$(CURDIR)/align-star-$(Process).log
+output=$(CURDIR)/align-star-$(Process).out
+error=$(CURDIR)/align-star-$(Process).out
+
+THREADS=16
 request_cpus=$(THREADS)
 request_memory=30G
 request_disk=60G
