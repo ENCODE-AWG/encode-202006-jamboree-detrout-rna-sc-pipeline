@@ -13223,21 +13223,88 @@ div#notebook {
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">xopen</span> <span class="k">import</span> <span class="n">xopen</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">HTSW</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/proj/htsworkflow&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">HTSW</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">HTSW</span><span class="p">))</span>
+<span class="kn">from</span> <span class="nn">htsworkflow.submission.encoded</span> <span class="k">import</span> <span class="n">ENCODED</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">server</span> <span class="o">=</span> <span class="n">ENCODED</span><span class="p">(</span><span class="s1">&#39;www.encodeproject.org&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">e10_5</span> <span class="o">=</span> <span class="s2">&quot;https://www.encodeproject.org/search/?searchTerm=e10.5&amp;type=Experiment&amp;assay_title=scRNA-seq&amp;files.file_type=fastq&amp;limit=all&amp;status=released&quot;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">graph</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">search_jsonld</span><span class="p">(</span><span class="n">searchTerm</span><span class="o">=</span><span class="s2">&quot;e10.5&quot;</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s2">&quot;Experiment&quot;</span><span class="p">,</span> <span class="s1">&#39;assay_title&#39;</span><span class="p">:</span> <span class="s2">&quot;scRNA-seq&quot;</span><span class="p">,</span> <span class="s2">&quot;files.file_type&quot;</span><span class="p">:</span> <span class="s2">&quot;fastq&quot;</span><span class="p">,</span> <span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="s2">&quot;all&quot;</span><span class="p">})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13261,9 +13328,29 @@ div#notebook {
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">get_json</span><span class="p">(</span><span class="s1">&#39;/experiments/ENCSR278TAI/&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">[(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;submitted_file_name&#39;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;@id&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">e</span><span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;file_format&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;fastq&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13290,9 +13377,57 @@ div#notebook {
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">]:</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">get_json</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;@id&#39;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;@id&#39;</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">]))</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">e</span><span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;file_format&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;fastq&#39;</span> <span class="ow">and</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;released&#39;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="s1">&#39;submitted_file_name&#39;</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;read_length&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">to_skip</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ENCSR134JVO&#39;</span><span class="p">,</span> <span class="s1">&#39;ENCSR220RKA&#39;</span><span class="p">,</span> <span class="s1">&#39;ENCSR430OIC&#39;</span><span class="p">]</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;c1_e10.5/c1_e10.5.fastq.gz&#39;</span>
+    <span class="n">block_size</span> <span class="o">=</span> <span class="mi">8192</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+    <span class="n">processed</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">])</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outstream</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">]:</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">get_json</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;@id&#39;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">e</span><span class="p">[</span><span class="s1">&#39;accession&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">to_skip</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;@id&#39;</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">]))</span>
+                <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">e</span><span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;file_format&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;fastq&#39;</span><span class="ow">and</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;released&#39;</span><span class="p">:</span>
+                        <span class="n">fastq_url</span> <span class="o">=</span> <span class="s1">&#39;https://www.encodeproject.org&#39;</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+                        <span class="n">processed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fastq_url</span><span class="p">)</span>
+                        <span class="n">instream</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">fastq_url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">instream</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="mi">8192</span><span class="p">):</span>
+                            <span class="n">outstream</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+                        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Processed </span><span class="si">{fastq_url}</span><span class="s1"> </span><span class="si">{count}</span><span class="s1">/</span><span class="si">{total}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -14069,6 +14204,16 @@ Processed https://www.encodeproject.org/files/ENCFF144CHS/@@download/ENCFF144CHS
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     </div>

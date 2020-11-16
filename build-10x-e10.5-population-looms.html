@@ -13215,12 +13215,54 @@ div#notebook {
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">scanpy</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">urllib</span> <span class="k">import</span> <span class="n">parse</span>
+<span class="kn">import</span> <span class="nn">loompy</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">anndata</span>
+<span class="kn">import</span> <span class="nn">scanpy</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">LRSC</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/proj/long-rna-seq-condor&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">LRSC</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LRSC</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">woldrnaseq.madqc</span> <span class="k">import</span> <span class="n">load_rsem_quantifications</span><span class="p">,</span> <span class="n">load_genomic_quantifications</span><span class="p">,</span> <span class="n">load_transcriptome_quantifications</span><span class="p">,</span> <span class="n">replicate_scores</span>
+<span class="kn">from</span> <span class="nn">woldrnaseq.models</span> <span class="k">import</span> <span class="n">load_library_tables</span><span class="p">,</span> <span class="n">load_experiments</span><span class="p">,</span> <span class="n">load_all_star_final</span><span class="p">,</span> <span class="n">load_all_star_counts</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
@@ -13231,9 +13273,31 @@ div#notebook {
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">store</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/proj/genome/mm10-M21-male/mm10-M21-male.h5&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())</span>
+<span class="n">gtf</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="n">store</span><span class="o">.</span><span class="n">keys</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gtf</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13262,6 +13326,16 @@ div#notebook {
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gene_info</span> <span class="o">=</span> <span class="n">gtf</span><span class="p">[</span><span class="n">gtf</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;gene&#39;</span><span class="p">,</span> <span class="s1">&#39;tRNA&#39;</span><span class="p">])</span> <span class="o">|</span> <span class="p">(</span><span class="n">gtf</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;spikein&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;gene_id&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
@@ -13272,9 +13346,37 @@ div#notebook {
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">load_transcript_map</span><span class="p">(</span><span class="n">triplet</span><span class="p">):</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;genome&#39;</span><span class="p">)</span>
+    <span class="n">txp_map</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">root</span> <span class="o">/</span><span class="n">triplet</span><span class="o">/</span><span class="s1">&#39;txp2gene.tsv&#39;</span><span class="p">,</span> <span class="s1">&#39;rt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">instream</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">instream</span><span class="p">:</span>
+            <span class="n">txp</span><span class="p">,</span> <span class="n">gene</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">txp_map</span><span class="p">[</span><span class="n">txp</span><span class="p">]</span> <span class="o">=</span> <span class="n">gene</span>
+    <span class="k">return</span> <span class="n">txp_map</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mm10_M21_map</span> <span class="o">=</span> <span class="n">load_transcript_map</span><span class="p">(</span><span class="s1">&#39;mm10-M21-male&#39;</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">mm10_M21_map</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13298,6 +13400,18 @@ div#notebook {
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span>
+<span class="n">tenx_sc_root</span> <span class="o">=</span> <span class="n">root</span> <span class="o">/</span> <span class="s1">&#39;ENCSR874BOF_e10_5_limb&#39;</span>
+<span class="n">tenx_pop_root</span> <span class="o">=</span>  <span class="n">root</span> <span class="o">/</span> <span class="s1">&#39;10x_e10.5&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
@@ -13308,12 +13422,49 @@ div#notebook {
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">load_sc_anndata</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+    <span class="n">adata</span> <span class="o">=</span> <span class="n">scanpy</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">matrix</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">var_names</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">label</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cellr_sc</span> <span class="o">=</span> <span class="n">load_sc_anndata</span><span class="p">(</span><span class="n">tenx_sc_root</span> <span class="o">/</span> <span class="s2">&quot;cellranger_filtered.sparse.h5ad&quot;</span><span class="p">,</span> <span class="s1">&#39;sc_cellr&#39;</span><span class="p">)</span>
+<span class="n">solo_sc</span> <span class="o">=</span> <span class="n">load_sc_anndata</span><span class="p">(</span><span class="n">tenx_sc_root</span> <span class="o">/</span> <span class="s2">&quot;solo_filtered.sparse.h5ad&quot;</span><span class="p">,</span> <span class="s1">&#39;sc_solo&#39;</span><span class="p">)</span>
+<span class="n">alevin_sc</span> <span class="o">=</span> <span class="n">load_sc_anndata</span><span class="p">(</span><span class="n">tenx_sc_root</span> <span class="o">/</span> <span class="s1">&#39;alevin_filtered.h5ad&#39;</span><span class="p">,</span> <span class="s1">&#39;sc_alevin&#39;</span><span class="p">)</span>
+<span class="n">kallisto_sc</span> <span class="o">=</span> <span class="n">load_sc_anndata</span><span class="p">(</span><span class="n">tenx_sc_root</span> <span class="o">/</span> <span class="s1">&#39;kallisto_filtered.h5ad&#39;</span><span class="p">,</span> <span class="s1">&#39;sc_kallisto&#39;</span><span class="p">)</span>
+<span class="n">kallisto_em_sc</span> <span class="o">=</span> <span class="n">load_sc_anndata</span><span class="p">(</span><span class="n">tenx_sc_root</span> <span class="o">/</span> <span class="s1">&#39;kallisto_em_filtered.h5ad&#39;</span><span class="p">,</span> <span class="s1">&#39;sc_kallisto_em&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
@@ -13324,12 +13475,43 @@ div#notebook {
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop_rsem_experiment</span> <span class="o">=</span> <span class="n">load_experiments</span><span class="p">([</span><span class="n">root</span> <span class="o">/</span> <span class="s1">&#39;experiments_10x_e10.5_merged.tsv&#39;</span><span class="p">])</span>
+<span class="n">pop_rsem_libraries</span> <span class="o">=</span> <span class="n">load_library_tables</span><span class="p">([</span><span class="n">root</span> <span class="o">/</span> <span class="s1">&#39;libraries_10x_e10.5.merged.tsv&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop_star_stats</span> <span class="o">=</span> <span class="n">load_all_star_final</span><span class="p">(</span><span class="n">pop_rsem_libraries</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop_star_stats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;10x_e10.5&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;Number of input reads&#39;</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13353,6 +13535,17 @@ div#notebook {
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop_rsem_gene_count</span> <span class="o">=</span> <span class="n">load_genomic_quantifications</span><span class="p">(</span><span class="n">pop_rsem_experiment</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;10x_e10.5_merged&#39;</span><span class="p">],</span> <span class="n">pop_rsem_libraries</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;expected_count&#39;</span><span class="p">)</span>
+<span class="n">pop_rsem_gene_tpm</span> <span class="o">=</span> <span class="n">load_genomic_quantifications</span><span class="p">(</span><span class="n">pop_rsem_experiment</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;10x_e10.5_merged&#39;</span><span class="p">],</span> <span class="n">pop_rsem_libraries</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;TPM&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13375,6 +13568,17 @@ quantifications 10x_e10.5_merged (81881, 1)
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop_rsem_transcript_count</span> <span class="o">=</span> <span class="n">load_transcriptome_quantifications</span><span class="p">(</span><span class="n">pop_rsem_experiment</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;10x_e10.5_merged&#39;</span><span class="p">],</span> <span class="n">pop_rsem_libraries</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;expected_count&#39;</span><span class="p">)</span>
+<span class="n">pop_rsem_transcript_tpm</span> <span class="o">=</span> <span class="n">load_transcriptome_quantifications</span><span class="p">(</span><span class="n">pop_rsem_experiment</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;10x_e10.5_merged&#39;</span><span class="p">],</span> <span class="n">pop_rsem_libraries</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;TPM&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13404,6 +13608,21 @@ quantifications 10x_e10.5_merged (168207, 1)
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop_rsem_paired_experiment</span> <span class="o">=</span> <span class="n">load_experiments</span><span class="p">([</span><span class="n">root</span> <span class="o">/</span> <span class="s1">&#39;experiments_10x_e10.5_paired_all.tsv&#39;</span><span class="p">])</span>
+<span class="n">pop_rsem_paired_libraries</span> <span class="o">=</span> <span class="n">load_library_tables</span><span class="p">([</span><span class="n">root</span> <span class="o">/</span> <span class="s1">&#39;libraries_10x_e10.5_paired_all.tsv&#39;</span><span class="p">])</span>
+<span class="n">pop_rsem_gene_paired_count</span> <span class="o">=</span> <span class="n">load_genomic_quantifications</span><span class="p">(</span><span class="n">pop_rsem_paired_experiment</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;10x_e10.5_paired_all&#39;</span><span class="p">],</span> <span class="n">pop_rsem_paired_libraries</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;expected_count&#39;</span><span class="p">)</span>
+<span class="n">pop_rsem_gene_paired_tpm</span> <span class="o">=</span> <span class="n">load_genomic_quantifications</span><span class="p">(</span><span class="n">pop_rsem_paired_experiment</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;10x_e10.5_paired_all&#39;</span><span class="p">],</span> <span class="n">pop_rsem_paired_libraries</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;TPM&#39;</span><span class="p">)</span>
+<span class="n">pop_rsem_transcript_paired_count</span> <span class="o">=</span> <span class="n">load_transcriptome_quantifications</span><span class="p">(</span><span class="n">pop_rsem_paired_experiment</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;10x_e10.5_paired_all&#39;</span><span class="p">],</span> <span class="n">pop_rsem_paired_libraries</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;expected_count&#39;</span><span class="p">)</span>
+<span class="n">pop_rsem_transcript_paired_tpm</span> <span class="o">=</span> <span class="n">load_transcriptome_quantifications</span><span class="p">(</span><span class="n">pop_rsem_paired_experiment</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;10x_e10.5_paired_all&#39;</span><span class="p">],</span> <span class="n">pop_rsem_paired_libraries</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;TPM&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13435,6 +13654,16 @@ quantifications 10x_e10.5_paired_all (168207, 1)
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop_star_gene_count</span> <span class="o">=</span> <span class="n">load_all_star_counts</span><span class="p">(</span><span class="n">pop_rsem_libraries</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;U&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">pop_rsem_gene_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
@@ -13445,6 +13674,16 @@ quantifications 10x_e10.5_paired_all (168207, 1)
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop_star_gene_paired_count</span> <span class="o">=</span> <span class="n">load_all_star_counts</span><span class="p">(</span><span class="n">pop_rsem_paired_libraries</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;U&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">pop_rsem_gene_paired_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
@@ -13455,6 +13694,21 @@ quantifications 10x_e10.5_paired_all (168207, 1)
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop_kallisto_transcript</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tenx_pop_root</span> <span class="o">/</span> <span class="s1">&#39;kallisto_e10.5&#39;</span> <span class="o">/</span> <span class="s1">&#39;abundance.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;target_id&#39;</span><span class="p">,</span> <span class="s1">&#39;est_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;tpm&#39;</span><span class="p">])</span>
+<span class="c1">#pop_kallisto_transcript.columns = [&#39;kallisto_gene_counts&#39;]</span>
+<span class="n">pop_kallisto_transcript</span><span class="p">[</span><span class="s1">&#39;gene_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">mm10_M21_map</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pop_kallisto_transcript</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">pop_kallisto_gene_count</span> <span class="o">=</span> <span class="n">pop_kallisto_transcript</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gene_id&#39;</span><span class="p">)[</span><span class="s1">&#39;est_counts&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">pop_kallisto_gene_tpm</span> <span class="o">=</span> <span class="n">pop_kallisto_transcript</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gene_id&#39;</span><span class="p">)[</span><span class="s1">&#39;tpm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">pop_kallisto_gene_count</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13478,6 +13732,20 @@ quantifications 10x_e10.5_paired_all (168207, 1)
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop_kallisto_paired_transcript</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tenx_sc_root</span> <span class="o">/</span> <span class="s1">&#39;kallisto_paired_bulk_e10.5&#39;</span> <span class="o">/</span> <span class="s1">&#39;abundance.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;target_id&#39;</span><span class="p">,</span> <span class="s1">&#39;est_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;tpm&#39;</span><span class="p">])</span>
+<span class="n">pop_kallisto_paired_transcript</span><span class="p">[</span><span class="s1">&#39;gene_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">mm10_M21_map</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pop_kallisto_transcript</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">pop_kallisto_paired_gene_count</span> <span class="o">=</span> <span class="n">pop_kallisto_transcript</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gene_id&#39;</span><span class="p">)[</span><span class="s1">&#39;est_counts&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">pop_kallisto_paired_gene_tpm</span> <span class="o">=</span> <span class="n">pop_kallisto_transcript</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gene_id&#39;</span><span class="p">)[</span><span class="s1">&#39;tpm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">pop_kallisto_paired_gene_count</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13508,6 +13776,22 @@ quantifications 10x_e10.5_paired_all (168207, 1)
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop_salmon_decoy_transcript</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tenx_pop_root</span> <span class="o">/</span> <span class="s1">&#39;salmon_decoy_e10.5&#39;</span> <span class="o">/</span> <span class="s1">&#39;quant.sf&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;NumReads&#39;</span><span class="p">,</span> <span class="s1">&#39;TPM&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">pop_rsem_transcript_count</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="n">pop_salmon_decoy_transcript</span><span class="p">[</span><span class="s1">&#39;gene_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">mm10_M21_map</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pop_salmon_decoy_transcript</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+
+<span class="n">pop_salmon_decoy_gene_count</span> <span class="o">=</span> <span class="n">pop_salmon_decoy_transcript</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gene_id&#39;</span><span class="p">)[</span><span class="s1">&#39;NumReads&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">pop_salmon_decoy_gene_tpm</span> <span class="o">=</span> <span class="n">pop_salmon_decoy_transcript</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gene_id&#39;</span><span class="p">)[</span><span class="s1">&#39;TPM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">pop_salmon_decoy_gene_count</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13538,6 +13822,24 @@ quantifications 10x_e10.5_paired_all (168207, 1)
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop_salmon_transcript</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tenx_pop_root</span> <span class="o">/</span> <span class="s1">&#39;salmon_e10.5&#39;</span> <span class="o">/</span> <span class="s1">&#39;quant.sf&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;NumReads&#39;</span><span class="p">,</span> <span class="s1">&#39;TPM&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">pop_rsem_transcript_count</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="n">pop_salmon_transcript</span><span class="p">[</span><span class="s1">&#39;gene_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">mm10_M21_map</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pop_salmon_transcript</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+
+<span class="n">pop_salmon_gene_tpm</span> <span class="o">=</span> <span class="n">pop_salmon_transcript</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gene_id&#39;</span><span class="p">)[</span><span class="s1">&#39;TPM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">pop_salmon_gene_count</span> <span class="o">=</span> <span class="n">pop_salmon_transcript</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gene_id&#39;</span><span class="p">)[</span><span class="s1">&#39;NumReads&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">pop_salmon_gene_count</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">pop_star_gene_count</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+
+<span class="n">pop_salmon_gene_count</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13568,9 +13870,97 @@ quantifications 10x_e10.5_paired_all (168207, 1)
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">build_loom</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">quantification_name</span><span class="p">,</span> <span class="n">gtf</span><span class="p">):</span>
+    <span class="n">gene_info</span> <span class="o">=</span> <span class="n">gtf</span><span class="p">[</span><span class="n">gtf</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;gene&#39;</span><span class="p">,</span> <span class="s1">&#39;tRNA&#39;</span><span class="p">])</span> <span class="o">|</span> <span class="p">(</span><span class="n">gtf</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;spikein&#39;</span><span class="p">)]</span>
+    <span class="n">transcript_info</span> <span class="o">=</span> <span class="n">gtf</span><span class="p">[(</span><span class="n">gtf</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;transcript&#39;</span><span class="p">,</span> <span class="s1">&#39;tRNA&#39;</span><span class="p">]))</span> <span class="o">|</span> <span class="p">(</span><span class="n">gtf</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;spikein&#39;</span><span class="p">)]</span>
+    
+    <span class="k">if</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">gene_info</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="c1"># We have a gene matrix</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">gene_info</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;gene_id&#39;</span><span class="p">)</span>
+        <span class="n">feature_type</span> <span class="o">=</span> <span class="s1">&#39;gene&#39;</span>
+    <span class="k">elif</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">transcript_info</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">transcript_info</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;transcript_id&#39;</span><span class="p">)</span>
+        <span class="n">feature_type</span> <span class="o">=</span> <span class="s1">&#39;transcript&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unrecognized shape expected </span><span class="si">{}</span><span class="s1"> or </span><span class="si">{}</span><span class="s1"> got </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">gene_info</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+            <span class="n">transcript_info</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">count</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="p">))</span>
+    <span class="n">gene_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">gene_types</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">matrix</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+        <span class="n">gene_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">feature</span><span class="p">,</span> <span class="s1">&#39;gene_name&#39;</span><span class="p">])</span>
+        <span class="n">gene_types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">feature</span><span class="p">,</span> <span class="s1">&#39;gene_type&#39;</span><span class="p">])</span>
+
+    <span class="n">row_attrs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
+        <span class="s1">&#39;gene_name&#39;</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">gene_names</span><span class="p">),</span>
+        <span class="s1">&#39;gene_type&#39;</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">gene_types</span><span class="p">),</span>
+    <span class="p">}</span>
+    <span class="n">column_attrs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;experiment&#39;</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> 
+    <span class="p">}</span>
+    <span class="n">file_attrs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;quantification_name&#39;</span><span class="p">:</span> <span class="n">quantification_name</span><span class="p">,</span>
+        <span class="s1">&#39;feature_type&#39;</span><span class="p">:</span> <span class="n">feature_type</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">loompy</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="n">matrix</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">row_attrs</span><span class="o">=</span><span class="n">row_attrs</span><span class="p">,</span> <span class="n">col_attrs</span><span class="o">=</span><span class="n">column_attrs</span><span class="p">,</span> <span class="n">file_attrs</span><span class="o">=</span><span class="n">file_attrs</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">build_anndata</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">quantification_name</span><span class="p">,</span> <span class="n">gtf</span><span class="p">):</span>
+    <span class="n">gene_info</span> <span class="o">=</span> <span class="n">gtf</span><span class="p">[</span><span class="n">gtf</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;gene&#39;</span><span class="p">,</span> <span class="s1">&#39;tRNA&#39;</span><span class="p">])</span> <span class="o">|</span> <span class="p">(</span><span class="n">gtf</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;spikein&#39;</span><span class="p">)]</span>
+    <span class="n">transcript_info</span> <span class="o">=</span> <span class="n">gtf</span><span class="p">[(</span><span class="n">gtf</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;transcript&#39;</span><span class="p">,</span> <span class="s1">&#39;tRNA&#39;</span><span class="p">]))</span> <span class="o">|</span> <span class="p">(</span><span class="n">gtf</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;spikein&#39;</span><span class="p">)]</span>
+    
+    <span class="k">if</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">gene_info</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="c1"># We have a gene matrixCell</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">gene_info</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;gene_id&#39;</span><span class="p">)</span>
+        <span class="n">feature_type</span> <span class="o">=</span> <span class="s1">&#39;gene&#39;</span>
+    <span class="k">elif</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">transcript_info</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">transcript_info</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;transcript_id&#39;</span><span class="p">)</span>
+        <span class="n">feature_type</span> <span class="o">=</span> <span class="s1">&#39;transcript&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unrecognized shape expected </span><span class="si">{}</span><span class="s1"> or </span><span class="si">{}</span><span class="s1"> got </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">gene_info</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+            <span class="n">transcript_info</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">count</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="p">))</span>
+    <span class="n">gene_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">gene_types</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">matrix</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+        <span class="n">gene_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">feature</span><span class="p">,</span> <span class="s1">&#39;gene_name&#39;</span><span class="p">])</span>
+        <span class="n">gene_types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">feature</span><span class="p">,</span> <span class="s1">&#39;gene_type&#39;</span><span class="p">])</span>
+
+    <span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">adata</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">&#39;gene_symbol&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gene_names</span>
+    <span class="n">adata</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">&#39;gene_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gene_types</span>
+    <span class="n">adata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;quantification_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">quantification_name</span>
+    <span class="n">adata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;feature_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">feature_type</span>
+    
+    <span class="n">adata</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
@@ -13581,12 +13971,73 @@ quantifications 10x_e10.5_paired_all (168207, 1)
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cellr_sc</span> <span class="o">=</span> <span class="n">cellr_sc</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">pop_rsem_gene_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">solo_sc</span> <span class="o">=</span> <span class="n">solo_sc</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">pop_rsem_gene_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">kallisto_sc</span> <span class="o">=</span> <span class="n">kallisto_sc</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">pop_rsem_gene_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">kallisto_em_sc</span> <span class="o">=</span> <span class="n">kallisto_em_sc</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">pop_rsem_gene_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">alevin_sc</span> <span class="o">=</span> <span class="n">alevin_sc</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">pop_rsem_gene_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">cellr_sc</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">solo_sc</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">solo_sc</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">alevin_sc</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">alevin_sc</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">kallisto_sc</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">kallisto_sc</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">kallisto_em_sc</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">kallisto_em_sc</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_rsem_gene_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_rsem_gene_paired_count</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_star_gene_paired_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_star_gene_paired_count</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_kallisto_paired_gene_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_kallisto_paired_gene_count</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_rsem_gene_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_rsem_gene_count</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_star_gene_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_star_gene_count</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_kallisto_gene_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_kallisto_gene_count</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_salmon_decoy_gene_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_salmon_decoy_gene_count</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_salmon_gene_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gene_counts</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;sc_cellr&#39;</span><span class="p">:</span> <span class="n">cellr_sc</span><span class="p">[</span><span class="s1">&#39;sc_cellr&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;sc_solo&#39;</span><span class="p">:</span> <span class="n">solo_sc</span><span class="p">[</span><span class="s1">&#39;sc_solo&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;sc_alevin&#39;</span><span class="p">:</span> <span class="n">alevin_sc</span><span class="p">[</span><span class="s1">&#39;sc_alevin&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;sc_kallisto&#39;</span><span class="p">:</span> <span class="n">kallisto_sc</span><span class="p">[</span><span class="s1">&#39;sc_kallisto&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;sc_kallisto_em&#39;</span><span class="p">:</span> <span class="n">kallisto_em_sc</span><span class="p">[</span><span class="s1">&#39;sc_kallisto_em&#39;</span><span class="p">],</span> 
+    <span class="c1">#&#39;pop_rsem_paired&#39;: pop_rsem_gene_paired_count[&#39;10x_e10.5_paired_all&#39;],</span>
+    <span class="c1">#&#39;pop_star_paired&#39;: pop_star_gene_paired_count[&#39;10x_e10.5_paired_all&#39;],</span>
+    <span class="s1">&#39;pop_rsem&#39;</span><span class="p">:</span> <span class="n">pop_rsem_gene_count</span><span class="p">[</span><span class="s1">&#39;10x_e10.5&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;pop_star&#39;</span><span class="p">:</span> <span class="n">pop_star_gene_count</span><span class="p">[</span><span class="s1">&#39;10x_e10.5&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;pop_kallisto&#39;</span><span class="p">:</span> <span class="n">pop_kallisto_gene_count</span><span class="p">,</span>
+    <span class="c1">#&#39;pop_kallisto_paired_all&#39;: pop_kallisto_paired_gene_count,</span>
+    <span class="s1">&#39;pop_salmon_decoy&#39;</span><span class="p">:</span> <span class="n">pop_salmon_decoy_gene_count</span><span class="p">,</span>
+    <span class="s1">&#39;pop_salmon&#39;</span><span class="p">:</span> <span class="n">pop_salmon_gene_count</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="n">gene_counts</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13799,9 +14250,42 @@ quantifications 10x_e10.5_paired_all (168207, 1)
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_rsem_gene_paired_tpm</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_kallisto_paired_gene_tpm</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_kallisto_paired_gene_tpm</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_rsem_gene_tpm</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_rsem_gene_tpm</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_kallisto_gene_tpm</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_kallisto_gene_tpm</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_salmon_decoy_gene_tpm</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_salmon_decoy_gene_tpm</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_salmon_gene_tpm</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gene_tpm</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;pop_rsem&#39;</span><span class="p">:</span> <span class="n">pop_rsem_gene_tpm</span><span class="p">[</span><span class="s1">&#39;10x_e10.5&#39;</span><span class="p">],</span>
+    <span class="c1">#&#39;pop_rsem_paired&#39;: pop_rsem_gene_paired_tpm[&#39;10x_e10.5_paired_all&#39;],    </span>
+    <span class="s1">&#39;pop_kallisto&#39;</span><span class="p">:</span> <span class="n">pop_kallisto_gene_tpm</span><span class="p">,</span>
+    <span class="c1">#&#39;pop_kallisto_paired_all&#39;: pop_kallisto_paired_gene_tpm,</span>
+    <span class="s1">&#39;pop_salmon_decoy&#39;</span><span class="p">:</span> <span class="n">pop_salmon_decoy_gene_tpm</span><span class="p">,</span>
+    <span class="s1">&#39;pop_salmon&#39;</span><span class="p">:</span> <span class="n">pop_salmon_gene_tpm</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="n">gene_tpm</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13936,9 +14420,29 @@ quantifications 10x_e10.5_paired_all (168207, 1)
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#build_loom(tenx_pop_root / &#39;10x_e10.5_gene_counts.loom&#39;, gene_counts, &#39;counts&#39;, gtf)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">build_anndata</span><span class="p">(</span><span class="n">tenx_pop_root</span> <span class="o">/</span> <span class="s1">&#39;10x_e10.5_gene_counts.h5ad&#39;</span><span class="p">,</span> <span class="n">gene_counts</span><span class="p">,</span> <span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">gtf</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13961,9 +14465,29 @@ quantifications 10x_e10.5_paired_all (168207, 1)
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#build_loom(tenx_pop_root / &#39;10x_e10.5_gene_tpms.loom&#39;, gene_tpm, &#39;TPM&#39;, gtf)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">build_anndata</span><span class="p">(</span><span class="n">tenx_pop_root</span> <span class="o">/</span> <span class="s1">&#39;10x_e10.5_gene_tpms.h5ad&#39;</span><span class="p">,</span> <span class="n">gene_tpm</span><span class="p">,</span> <span class="s1">&#39;TPM&#39;</span><span class="p">,</span> <span class="n">gtf</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13993,9 +14517,45 @@ quantifications 10x_e10.5_paired_all (168207, 1)
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_rsem_transcript_count</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_kallisto_transcript</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_rsem_transcript_count</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_rsem_transcript_paired_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_kallisto_transcript</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_salmon_decoy_transcript</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_salmon_decoy_transcript</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_salmon_transcript</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_rsem_transcript_tpm</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_kallisto_transcript</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_kallisto_transcript</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_kallisto_paired_transcript</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_kallisto_paired_transcript</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_salmon_decoy_transcript</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pop_salmon_decoy_transcript</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">pop_salmon_transcript</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">transcript_counts</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;pop_rsem&#39;</span><span class="p">:</span> <span class="n">pop_rsem_transcript_count</span><span class="p">[</span><span class="s1">&#39;10x_e10.5&#39;</span><span class="p">],</span>
+    <span class="c1">#&#39;pop_rsem_paired&#39;: pop_rsem_transcript_paired_count[&#39;10x_e10.5_paired_all&#39;],</span>
+    <span class="s1">&#39;pop_kallisto&#39;</span><span class="p">:</span> <span class="n">pop_kallisto_transcript</span><span class="p">[</span><span class="s1">&#39;est_counts&#39;</span><span class="p">],</span>
+    <span class="c1">#&#39;pop_kallisto_paired_all&#39;: pop_kallisto_paired_transcript[&#39;est_counts&#39;],</span>
+    <span class="s1">&#39;pop_salmon_decoy&#39;</span><span class="p">:</span> <span class="n">pop_salmon_decoy_transcript</span><span class="p">[</span><span class="s1">&#39;NumReads&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;pop_salmon&#39;</span><span class="p">:</span> <span class="n">pop_salmon_transcript</span><span class="p">[</span><span class="s1">&#39;NumReads&#39;</span><span class="p">],</span>
+<span class="p">})</span>
+<span class="n">transcript_counts</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -14123,6 +14683,24 @@ quantifications 10x_e10.5_paired_all (168207, 1)
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">transcript_tpm</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;pop_rsem&#39;</span><span class="p">:</span> <span class="n">pop_rsem_transcript_tpm</span><span class="p">[</span><span class="s1">&#39;10x_e10.5&#39;</span><span class="p">],</span>
+    <span class="c1">#&#39;pop_rsem_paired&#39;: pop_rsem_transcript_paired_tpm[&#39;10x_e10.5_paired_all&#39;],</span>
+    <span class="s1">&#39;pop_kallisto&#39;</span><span class="p">:</span> <span class="n">pop_kallisto_transcript</span><span class="p">[</span><span class="s1">&#39;tpm&#39;</span><span class="p">],</span>
+    <span class="c1">#&#39;pop_kallisto_paired_all&#39;: pop_kallisto_paired_transcript[&#39;tpm&#39;],</span>
+    <span class="s1">&#39;pop_salmon_decoy&#39;</span><span class="p">:</span> <span class="n">pop_salmon_decoy_transcript</span><span class="p">[</span><span class="s1">&#39;TPM&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;pop_salmon&#39;</span><span class="p">:</span> <span class="n">pop_salmon_transcript</span><span class="p">[</span><span class="s1">&#39;TPM&#39;</span><span class="p">],</span>
+<span class="p">})</span>
+<span class="n">transcript_tpm</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -14250,9 +14828,29 @@ quantifications 10x_e10.5_paired_all (168207, 1)
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#build_loom(tenx_pop_root / &#39;10x_e10.5_transcript_counts.loom&#39;, transcript_counts, &#39;counts&#39;, gtf)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">build_anndata</span><span class="p">(</span><span class="n">tenx_pop_root</span> <span class="o">/</span> <span class="s1">&#39;10x_e10.5_transcript_counts.h5ad&#39;</span><span class="p">,</span> <span class="n">transcript_counts</span><span class="p">,</span> <span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">gtf</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -14275,9 +14873,29 @@ quantifications 10x_e10.5_paired_all (168207, 1)
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#build_loom(tenx_pop_root / &#39;10x_e10.5_transcript_tpm.loom&#39;, transcript_tpm, &#39;TPM&#39;, gtf)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">build_anndata</span><span class="p">(</span><span class="n">tenx_pop_root</span> <span class="o">/</span> <span class="s1">&#39;10x_e10.5_transcript_tpm.h5ad&#39;</span><span class="p">,</span> <span class="n">transcript_tpm</span><span class="p">,</span> <span class="s1">&#39;TPM&#39;</span><span class="p">,</span> <span class="n">gtf</span><span class="p">)</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -14300,6 +14918,16 @@ quantifications 10x_e10.5_paired_all (168207, 1)
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     </div>
