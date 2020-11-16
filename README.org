@@ -1047,10 +1047,173 @@ Suggestions were:
 
 - [ ] show how salmon's decoy mode works,to see if it catches the
       overexpressed spikes.
-- [ ] show gravely spike performance even though it's different from
+- [X] show gravely spike performance even though it's different from
       the others.
 - [ ] are the reads that map to the overexpressed spike multimappers?
       if they are do they come from a similar place?
 - [ ] How consistent are the spike ratios in the C1 data?
 - [ ] How consistent is the predict spike slope in the C1 data
 - [ ] How close is the resulting spikes slope to what we expect?
+
+** <2020-10-14 Wed> Spike ins were worse than expected
+
+   so it turns out that there were a bunch of different spike mixes
+   that were used and figuring out how they all work would be painful
+
+   see [[file:compare-rsem-kallisto-spike-performance.html][compare-rsem-kallisto-spike-performance]]
+
+   So I'm going to build a new subset that uses just the same spikes
+   and and analyze that.
+
+   See [[file:build-e10.5-ENCSR535LMC-fastqs.ipynb][build-e10.5-ENCSR535LMC-fastqs.ipynb]]
+
+   Now lets run RSEM, kallisto & salmon on it
+
+** <2020-10-14 Wed> Presented...
+
+   - [ ] verify that other runs use the same spike sets.
+     This notebook [[file:find-spikes-used-for-all-cells.ipynb][find-spikes-used-for-all-cells.ipynb]] generated
+     this report [[file:c1-experiments-to-annotated-spike-ins-used.csv][c1-experiments-to-annotated-spike-ins-used.csv]]
+     that shows our run1 and run2 have are labeled with a mix of 2
+     different spike sets -- which is probably a mistake.
+
+   - [ ] find kallisto paper that analyzed C1 data
+     https://github.com/pachterlab/BYVSTZP_2020
+   - [ ] which version for kallisto bus tools? bulk? kb_python?}
+
+   - [ ] heat map with respect single cell.
+         stay focused on single cell data...
+
+   can show gallery of scatter plot
+
+** <2020-10-15 Thu> Process C1 data with pseduo mappers
+
+   Lets see what our C1 data looks like with the pseduo mappers
+
+   Generated [[file:compare-single-cell.ipynb][compare-single-cell.ipynb]] to compare the single cell
+   between algorithms.
+
+   It'd help to have things be consistent between different parameter
+   options I used these combinations
+
+   naive
+   rafa
+
+   10x details
+   cellranger, solo
+   cellranger, alevin
+   cellranger, kallisto
+   solo, alevin
+   solo, kallisto
+   alevin, kallisto
+
+   C1 gene count details
+   kallisto, rsem
+   kallisto, salmon_decoy
+   kallisto, salmon
+   kallisto, star
+   rsem, salmon_decoy
+   rsem, salmon
+   rsem, star
+   salmon_decoy, salmon,
+   salmon_decoy, star
+   salmon, star
+
+   c1 gene tpm details
+   kallisto, rsem
+   kallisto, salmon_decoy
+   kallisto, salmon
+   rsem, salmon_decoy
+   rsem, salmon
+   salmon_decoy, salmon
+
+   c1 transcript count
+   kallisto, rsem
+   kallisto, salmon_decoy
+   kallisto, salmon
+   rsem, salmon_decoy
+   rsem, salmon
+   salmon_decoy, salmon
+
+** <2020-10-19 Mon> Need to run the minimal set.
+
+   After looking at [[file:compare-single-cell.ipynb][compare-single-cell.ipynb]] I remembered I was
+   supposed to run using the smaller 10x annotation set instead of the
+   fairly complex ENCODE set.
+
+   In the evening we talked to Lior about our problems kallisto.
+
+   He said that salmon also has a fragment length parameter, it's just
+   they set a default and kallisto didn't, and that when doing
+   comparisons we should set them both to the same values.
+
+   Tuesday Ali told me I have to Nov 18th to get this worked out.
+
+** <2020-10-20 Tue> Continuing to run the minimal set
+
+   I discovered I did have a directory with a minimal set built, but I
+   wasn't sure about the annotation set.
+
+   I extended my comparison [[file:compare-10x-vs-ENCODE-gtf.ipynb]]
+   notebook and am pretty sure they're using a different annotation
+   than us.
+
+   I went ahead and used the information from looking at what's
+   included in the 10x reference to figure out what I should filter
+   down to.
+
+   I decided to include the ERCC spikes as well as the 10x information.
+
+   - [X] Run 10x
+   - [X] Run STAR Solo
+   - [X] Run Kallisto
+   - [X] Run Salmon
+   - [X] Run Salmon Decoy
+
+** <2020-11-02 Mon> minimal 10x results look good
+
+   the minimal 10x results correlate well and look pretty decent, the
+   full set is only slightly worse.
+
+   I think most of the trouble has been with the single ended C1 data.
+
+
+** <2020-11-11 Wed> Collect files to diagnose kallisto ERCC issues
+
+Brian provided a spreadsheet with the a sampling of avg cDNA & CV %
+for some (but not all) of the cells that were sequenced.
+
+[[file:C1_Fluidigm_BioAnalyzer_avgcDNA_and_CV_October14_2020.xlsx]]
+
+I took those values and took the mean of the cdna length and standard
+deviation (And wondered If I was cheating a bit there, but hoped it
+would be close enough)
+
+And gave every cell in the same run the same mean cDNA & sd values.
+
+See [[http://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/generate-c1-pseudo-minimal-runs.html#Calculate-kallisto-fragment-and-sd-parameters][Calculate-kallisto-fragment-and-sd-parameters]]
+
+They were run with ht condor in [[http://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/c1_pseudo/kallisto_minimal/kallisto-minimal-quant.condor][kallisto-minimal-quant.condor]] and
+[[http://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/c1_pseudo/kallisto/kallisto-quant.condor][kallisto-quant.condor]] (which lists all of the command lines passed to
+kallisto).
+
+Most of the C1 cells were run using [[https://www.encodeproject.org/references/ENCSR535LMC/][ENCSR535LMC]] the full list is in
+[[http://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/c1-cells-using-ENCSR535LMC-spike.txt][c1-cells-using-ENCSR535LMC-spike.txt]]. A table with the name, length
+and concentration can be found at github single-cell-qc
+[[https://github.com/detrout/single-cell-qc/blob/master/singleqc/ENCSR535LMC.tsv][singleqc/ENCSR535LMC.tsv]]. Most of the C1 reads were run as 50-bp
+single reads, a few were run as 100-bp, though we trimmed them to 50
+for the analysis.
+
+With the minimal set some example scatter plots are at [[http://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/compare-single-cell-minimal.html#C1-star-minimal-vs-kallisto-minimal][C1-star-minimal-vs-kallisto-minimal]]
+The equivalent with the full gene set is at [[http://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/compare-single-cell.html#C1-gene-counts-spearman-kallisto-vs-star][C1-gene-counts-spearman-kallisto-vs-star]]
+
+Technically I switched Spearman implementations between the two
+notebooks, as my initial implementation was really slow on sparse
+data. They both eventually call [[https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.spearmanr.html][scipy.stats.spearmanr]] but the first
+implementation computed more correlations and was targeting pandas
+dataframes, while the second one used in minimal only does spearmanr,
+and was updated to handle AnnData matricies.
+
+The fastqs can be found in the runfolders we shared of our original
+star/rsem runs. [[http://woldlab.caltech.edu/~diane/C1_mouse_limb_timecourse/]]
+
