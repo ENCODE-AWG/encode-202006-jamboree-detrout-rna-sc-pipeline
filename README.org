@@ -1,3 +1,4 @@
+#+TITLE: README For scRNA pipeline analyses.
 * Jamboree
 
 This is a VM for the June 2020 ENCODE jamboree. I should remember to grab my
