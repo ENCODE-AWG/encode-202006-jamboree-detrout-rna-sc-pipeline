@@ -1221,3 +1221,11 @@ and was updated to handle AnnData matricies.
 The fastqs can be found in the runfolders we shared of our original
 star/rsem runs. [[http://woldlab.caltech.edu/~diane/C1_mouse_limb_timecourse/]]
 
+** <2020-11-16 Mon> Trying to get help from Kallisto
+
+   They use google colab, so I had to make some notebooks for them.
+
+   - compare_c1_h5_on_colab.ipynb just loads the h5 files from my directory
+   - compare_c1_minimal_on_colab.ipynb runs one of the cells through a
+     fresh kallisto install using prebuilt indexes
+
