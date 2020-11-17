@@ -1229,3 +1229,11 @@ star/rsem runs. [[http://woldlab.caltech.edu/~diane/C1_mouse_limb_timecourse/]]
    - compare_c1_minimal_on_colab.ipynb runs one of the cells through a
      fresh kallisto install using prebuilt indexes
 
+   Also you can add this as an assembly hub to see how a few of the
+   kallisto finds reads on a few of the cells. when making this the
+   assembly hub contains kallisto-minimal and rsem-minimal tracks.
+   You'll need to add this link to the UCSC trackhub page as it wont
+   open directly.
+   http://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/hub/hub.txt
+
+
