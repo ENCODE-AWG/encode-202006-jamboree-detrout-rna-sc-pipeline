@@ -1178,6 +1178,10 @@ Suggestions were:
    I think most of the trouble has been with the single ended C1 data.
 
 
+** <2020-11-16 Mon> Henry's instructions on making a assembly hub.
+
+   https://woldlab.caltech.edu/~hamrhein/hubs/hg38_ercc_spikes_sirv/README.txt
+
 ** <2020-11-11 Wed> Collect files to diagnose kallisto ERCC issues
 
 Brian provided a spreadsheet with the a sampling of avg cDNA & CV %
