@@ -1,4 +1,5 @@
 #+TITLE: README For scRNA pipeline analyses.
+#+OPTIONS: ^:nil
 * Jamboree
 
 This is a VM for the June 2020 ENCODE jamboree. I should remember to grab my
@@ -320,87 +321,99 @@ time ~/bustools_linux-v0.39.3/bustools count -o genecount/gene -g ~/proj/genome/
 This run was without enabling EM
 
 #+begin_src bash
-GENOME_DIR=~/proj/genome
-ENCODE_GENOME=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21-male
-TARGET_DIR=ENCSR874BOF_e10_5_limb/kallisto
-BUS_DIR=~/proj/bustools/build/src
+  GENOME_DIR=~/proj/genome
+  ENCODE_GENOME=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21-male
+  TARGET_DIR=ENCSR874BOF_e10_5_limb/kallisto
+  BUS_DIR=~/proj/bustools/build/src
 
-time ~/proj/kallisto/build/src/kallisto bus \
-  -t 20 \
-  -i ${ENCODE_GENOME}/mm10-M21-male-kallisto-0.46.2.idx \
-  -o ${TARGET_DIR} \
-  -x 10xv2 \
-  ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R1_001.fastq.gz \
-  ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R2_001.fastq.gz
+  time ~/proj/kallisto/build/src/kallisto bus \
+    -t 20 \
+    -i ${ENCODE_GENOME}/mm10-M21-male-kallisto-0.46.2.idx \
+    -o ${TARGET_DIR} \
+    -x 10xv2 \
+    ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R1_001.fastq.gz \
+    ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R2_001.fastq.gz
 
-time ${BUS_DIR}/bustools correct \
-  -w 10xv2_whitelist.txt \
-  -o ${TARGET_DIR}/output.correct.bus \
-  ${TARGET_DIR}/output.bus
+  time ${BUS_DIR}/bustools correct \
+    -w 10xv2_whitelist.txt \
+    -o ${TARGET_DIR}/output.correct.bus \
+    ${TARGET_DIR}/output.bus
 
-mkdir ${TARGET_DIR}/{eqcount,genecount}
+  mkdir ${TARGET_DIR}/{eqcount,genecount}
 
-time ${BUS_DIR}/bustools sort \
-  -t 20 \
-  -o ${TARGET_DIR}/output.correct.sort.bus \
-  ${TARGET_DIR}/output.correct.bus
+  time ${BUS_DIR}/bustools sort \
+    -t 20 \
+    -o ${TARGET_DIR}/output.correct.sort.bus \
+    ${TARGET_DIR}/output.correct.bus
 
-time ${BUS_DIR}/bustools count \
-  -o ${TARGET_DIR}/eqcount/tcc \
-  -g ${ENCODE_GENOME}/txp2gene.tsv \
-  -e ${TARGET_DIR}/matrix.ec \
-  -t ${TARGET_DIR}/transcripts.txt \
-  ${TARGET_DIR}/output.correct.sort.bus
+  time ${BUS_DIR}/bustools count \
+    -o ${TARGET_DIR}/eqcount/tcc \
+    -g ${ENCODE_GENOME}/txp2gene.tsv \
+    -e ${TARGET_DIR}/matrix.ec \
+    -t ${TARGET_DIR}/transcripts.txt \
+    ${TARGET_DIR}/output.correct.sort.bus
 
-time ${BUS_DIR}/bustools count \
-  -o ${TARGET_DIR}/genecount/gene \
-  -g ${ENCODE_GENOME}/txp2gene.tsv \
-  -e ${TARGET_DIR}/matrix.ec \
-  -t ${TARGET_DIR}/transcripts.txt \
-  --genecounts ${TARGET_DIR}/output.correct.sort.bus
+  time ${BUS_DIR}/bustools count \
+    -o ${TARGET_DIR}/genecount/gene \
+    -g ${ENCODE_GENOME}/txp2gene.tsv \
+    -e ${TARGET_DIR}/matrix.ec \
+    -t ${TARGET_DIR}/transcripts.txt \
+    --genecounts ${TARGET_DIR}/output.correct.sort.bus
+
+  time ${BUS_DIR}/bustools whitelist \
+       -o ${TARGET_DIR}/filtered-barcodes.txt \
+       ${TARGET_DIR}/output.correct.sort.bus   
 #+end_src
 
 Enable single cell EM
 
 #+begin_src bash
-GENOME_DIR=~/proj/genome
-ENCODE_GENOME=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21-male
-TARGET_DIR=ENCSR874BOF_e10_5_limb/kallisto_em
-BUS_DIR=~/proj/bustools/build/src
+  GENOME_DIR=~/proj/genome
+  ENCODE_GENOME=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21-male
+  TARGET_DIR=ENCSR874BOF_e10_5_limb/kallisto_em
+  BUS_DIR=~/proj/bustools/build/src
 
-time ~/proj/kallisto/build/src/kallisto bus \
-  -t 20 \
-  -i ${ENCODE_GENOME}/mm10-M21-male-kallisto-0.46.2.idx \
-  -o ${TARGET_DIR} \
-  -x 10xv2 \
-  ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R1_001.fastq.gz \
-  ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R2_001.fastq.gz
+  time ~/proj/kallisto/build/src/kallisto bus \
+    -t 20 \
+    -i ${ENCODE_GENOME}/mm10-M21-male-kallisto-0.46.2.idx \
+    -o ${TARGET_DIR} \
+    -x 10xv2 \
+    ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R1_001.fastq.gz \
+    ENCSR874BOF_e10_5_limb/ENCSR874BOF_S1_L001_R2_001.fastq.gz
 
-time ${BUS_DIR}/bustools correct \
-  -w 10xv2_whitelist.txt \
-  -o ${TARGET_DIR}/output.correct.bus \
-  ${TARGET_DIR}/output.bus
+  time ${BUS_DIR}/bustools correct \
+    -w 10xv2_whitelist.txt \
+    -o ${TARGET_DIR}/output.correct.bus \
+    ${TARGET_DIR}/output.bus
 
-mkdir ${TARGET_DIR}/{eqcount,genecount}
+  mkdir ${TARGET_DIR}/{eqcount,genecount}
 
-time ${BUS_DIR}/bustools sort \
-  -t 20 \
-  -o ${TARGET_DIR}/output.correct.sort.bus \
-  ${TARGET_DIR}/output.correct.bus
+  time ${BUS_DIR}/bustools sort \
+    -t 20 \
+    -o ${TARGET_DIR}/output.correct.sort.bus \
+    ${TARGET_DIR}/output.correct.bus
 
-time ${BUS_DIR}/bustools count --em \
-  -o ${TARGET_DIR}/eqcount/tcc \
-  -g ${ENCODE_GENOME}/txp2gene.tsv \
-  -e ${TARGET_DIR}/matrix.ec \
-  -t ${TARGET_DIR}/transcripts.txt \
-  ${TARGET_DIR}/output.correct.sort.bus
+  time ${BUS_DIR}/bustools count --em \
+    -o ${TARGET_DIR}/eqcount/tcc \
+    -g ${ENCODE_GENOME}/txp2gene.tsv \
+    -e ${TARGET_DIR}/matrix.ec \
+    -t ${TARGET_DIR}/transcripts.txt \
+    ${TARGET_DIR}/output.correct.sort.bus
 
-time ${BUS_DIR}/bustools count --em \
-  -o ${TARGET_DIR}/genecount/gene \
-  -g ${ENCODE_GENOME}/txp2gene.tsv \
-  -e ${TARGET_DIR}/matrix.ec \
-  -t ${TARGET_DIR}/transcripts.txt \
-  --genecounts ${TARGET_DIR}/output.correct.sort.bus
+  time ${BUS_DIR}/bustools count --em \
+    -o ${TARGET_DIR}/genecount/gene \
+    -g ${ENCODE_GENOME}/txp2gene.tsv \
+    -e ${TARGET_DIR}/matrix.ec \
+    -t ${TARGET_DIR}/transcripts.txt \
+    --genecounts ${TARGET_DIR}/output.correct.sort.bus
+
+  time ${BUS_DIR}/bustools whitelist \
+     -o ${TARGET_DIR}/filtered-barcodes.txt \
+     ${TARGET_DIR}/output.correct.sort.bus   
+
+  time ${BUS_DIR}/bustools whitelist \
+       -o ${TARGET_DIR}/filtered-barcodes.txt \
+       ${TARGET_DIR}/output.correct.sort.bus   
 #+end_src
 
 Kallisto bus runtime
@@ -1236,4 +1249,649 @@ star/rsem runs. [[http://woldlab.caltech.edu/~diane/C1_mouse_limb_timecourse/]]
    open directly.
    http://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/hub/hub.txt
 
+** DONE <2020-11-23 Mon> Try Becha's long read version of kallisto
+   CLOSED: [2021-02-05 Fri 14:58]
 
+   - State "DONE"       from "TODO"       [2021-02-05 Fri 14:58]
+   https://github.com/bound-to-love/kallisto
+
+   did it eventually. seemed to work better than using the wrong
+   settings
+   
+** TODO is --em on in my earlier 10x run?
+
+** <2020-12-22 Tue> more analysis, not enough notes.
+
+I showed Barbara some of my current presentation and she had a few questions
+
+  Can star solo do visualizations like cellranger: no.
+  ask them what bustools --em do?
+
+  She also noticed that I was missing some of the alevin decoy runs
+  and wanted to see that.
+
+  I've decided I much prefer having condor files for keeping track of
+  runs then commands in org mode.
+
+  I needed to add some decoy runs to the ENCODE annotation set in
+  ENCSR874BOF_e10_5_limb
+  
+
+  Showed to the rest of the long read group
+  
+  Also run my analysis on one of the 10x reference sets... 10x hematopoetic set.
+
+  kallisto em full barcode vs genes detect plots shows some more reads
+  in the same place like the minimal run does... can we look into this
+  to see what genes are different between
+  
+
+  alevin / alevin decoy mixing on screenshots on page 10 of try2 presentation
+
+  Barbara mentions that ENCODE is thinking of alevin decoy, so the
+  presentation needs to include it.
+
+  cell-number set...
+
+  compare barcodes from larger cell ranger 2x vs 3x say the default
+  filters between cellranger 3 and star solo settings are different.
+  check for what the options are for varying what cell ranger is
+  willing to return.
+
+  Gabby thinks leiden is thought to be the improvement over louvain.
+
+** <2021-02-02 Tue> Test running TCC quantification program
+
+   I tried to script the steps going from the eqcount (equivalence
+   count) values to transcript level counts in here:
+   
+   [[file:10x_paper/kallisto-tcc-em.sh][10x_paper/kallisto-tcc-em.sh]]
+
+   I started running it around 4:30 on tuesday Feb 2nd. Unfortunately
+   I didn't launch it with nohup or time so I don't have detailed
+   timing information.
+
+   It finished running Feb 6 at 14:01....
+   
+   #+begin_src python
+     import datetime
+
+     return datetime.datetime(2020,2,6,14,1)-datetime.datetime(2020,2,2,16,30)
+   #+end_src
+
+   #+RESULTS:
+   : 3 days, 21:31:00
+
+   Looks like it took almost 4 days with 8 threads on pongo for the
+   full matrix.
+  
+** <2021-02-05 Fri> Working with Pacter lab on salmon/alevin-fry comparison
+
+   [[file:/scp:atlas:/home/diane/comparison/README.org::*Introduction][Introduction to 20 dataset alevin-fry comparison]]
+
+So here I built Delaney's versions of kallisto and bustools in
+[[file:/scp:pongo:/woldlab/loxcyc/home/diane/proj/delaney][file:/scp:pongo:/woldlab/loxcyc/home/diane/proj/delaney]]
+
+** Copied over the pass filter intersection.
+
+   
+
+** <2021-03-17 Wed> Generate list of 10x samples for Alex
+
+| Wold10x-1  | e13.5 mouse forelimb | ENCSR787QXE |
+| Wold10x-3  | e11.0 mouse forelimb | ENCSR642XVO |
+| Wold10x-4  | e12.0 mouse forelimb | ENCSR745DNK |
+| Wold10x-5  | e13.0 mouse forelimb | ENCSR476JWN |
+| Wold10x-6  | e15.0 mouse forelimb | ENCSR337QTQ |
+| Wold10x-7  | e10.5 forelimb       | ENCSR874BOF |
+| Wold10x-12 | e13.0 forelimb       | ENCSR156HHE |
+| Wold10x-13 | e14.0 forelimb       | ENCSR792LNZ |
+   
+
+Wold10x-8 	e15.0 forelimb whole 	ENCSR306UHC 	FT-BB01670/FT-SA17501_FT-TS92805
+Wold10x-9 	e15.0 forelimb proximal (failed) 	ENCSR847RRR 	FT-BB01671/FT-SA17505_FT-TS92809
+Wold10x-10 	e15.0 firelimb mid segment 	ENCSR698TMC 	FT-BB01672/FT-SA17509_FT-TS92813
+Wold10x-11 	e15.0 forelimb distal 	ENCSR416FHN 	FT-BB01673/FT-SA17513_FT-TS92817
+
+['ENCSR787QXE','ENCSR642XVO','ENCSR745DNK','ENCSR476JWN','ENCSR337QTQ','ENCSR874BOF','ENCSR156HHE','ENCSR792LNZ',]
+
+* compare-10x-e10.5-common-genes
+
+We were curious how much of a difference using the full versus
+simplified annotation makes.
+
+The [[file:compare-10x-e10.5-common-genes.html]]
+
+* Work toward a 10x pipeline
+
+ENCODE has several kinds of 10x data hosted.
+
+I'd only processed 10x 3' single cell data.
+
+** cellranger-arc run
+   
+The Snyder group is producing 10x multiomic data. The multiome
+protocol uses a different version of cell ranger than what I'd
+previously been trying to use.
+
+https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/overview/welcome
+
+Download link here
+https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/downloads/latest
+
+It shares the previous cell ranger file layout issues where they
+expect fastqs to be in subdirectories and have names like they're
+generated by bcl2fastq with the samplename S1 lane read and fragment
+information.
+
+The first experiment I thought I'd try has all it's files hosted in
+here [[file:adrenal/ENCSR724KET_16f_nuc][adrenal/ENCSR724KET_16f_nuc]]
+
+I decided to start with adrenal data as we'd been working with it in
+mouse, although the snyder multiome data is in human, but at least
+we've completed a couple of bulk RNA-seq experiments on the same
+samples.
+
+Since it's not released I wrote a small snakemake file to download the
+fastqs
+[[file:adrenal/ENCSR724KET_16f_nuc/download-fastq.snakefile]]
+using this [[file:adrenal/ENCSR724KET_16f_nuc/config.yaml]]
+
+I then made some symlinks that hopefully got them into the preferred
+file layout. 
+
+#+NAME: ENCSR724KET_rna_accessions
+#+CAPTION: Link read to RNA accession to flowcell and lane information
+| read  | accession   | flowcell_details |
+| read1 | ENCFF150FBF | HYHY3DRXX:1      |
+| read1 | ENCFF385IAW | HYHY3DRXX:2      |
+| read2 | ENCFF351VBS | HYHY3DRXX:1      |
+| read2 | ENCFF503CCI | HYHY3DRXX:2      |
+
+#+CAPTION: link fastqs in adrenal/ENCSR724KET_16f_nuc directory to cellranger expected names
+#+begin_src bash
+  pushd adrenal/ENCSR724KET_16f_nuc/HYHY3DRXX/ENCLB002DZK
+  ln -s ../../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+  ln -s ../../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+  ln -s ../../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+  ln -s ../../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+Then I write  [[file:adrenal/ENCSR724KET_16f_nuc/cellranger_library.csv]]
+with paths to fastqs (which should look like table [[ENCLB718TZI_atac_map]])
+
+I tried running cellranger-arc and then discovered it needs both the
+RNA and atac files. I'd mis-understood their layout documentation so
+tried a simpler tree for the atac data.
+
+In this case this [[file:adrenal/ENCSR724KET_16f_nuc/atac/download-fastq.snakefile][download-fastq.snakefile]] snake file with this
+[[file:adrenal/ENCSR724KET_16f_nuc/atac/config.yaml::cDNA][config.yaml]] downloaded files into the
+[[file:adrenal/ENCSR724KET_16f_nuc/atac]] directory.
+
+#+NAME: ENCLB718TZI_atac_map
+#+CAPTION: accession to atac file map
+| file accession | target filename                     |
+| ENCFF853WTH    | ENCLB718TZI_S1_L001_R1_001.fastq.gz |
+| ENCFF803RDM    | ENCLB718TZI_S1_L001_R2_001.fastq.gz |
+| ENCFF500VXA    | ENCLB718TZI_S1_L001_R3_001.fastq.gz |
+| ENCFF526JBZ    | ENCLB718TZI_S1_L002_R1_001.fastq.gz |
+| ENCFF760QLU    | ENCLB718TZI_S1_L002_R2_001.fastq.gz |
+| ENCFF112IMQ    | ENCLB718TZI_S1_L002_R3_001.fastq.gz |
+
+#+NAME: ENCSR724KET_cellranger_library
+#+CAPTION: cellranger_library.csv relative to this README
+| fastqs                                              | sample      | library_type            |
+| ./adrenal/ENCSR724KET_16f_nuc/HYHY3DRXX/ENCLB002DZK | ENCLB002DZK | Gene Expression         |
+| ./adrenal/ENCSR724KET_16f_nuc/atac                  | ENCLB718TZI | Chromatin Accessibility |
+
+This wasn't the best directory layout. I probably could have gotten it
+to be ENCSR724KET_16f_nuc/rna and ENCSR724KET_16f_nuc/atac. I'll
+probably try that next time if I need to.
+
+
+Run cellranger-arc
+
+#+begin_src bash
+  pushd adrenal/ENCSR724KET_16f_nuc/ENCSR724KET_cr-arc
+  time cellranger-arc count \
+       --id ENCLB002DZK \
+       --reference=/woldlab/loxcyc/home/diane/proj/illumina/refdata-cellranger-arc-GRCh38-2020-A-2.0.0 \
+       --libraries=cellranger_library.csv \
+       --localcores=16 \
+       --localmem=128
+#+end_src
+
+Here's the time stats for running the above command. There were many
+more log messages during the run though
+
+#+NAME: cellranger_time_stats
+#+CAPTION: cellranger time statistics 128G ram 16 cores.
+| real | 426m49.528s |
+| user | 5206m6.961s |
+| sys  | 87m44.227s  |
+
+** star solo run
+   
+Lets run the versions of STAR with 10x's annotations with something
+close to our parameters and see what happens.
+
+Looks to be version 2.7.1a, so several options in my first pass STAR
+solo pipeline don't work.
+
+#+begin_src bash :result None
+  pushd adrenal/ENCSR724KET_16f_nuc/ENCSR724KET_starsolo/
+  ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+My first runs were missing the gene table. I had tried with GeneFull
+and SJ modes, and looking at the 2.7.1 source it looks like it was
+only writing the gene.tsv file if feature type mode was 0. Later STAR
+checked for more modes, I'm rerunning with Gene, GeneFull, and SJ
+modes to see if that gets me both parts of the matrix
+
+Adding the Gene mode did get me the genes.tsv file (later versions of
+star rename that to features.tsv)
+
+This version seems to only produce the raw matrix, not the filtered
+one. Hopefully the filters got added later.
+
+Now that we've got two matrices, we should compare them.
+
+Sadly the not Gene matrix was empty, there was only values for the
+GeneFull matrix and they were pretty different from the cellranger
+run.
+
+** star solo 2.7.8a run
+
+Organize fastqs links like a real run.
+   
+#+begin_src bash :result None
+  pushd adrenal/ENCSR724KET_16f_nuc/starsolo_2.7.8a/
+  ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+   
+** cellranger's star using star defaults where possible.
+
+#+begin_src bash :results None
+  pushd adrenal/ENCSR724KET_16f_nuc/cr-arc-star_defaults/
+  ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+There's still quite a bit different, but the correlation histogram
+looks similiar between starsolo_2.7.8a and cr-arc-star_defaults.
+
+** star 2.7.8a using STARsolo documented arguments.
+   
+#+begin_src bash :results output silent
+  pushd adrenal/ENCSR724KET_16f_nuc/starsolo_2.7.8a_cr-compatibility/
+  ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+** Story so far.
+
+The scores are still quite different between cell ranger and all of my
+star solo runs.
+
+When i used defaults for splicing with cell ranger matching
+deconvolution many of the star solo counts were higher than cell
+ranger.
+
+However cell ranger had mapped more reads.
+
+With default splice settings, this read didn't map, but with the
+ENCODE settings it does.
+
+A00509:187:HYHY3DRXX:1:2264:19081:23766 0       chr2    229149949       255    58M5329N32M      *       0       0       TCTCATTCTGGCTGGGTGGTGGCTCAGGTCTATAATCTCAGCACTTTGGGAGGCCGAGGTGGGCAGATCATGAGGTCAGGAGATCGAGAC      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF      NH:i:1 HI:i:1   AS:i:83 NM:i:0  MD:Z:90 XS:A:+  CB:Z:AAAGGTTAGCGATACT   UB:Z:CACCTCCTTTGG
+
+It shows up in the cell ranger bam file as having been mapped.
+
+** Star solo 2.7.9a_2021-06-25 with ENCODE setting and CR compatibility
+
+#+begin_src bash :results output silent
+  pushd adrenal/ENCSR724KET_16f_nuc/starsolo_2.7.9a_2021-06-25_encode+cr/
+  ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+
+** Alex says it's forward stranded
+#+begin_src bash :results output silent
+  pushd adrenal/ENCSR724KET_16f_nuc/starsolo_2.7.9a_2021-06-25_encode-forward+cr/
+  ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+** Tests with the 10x annotation look good, how about the ENCODE annotation?
+   
+#+begin_src bash :results output silent
+  pushd adrenal/ENCSR724KET_16f_nuc/fullsolo_2.7.9a_2021-06-25/
+  ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+#+begin_src bash :results output silent
+  pushd adrenal/ENCSR724KET_16f_nuc/minimalsolo_2.7.9a_2021-06-25/
+  ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+** Forgot to also test some of the multi-read solvers 
+
+#+begin_src bash :results output silent
+  pushd adrenal/ENCSR724KET_16f_nuc/fullsolo_rescue_2.7.9a_2021-06-25/
+  ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+#+begin_src bash :results output silent
+  pushd adrenal/ENCSR724KET_16f_nuc/fullsolo_em_2.7.9a_2021-06-25/
+  ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+#+begin_src bash :results output silent
+  pushd adrenal/ENCSR724KET_16f_nuc/minimalsolo_rescue_2.7.9a_2021-06-25/
+  ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+#+begin_src bash :results output silent
+  pushd adrenal/ENCSR724KET_16f_nuc/minimalsolo_em_2.7.9a_2021-06-25/
+  ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+
+
+** lung
+
+   Ok adrenal was plausible, lets prepare a different tissue, how
+   about lung?
+
+
+#+begin_src bash :results output silent
+  pushd lung/ENCSR966DDY_16f_nuc/HGFF3DRXY/ENCLB061STU
+  ln -s ../../ENCFF045SOP_R1.fastq.gz ENCLB061STU_S1_L001_R1_001.fastq.gz
+  ln -s ../../ENCFF981YFQ_R2.fastq.gz ENCLB061STU_S1_L001_R2_001.fastq.gz
+  ln -s ../../ENCFF805MRO_R1.fastq.gz ENCLB061STU_S1_L002_R1_001.fastq.gz
+  ln -s ../../ENCFF516OIR_R2.fastq.gz ENCLB061STU_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+#+begin_src bash
+  pushd lung/ENCSR966DDY_16f_nuc
+  
+  time PATH=~/proj/illumina/cellranger-arc-2.0.0/bin:$PATH cellranger-arc count \
+       --id ENCLB061STU \
+       --reference=/woldlab/loxcyc/home/diane/proj/illumina/refdata-cellranger-arc-GRCh38-2020-A-2.0.0 \
+       --libraries=cellranger_library.csv \
+       --localcores=16 \
+       --localmem=128
+#+end_src
+
+#+begin_src bash :results output silent
+  pushd lung/ENCSR966DDY_16f_nuc/starsolo_2.7.9a_2021-06-25_encode-forward+cr/
+  ln -s ../ENCFF045SOP_R1.fastq.gz ENCLB061STU_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF981YFQ_R2.fastq.gz ENCLB061STU_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF805MRO_R1.fastq.gz ENCLB061STU_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF516OIR_R2.fastq.gz ENCLB061STU_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+
+
+#+begin_src bash :results output silent
+  pushd lung/ENCSR966DDY_16f_nuc/fullsolo_2.7.9a_2021-06-25/
+  ln -s ../ENCFF045SOP_R1.fastq.gz ENCLB061STU_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF981YFQ_R2.fastq.gz ENCLB061STU_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF805MRO_R1.fastq.gz ENCLB061STU_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF516OIR_R2.fastq.gz ENCLB061STU_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+#+begin_src bash :results output silent
+  pushd lung/ENCSR966DDY_16f_nuc/minimalsolo_2.7.9a_2021-06-25/
+  ln -s ../ENCFF045SOP_R1.fastq.gz ENCLB061STU_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF981YFQ_R2.fastq.gz ENCLB061STU_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF805MRO_R1.fastq.gz ENCLB061STU_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF516OIR_R2.fastq.gz ENCLB061STU_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+#+begin_src bash :results output silent
+  pushd lung/ENCSR966DDY_16f_nuc/fullsolo_em_2.7.9a_2021-06-25/
+  ln -s ../ENCFF045SOP_R1.fastq.gz ENCLB061STU_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF981YFQ_R2.fastq.gz ENCLB061STU_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF805MRO_R1.fastq.gz ENCLB061STU_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF516OIR_R2.fastq.gz ENCLB061STU_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+#+begin_src bash :results output silent
+  pushd lung/ENCSR966DDY_16f_nuc/fullsolo_rescue_2.7.9a_2021-06-25/
+  ln -s ../ENCFF045SOP_R1.fastq.gz ENCLB061STU_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF981YFQ_R2.fastq.gz ENCLB061STU_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF805MRO_R1.fastq.gz ENCLB061STU_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF516OIR_R2.fastq.gz ENCLB061STU_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+#+begin_src bash :results output silent
+  pushd lung/ENCSR966DDY_16f_nuc/minimalsolo_em_2.7.9a_2021-06-25/
+  ln -s ../ENCFF045SOP_R1.fastq.gz ENCLB061STU_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF981YFQ_R2.fastq.gz ENCLB061STU_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF805MRO_R1.fastq.gz ENCLB061STU_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF516OIR_R2.fastq.gz ENCLB061STU_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+#+begin_src bash :results output silent
+  pushd lung/ENCSR966DDY_16f_nuc/minimalsolo_rescue_2.7.9a_2021-06-25/
+  ln -s ../ENCFF045SOP_R1.fastq.gz ENCLB061STU_S1_L001_R1_001.fastq.gz
+  ln -s ../ENCFF981YFQ_R2.fastq.gz ENCLB061STU_S1_L001_R2_001.fastq.gz
+  ln -s ../ENCFF805MRO_R1.fastq.gz ENCLB061STU_S1_L002_R1_001.fastq.gz
+  ln -s ../ENCFF516OIR_R2.fastq.gz ENCLB061STU_S1_L002_R2_001.fastq.gz
+  popd
+#+end_src
+
+
+for a in ../../adrenal/ENCSR724KET_16f_nuc/{minimal,full}solo_{em,rescue}_2.7.9a_2021-06-25; do cp -v $a/{config.yaml,starsolo.snakefile} $(basename $a) ; done
+
+** Ali wanted to see how well clustering separates tissues, lets do more tissues for the 16f_nuc
+
+   have
+   adrenal ENCSR724KET
+   lung ENCSR966DDY
+   
+   lets add in more tissues
+   pancreas ENCSR281NBH
+   ovary ENCSR876EUH
+   right lobe liver ENCSR602SGU
+   psoas_muscle ENCSR741YTA
+
+** Oops he actually wanted same tissue across multiple donors.
+
+   Lets set up adrenal & lung.
+
+   Also I renamed
+   ENCSR724KET_16f_nuc/starsolo_2.7.9a_2021-06-25_encode-forward+cr/
+   to ENCSR724KET_16f_nuc/tenxsolo_2.7.9a_2021-06-25 to better match
+   this processing matrix
+
+
+   | tissue                 | directory           | full | minimal | full+50%exon | minimal+50%exon | tenx | tenx+50%exon |
+   | adrenal                | ENCSR724KET_16f_nuc | X    | X       | X            | X               | X    | X            |
+   | adrenal                | ENCSR362YDM_26m_nuc | X    | X       | X            | X               | X    | X            |
+   | adrenal (not multiome) | ENCSR620AJZ_41f_nuc |      |         |              |                 |      |              |
+   | adrenal                | ENCSR726IPC_59f_nuc | X    | X       | X            | X               | X    | X            |
+   | liver (not multiome)   | ENCSR602SGU_16f_nuc |      |         |              |                 |      |              |
+   | lung.                  | ENCSR966DDY_16f_nuc | X    | X       | X            | X               | X    | X            |
+   | pancreas               | ENCSR478FQR_47f_nuc |      |         |              |                 |      |              |
+   | pancreas.              | ENCSR281NBH_16f_nuc |      |         |              |                 |      |              |
+   | pancreas               | ENCSR472RRP_59f_nuc |      |         |              |                 |      |              |
+   | pancreas               | ENCSR684KYI_61f_nuc |      |         |              |                 |      |              |
+   | pancreas               | ENCSR261BXB_26m_nuc |      |         |              |                 |      |              |
+   | psoas muscle.          | ENCSR471YTA_16f_nuc | X    | X       | X            | X               | X    | X            |
+   | psoas muscle           | ENCSR281RIH_59f_nuc |      |         |              |                 |      |              |
+   | psoas muscle           | ENCSR203THX_41f_nuc |      |         |              |                 |      |              |
+   | psoas muscle           | ENCSR005TCL_47f_nuc |      |         |              |                 |      |              |
+   
+Stage new set of configs
+
+for a in fullsolo_multi_2.7.9a_2021-06-25 fullsolo_multi_dev_EoI_2.7.9a_2021-09-10 minimalsolo_multi_2.7.9a_2021-06-25 minimalsolo_multi_dev_EoI_2.7.9a_2021-09-10 tenxsolo_multi_2.7.9a_2021-06-25 tenxsolo_multi_dev_EoI_2.7.9a_2021-09-10 ; do mkdir $a ; cp -v ~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/adrenal/ENCSR362YDM_26m_nuc/$a/starsolo.snakefile $a ; cp config.yaml $a/ ; done
+
+
+adjust star
+
+for b in *multi_2* ; do vi $b/config.yaml ; done
+for b in *dev* ; do vi $b/config.yaml ; done
+grep ^star_command */config.yaml
+
+Adjust index
+for b in tenx* ; do vi $b/config.yaml ; done
+for b in minimal* ; do vi $b/config.yaml ; done
+for b in full* ; do vi $b/config.yaml ; done
+
+minimalsolo_multi_dev_EoI_2.7.9a_2021-09-10
+
+Run some of them overnight
+
+#+begin_src bash
+  for tissue in lung/ENCSR966DDY_16f_nuc pancreas/ENCSR281NBH_16f_nuc psoas_muscle/ENCSR471YTA_16f_nuc; do
+      pushd $tissue         
+      for run in fullsolo_multi_2.7.9a_2021-06-25 fullsolo_multi_dev_EoI_2.7.9a_2021-09-10 minimalsolo_multi_2.7.9a_2021-06-25 minimalsolo_multi_dev_EoI_2.7.9a_2021-09-10 tenxsolo_multi_2.7.9a_2021-06-25 tenxsolo_multi_dev_EoI_2.7.9a_2021-09-10; do
+          pushd $run
+          snakemake --snakefile starsolo.snakefile --jobs 20
+          popd
+      done
+  done
+#+end_src
+
+At least one job failed
+
+#+begin_example
+STAR version: dev_EoI_2.7.9a_2021-09-10   compiled: 2021-09-10T17:55:43-04:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Sep 16 15:52:18 ..... started STAR run
+Sep 16 15:52:18 ..... loading genome
+Sep 16 15:52:36 ..... started mapping
+EXITING because of fatal error: buffer size for SJ output is too small
+Solution: increase input parameter --limitOutSJcollapsed
+Sep 16 18:37:48 ...... FATAL ERROR, exiting
+#+end_example
+
+I'm trying again with "--limitOutSJcollapsed 10000000"
+
+I've also been building up notebooks comparing across the different
+run parameters.
+
+I should do a genes detected by biotype plot
+Ali's group is using EnrichR
+
+** Anshul asked for looking at a better analyzed dataset as well
+
+He suggested
+"A multicenter study benchmarking single-cell RNA sequencing
+technologies using reference samples"
+https://www.nature.com/articles/s41587-020-00748-9
+and
+"A multi-center cross-platform single-cell RNA sequencing reference dataset"
+https://www.nature.com/articles/s41597-021-00809-x
+for identifying an example well studied dataset.
+
+#+begin_src bash
+mkdir -p SRP199641/SRX5908538_HCC1395_LLU_10x
+pushd
+fastq-dump --split-files -v --gzip SRX5908538
+mv SRX5908538_1.fastq.gz SRX5908538_R1.fastq.gz
+mv SRX5908538_2.fastq.gz SRX5908538_R2.fastq.gz
+popd
+#+end_src
+
+After that I setup the config.yaml file and staged the
+starsolo.snakemake file to process the data.
+
+Then after getting it wrong the first time I figured out that this
+dataset was 10x Chromium v2 chemistry and I needed to adjust the UMI
+and permit lists from the multiome ARC settings I was using for the
+other recent data.
+
+* working on getting snakemake working at Caltech HPC.
+
+
+#+begin_src bash
+snakemake --use-singularity --snakefile starsolo.snakefile \
+  --cluster "sbatch --time 1-0 --mem {resources.mem_mb}" \
+  --jobs 16 --cores 16
+#+end_src
+
+#+begin_src bash
+snakemake --use-singularity \
+          --singularity-args "-B /woldlab/loxcyc/home/diane/proj/genome/GRCh38-V29-male-2.7.8a:$(pwd)/genome:ro " \
+          --snakefile starsolo.snakefile \
+          --jobs 20
+#+end_src
+
+* Forgot to update for quite some time.
+
+I made a bunch of progress.
+
+I have a pipeline that can go from one configuration file to
+submitting data to the DCC. It's modularized, though doesn't use
+conda. Though the scientifically meaningful components use
+singularity. (Running STAR)
+
+
+I broke several components out and submitted the matrix exchange
+utility to pypi. I should commit fixes to my encoded_client library
+and post that too.
+
+I do have requests for generating a UMAP plot, and Anshul would like a
+sequencing saturation plot.
+
+#+CAPTION: An example of the sequence saturation plot reported by cell ranger
+#+NAME: fig:example-sequence-saturation
+[[./_images/example-sequence-saturation.png]]
+
+I put together a presentation for Nov 17 on why the ENCODE full
+annotation with STAR EM is probably fine.
