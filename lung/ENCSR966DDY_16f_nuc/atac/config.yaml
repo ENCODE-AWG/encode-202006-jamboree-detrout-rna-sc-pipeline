@@ -1,0 +1,13 @@
+# read1 on portal
+read1:
+  - ENCFF373DBG
+  - ENCFF605ZBO
+# barcode cell+UMI (index reads on portal)
+read2:
+  - ENCFF057YPM
+  - ENCFF113VDA
+# read2 on portal
+read3:
+  - ENCFF223EZM
+  - ENCFF990BFG
+sample_name: "ENCLB411WBB"

@@ -1,0 +1,12 @@
+# cDNA
+read1:
+  - ENCFF853WTH
+  - ENCFF803RDM
+read2:
+  - ENCFF500VXA
+  - ENCFF526JBZ
+# barcode cell+UMI
+read3:
+  - ENCFF760QLU
+  - ENCFF112IMQ
+sample_name: "ENCLB718TZI"

@@ -145,3 +145,38 @@ encode3-rna-evaluation-kallisto/logs/
 
 # Ignore pdf files (They're binary and harder to store)
 *.pdf
+
+# Ignore some notebook html files
+adrenal/ENCSR724KET_16f_nuc/compare-cell-ranger-to-star2.7.1a.html
+adrenal/ENCSR724KET_16f_nuc/compare-cell-ranger-to-star2.7.9a_2021-06-25-cr_compatibility.html
+adrenal/ENCSR724KET_16f_nuc/compare-cell-ranger-to-star2.7.9a_2021-06-25-encode+cr.html
+adrenal/ENCSR724KET_16f_nuc/compare-cell-ranger-to-star2.7.9a_2021-06-25-encode-forward+cr.html
+adrenal/ENCSR724KET_16f_nuc/compare-cell-ranger-to-tenxsolo_multi_dev_EoI.html
+adrenal/ENCSR724KET_16f_nuc/compare-10x-encode-annotations_2.7.9a_2021-06-25.html
+adrenal/ENCSR724KET_16f_nuc/compare-adrenal-10x-encode-annotations_multiread_2.7.9a_2021-06-25.html
+adrenal/ENCSR724KET_16f_nuc/compare-adrenal-16f-10x-v-encode-annotations_eoi_em.html
+adrenal/ENCSR724KET_16f_nuc/compare-adrenal-16f-10x-v-encode-annotations_eoi_uniq.html
+drenal/ENCSR724KET_16f_nuc/compare-adrenal-16f-10x-v-encode-full-annotations_eoi_uniq.html
+adrenal/ENCSR362YDM_26m_nuc/compare-adrenal-26m-10x-v-encode-annotations_eoi_uniq.html
+adrenal/ENCSR362YDM_26m_nuc/compare-adrenal-26m-10x-v-encode-annotations_eoi_em.html
+build-e10.5-population-fastqs.html
+build-10x-paper-matrix.html
+compare-10x-arc-vs-ENCODE-gtf.html
+compare-10x-e10.5-common-genes.html
+compare-10x-vs-ENCODE-gtf.html
+compare-cell-ranger-barcode-lists.html
+compare-corrected-bulk-hff-fragment-length.html
+compare-dcc-processed-kallisto.html
+compare-kallisto-fragment-and-transcript-length.html
+compare-maximum-intersection-correlations-minimal.html
+compare-single-cell-minimal.html
+count_matrix_comparison.html
+BP_comparison/dataset-algorithm-sample-cell-scatter-plots.html
+BP_comparison/intersection-of-pass-filters.html
+ENCLB129LMS-did-we-get-anywhere-close-split-seq.html
+lung/ENCSR966DDY_16f_nuc/compare-lung-16f-10x-v-encode-annotations_eoi_uniq.html
+lung/ENCSR966DDY_16f_nuc/compare-lung-16f-10x-v-encode-annotations_eoi_em.html
+lung/ENCSR966DDY_16f_nuc/compare-lung-10x-encode-annotations_multiread_2.7.9a_2021-06-25.slides.html
+lung/ENCSR966DDY_16f_nuc/compare-lung-10x-encode-annotations_multiread_2.7.9a_2021-06-25.html
+SRP199641/SRX5908538_HCC1395_LLU_10x/compare-HCC1395-10x-v-encode-annotations_eoi_uniq.html
+SRP199641/SRX5908538_HCC1395_LLU_10x/compare-HCC1395-10x-v-encode-annotations_eoi_em.html
