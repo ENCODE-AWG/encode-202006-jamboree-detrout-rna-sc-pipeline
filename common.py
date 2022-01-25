@@ -9,12 +9,14 @@ from matplotlib import pyplot
 from pathlib import Path
 
 
-def scanpy_load_solo_mtx(analysis_dir, mode="filtered"):
-    assert mode in ["filtered", "raw"], "STAR Solo only produces raw or filtered files"
+def scanpy_load_solo_mtx(analysis_dir, *, gene="Gene", mode="filtered", multi="matrix.mtx"):
+    #assert mode in ["filtered", "raw"], "STAR Solo only produces raw or filtered files"
+    assert gene in ["SJ", "Gene", "GeneFull_Ex50pAS", "GeneFull"]
+    assert multi in ["matrix.mtx", "UniqueAndMult-EM.mtx"]
 
     analysis_dir = Path(analysis_dir)
-    solo_dir = analysis_dir / "Solo.out" / "Gene" / mode
-    solo = scanpy.read_mtx(solo_dir / "matrix.mtx").T
+    solo_dir = analysis_dir / "Solo.out" / gene / mode
+    solo = scanpy.read_mtx(solo_dir / multi).T
     solo_vars = pandas.read_csv(
         solo_dir / "features.tsv", header=None, sep="\t"
     ).values.T
