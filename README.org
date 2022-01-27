@@ -1895,3 +1895,289 @@ sequencing saturation plot.
 
 I put together a presentation for Nov 17 on why the ENCODE full
 annotation with STAR EM is probably fine.
+
+* Checking for duplicates
+  <2021-11-24 Wed>
+Anshul was asking for an attempt at estimating the the sequencing
+saturation for the RNA multiome samples.
+
+This is the 10x write up on how the value is calculated
+https://kb.10xgenomics.com/hc/en-us/articles/115003646912-How-is-sequencing-saturation-calculated-
+STAR produces a single value which seems to be similar to the method
+described above... However 10x also produces a plot, and we're not
+quite sure how.
+
+In an effort to develop a similar plot I tried using picard's mark
+duplicate command like I found in the scATAC pipeline but it didn't
+seem to work. the generated bam file lacked any of the DT tags they
+implied.
+
+#+begin_src bash
+  java -jar picard-2.25.7.jar MarkDuplicates \
+       --INPUT Aligned.sortedByCoord.out.bam \
+       --OUTPUT ENCLB002DZK_genome.bam \
+       --METRICS_FILE ENCLB002DZK.markdup_stats \
+       --VALIDATION_STRINGENCY LENIENT  \
+       --REMOVE_DUPLICATES false \
+       --BARCODE_TAG CB
+#+end_src
+
+I'm low on disk space so I want to delete the extra bam file
+
+But I tried this and didn't find any tags and as far as I can tell
+from
+https://gatk.broadinstitute.org/hc/en-us/articles/360037052812-MarkDuplicates-Picard-
+DT should have been the tag.
+
+#+begin_src bash
+samtools view ENCLB002DZK_genome.bam | grep DT: | head
+#+end_src
+
+* Building indexes
+
+Command to build indexes on HPC.
+#+begin_src bash
+  snakemake --use-singularity \
+            --snakefile ~/woldlab-rna-seq/workflow/build-index.snakefile \
+            --cluster "sbatch --time 1-0 --mem {resources.mem_mb} --cpus-per-task {threads}" \
+            --jobs 20 --cores 20
+
+#+end_src
+
+#+begin_src bash
+snakemake --use-singularity --snakefile ~/woldlab-rna-seq/workflow/process-encode-10x.snakefile \
+  --cluster "sbatch --time 1-0 --mem {resources.mem_mb} --cpus-per-task {threads}" \
+  --jobs 20 --cores 20
+#+end_src
+
+
+* Trying to get split-seq working
+
+Alex first suggested something like this command
+
+#+begin_src bash
+  STAR --genomeDir genome \
+       --readFilesIn ENCFF955PGO_R2.fastq.gz ENCFF910URO_R1.fastq.gz \
+       --readFilesCommand zcat \
+       --runThreadN 16 \
+       --genomeLoad NoSharedMemory \
+       --outFilterMultimapNmax 20 \
+       --alignSJoverhangMin 8 \
+       --alignSJDBoverhangMin 1 \
+       --outFilterMismatchNmax 999 \
+       --outFilterMismatchNoverReadLmax 0.04 \
+       --alignIntronMin 20 \
+       --alignIntronMax 1000000 \
+       --alignMatesGapMax 1000000 \
+       --outSAMheaderCommentFile COfile.txt \
+       --outSAMheaderHD @HD VN:1.4 SO:coordinate \
+       --outSAMunmapped Within \
+       --outFilterType BySJout \
+       --outSAMattributes NH HI AS NM MD CB CR CY UB UR UY gx gn \
+       --outSAMstrandField intronMotif \
+       --outSAMtype BAM SortedByCoordinate \
+       --sjdbScore 1 \
+       --clipAdapterType CellRanger4 \
+       --clip5pAdapterSeq AAGCAGTGGTATCAACGCAGAGTGAATGGG \
+       --outFilterScoreMin 30 \
+       --soloUMIdedup 1MM_CR \
+       --soloUMIfiltering MultiGeneUMI_CR \
+       --soloType CB_UMI_Complex \
+       --soloCellFilter EmptyDrops_CR \
+       --soloCBmatchWLtype ParseBio_ED3 \
+       --soloCBposition 0_0_0_7 0_8_0_15 0_16_0_23 \
+       --soloUMIposition 0_24_0_31 \
+       --soloCBwhitelist parse-splitseq-v1/CB23.txt parse-splitseq-v1/CB23.txt parse-splitseq-v1/CB1.txt \
+       --soloStrand Unstranded \
+       --soloFeatures Gene SJ \
+       --soloMultiMappers Unique EM \
+       --limitBAMsortRAM 68719476736 \
+       --outTmpDir _STARtmp \
+       --outFileNamePrefix ./
+#+end_src
+
+But the clip5padapter parameter didnt work.
+
+So I tried using cutadapt inline.
+
+#+begin_src bash
+  STAR --genomeDir genome \
+       --readFilesIn ENCFF955PGO_R2.fastq.gz ENCFF910URO_R1.fastq.gz \
+       --readFilesCommand "cutadapt --cores 8 -g AAGCAGTGGTATCAACGCAGAGTGAATGGG" \
+       --runThreadN 16 \
+       --genomeLoad NoSharedMemory \
+       --outFilterMultimapNmax 20 \
+       --alignSJoverhangMin 8 \
+       --alignSJDBoverhangMin 1 \
+       --outFilterMismatchNmax 999 \
+       --outFilterMismatchNoverReadLmax 0.04 \
+       --alignIntronMin 20 \
+       --alignIntronMax 1000000 \
+       --alignMatesGapMax 1000000 \
+       --outSAMheaderCommentFile COfile.txt \
+       --outSAMheaderHD @HD VN:1.4 SO:coordinate \
+       --outSAMunmapped Within \
+       --outFilterType BySJout \
+       --outSAMattributes NH HI AS NM MD CB CR CY UB UR UY gx gn \
+       --outSAMstrandField intronMotif \
+       --outSAMtype BAM SortedByCoordinate \
+       --sjdbScore 1 \
+       --clipAdapterType CellRanger4 \
+       --outFilterScoreMin 30 \
+       --soloUMIdedup 1MM_CR \
+       --soloUMIfiltering MultiGeneUMI_CR \
+       --soloType CB_UMI_Complex \
+       --soloCellFilter EmptyDrops_CR \
+       --soloCBmatchWLtype ParseBio_ED3 \
+       --soloCBposition 0_0_0_7 0_8_0_15 0_16_0_23 \
+       --soloUMIposition 0_24_0_31 \
+       --soloCBwhitelist parse-splitseq-v1/CB23.txt parse-splitseq-v1/CB23.txt parse-splitseq-v1/CB1.txt \
+       --soloStrand Unstranded \
+       --soloFeatures Gene SJ \
+       --soloMultiMappers Unique EM \
+       --limitBAMsortRAM 68719476736 \
+       --outTmpDir _STARtmp \
+       --outFileNamePrefix ./
+#+end_src
+
+but it still didn't work so I asked him and he said there were some
+commits missing and gave me a further altered command line.
+
+
+#+begin_src bash
+  STAR --genomeDir genome \
+       --readFilesIn ENCFF955PGO_R2.fastq.gz ENCFF910URO_R1.fastq.gz \
+       --readFilesCommand "cutadapt --cores 8 -g AAGCAGTGGTATCAACGCAGAGTGAATGGG" \
+       --runThreadN 16 \
+       --genomeLoad NoSharedMemory \
+       --outFilterMultimapNmax 20 \
+       --alignSJoverhangMin 8 \
+       --alignSJDBoverhangMin 1 \
+       --outFilterMismatchNmax 999 \
+       --outFilterMismatchNoverReadLmax 0.04 \
+       --alignIntronMin 20 \
+       --alignIntronMax 1000000 \
+       --alignMatesGapMax 1000000 \
+       --outSAMheaderCommentFile COfile.txt \
+       --outSAMheaderHD @HD VN:1.4 SO:coordinate \
+       --outSAMunmapped Within \
+       --outFilterType BySJout \
+       --outSAMattributes NH HI AS NM MD CB CR CY UB UR UY gx gn \
+       --outSAMstrandField intronMotif \
+       --outSAMtype BAM SortedByCoordinate \
+       --sjdbScore 1 \
+       --clipAdapterType CellRanger4 \
+       --outFilterScoreMin 30 \
+       --soloUMIdedup 1MM_CR \
+       --soloUMIfiltering MultiGeneUMI_CR \
+       --soloType CB_UMI_Complex \
+       --soloCellFilter EmptyDrops_CR \
+       --soloCBmatchWLtype ParseBio_ED3 \
+       --soloCBposition 0_0_0_7 0_8_0_15 0_16_0_23 \
+       --soloUMIposition 0_24_0_31 \
+       --soloCBwhitelist parse-splitseq-v1/CB23.txt parse-splitseq-v1/CB23.txt parse-splitseq-v1/CB1.txt \
+       --soloStrand Unstranded \
+       --soloFeatures Gene SJ \
+       --soloMultiMappers Unique EM \
+       --limitBAMsortRAM 68719476736 \
+       --outTmpDir _STARtmp \
+       --outFileNamePrefix ./
+#+end_src
+
+
+Now trying commit b195c19987a382b1e4e80cccacd88144c4260ec4
+
+Read1 should cDNA and Read2 barcode.
+
+#+begin_src bash
+  STAR --genomeDir genome \
+       --readFilesIn ENCFF910URO_R1.fastq.gz ENCFF955PGO_R2.fastq.gz \
+       --readFilesCommand zcat \
+       --runThreadN 16 \
+       --genomeLoad NoSharedMemory \
+       --outFilterMultimapNmax 20 \
+       --alignSJoverhangMin 8 \
+       --alignSJDBoverhangMin 1 \
+       --outFilterMismatchNmax 999 \
+       --outFilterMismatchNoverReadLmax 0.04 \
+       --alignIntronMin 20 \
+       --alignIntronMax 1000000 \
+       --alignMatesGapMax 1000000 \
+       --outSAMheaderCommentFile COfile.txt \
+       --outSAMheaderHD @HD VN:1.4 SO:coordinate \
+       --outSAMunmapped Within \
+       --outFilterType BySJout \
+       --outSAMattributes NH HI AS NM MD CB CR CY UB UR UY gx gn \
+       --outSAMstrandField intronMotif \
+       --outSAMtype BAM SortedByCoordinate \
+       --sjdbScore 1 \
+       --clipAdapterType CellRanger4 \
+       --outFilterScoreMin 30 \
+       --soloUMIdedup 1MM_CR \
+       --soloUMIfiltering MultiGeneUMI_CR \
+       --soloType CB_UMI_Complex \
+       --soloCellFilter EmptyDrops_CR \
+       --soloCBmatchWLtype EditDist_2 \
+       --clip5pAdapterSeq AAGCAGTGGTATCAACGCAGAGTGAATGGG \
+       --soloCBposition 0_10_0_17 0_48_0_55 0_78_0_85 \
+       --soloUMIposition 0_0_0_9 \
+       --soloCBwhitelist parse-splitseq-v1/CB23.txt parse-splitseq-v1/CB23.txt parse-splitseq-v1/CB1.txt \
+       --soloStrand Forward \
+       --soloFeatures GeneFull_Ex50pAS SJ \
+       --soloMultiMappers Unique EM \
+       --limitBAMsortRAM 68719476736 \
+       --outTmpDir _STARtmp \
+       --outFileNamePrefix ./
+#+end_src
+
+Starting from the fastqs at the DCC we ended up quite a few fewer
+counts than what the UCI run of splitpipe produced
+
+Alex's run
+
+https://labshare.cshl.edu/shares/dobin/dobin/Protected/ENCODE/SplitSeq_SRR13948565/Solo.out/Gene/raw/
+
+
+#+begin_src
+python3 -m woldrnaseq.make_bigwig --star-dir ~/proj/STAR/bin/Linux_x86_64_static/ --ucsc-tools-dir /woldlab/castor/proj/programs/x86_64-366/ --reference-prefix chr --bam Aligned.sortedByCoord.out.bam --stranded --prefix STAR
+python3 -m woldrnaseq.make_bigwig --star-dir ~/proj/STAR/bin/Linux_x86_64_static/ --ucsc-tools-dir /woldlab/castor/proj/programs/x86_64-366/ --reference-prefix chr --bam ENCFF667WKN.sorted.bam --stranded --prefix UCI
+
+#+end_src
+
+
+https://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/c2c12/ENCLB129LMS/STAR_minusAll.bw
+https://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/c2c12/ENCLB129LMS/STAR_minusUniq.bw
+https://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/c2c12/ENCLB129LMS/STAR_plusAll.bw
+https://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/c2c12/ENCLB129LMS/STAR_plusUniq.bw
+
+
+https://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/c2c12/ENCLB129LMS/UCI_minusAll.bw
+https://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/c2c12/ENCLB129LMS/UCI_minusUniq.bw
+https://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/c2c12/ENCLB129LMS/UCI_plusAll.bw
+https://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/c2c12/ENCLB129LMS/UCI_plusUniq.bw
+
+| biosample   | short-read 1k | long-read   | short-read 9k |        |
+| ENCBS521YWL | ENCSR388EIN   | ENCSR447CQS | ENCSR503QZJ   |        |
+| ENCBS431NOZ | ENCSR877NAX   | ENCSR298LJY | ENCSR452OYH   |        |
+|             |               |             |               |        |
+| ENCBS978ZNQ | ENCSR572SMD   | ENCSR038WNY | ENCSR109DAN   | (atac) |
+|             |               |             |               |        |
+
+
+* question which is the barcode and which is sequence
+
+The 10x data got posted to the dcc as read 1 and read 2.
+The split seq data was posted to the dcc as sequence and index.
+and i'm testing splitseq data direct from UCI. and I'm confused
+
+
+| type       | barcode | sequence |
+| 10x        | read1   | read2    |
+| split post | read1   | read2    |
+| split uci  |  R2     |  R1      |
+
+| type       | read1    | read2    |
+| 10x        | barcode  | sequence |
+| split post | barcode  | sequence |
+| split uci  | sequence | barcode  |
+
