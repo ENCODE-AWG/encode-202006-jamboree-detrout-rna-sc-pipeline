@@ -1,0 +1,21 @@
+automatic_submission: true
+award: UM1HG009443
+description: ''
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR707ECV
+genome_accession: encode:starsolo-GRCh38-V29-male-index
+include_intron: true
+inclusion_accession: 3M-february-2018
+lab: /labs/barbara-wold/
+library_accession: ENCLB801PEP
+mem_mb: 65536
+read1:
+- ENCFF582ZIB
+- ENCFF712FRJ
+read2:
+- ENCFF059BPF
+- ENCFF927HLR
+star_container: https://woldlab.caltech.edu/~diane/containers/star-bash-2.7.10a.sif
+stranded: Forward
+umi_length: 12

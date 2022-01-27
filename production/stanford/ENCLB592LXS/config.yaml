@@ -1,0 +1,23 @@
+automatic_submission: true
+award: UM1HG009443
+description: Please note that this experiment is part of 10x multiome and has a corresponding
+  scATAC experiment (ENCSR916EDP).
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+#encode_portal_host: test.encodedcc.org
+experiment_accession: ENCSR203THX
+genome_accession: encode:starsolo-GRCh38-V29-male-index
+include_intron: true
+inclusion_accession: 737K-arc-v1(GEX)
+lab: /labs/barbara-wold/
+library_accession: ENCLB592LXS
+mem_mb: 131072
+read1:
+- ENCFF997HQU
+- ENCFF814XRG
+read2:
+- ENCFF045NXG
+- ENCFF440UMX
+star_container: https://woldlab.caltech.edu/~diane/containers/star-bash-2.7.10a.sif
+stranded: Forward
+umi_length: 12

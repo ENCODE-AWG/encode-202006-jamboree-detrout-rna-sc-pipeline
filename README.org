@@ -2181,3 +2181,26 @@ and i'm testing splitseq data direct from UCI. and I'm confused
 | split post | barcode  | sequence |
 | split uci  | sequence | barcode  |
 
+* first production run
+
+My quality of notes declined as I struggled to figure out all the
+various issues getting snakemake, and different versions of the
+pipelines done.
+
+The 10x multiome data was processed with (basically) 1.2.5 of
+[[https://github.com/detrout/woldlab-rna-seq][woldlab-rna-seq]]
+
+I generated configuration files using [[file:single-cell-to-process.html][single-cell-to-process]]
+
+I launched jobs on HPC using this slurm command.
+
+#+begin_src bash
+  sbatch --time 1-0 --mem 64GB --cpus-per-task 24 -- \
+         snakemake --use-singularity \
+         --snakefile ~/woldlab-rna-seq/workflow/process-encode-10x.snakefile \
+         --cluster "sbatch --time 1-0 --mem {resources.mem_mb} --cpus-per-task {threads}" \
+         --jobs 39 --cores 41
+#+end_src
+
+And I decided to archive all the final configuration files in
+[[file:production/stanford]]
