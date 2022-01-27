@@ -1,0 +1,24 @@
+# cDNA
+read1:
+  - SRX5908538
+# barcode cell+UMI
+read2:
+  - SRX5908538
+include_intron: True
+stranded: "Forward"
+experiment_accession: "SRP199641"
+description: "scRNA-seq of HCC1395: LLU 10X Sequence1"
+library_accession: "SRX5908538"
+umi_length: 10
+award: "award"
+lab: "barbara-wold"
+
+encode_portal_host: "v126rc1.demo.encodedcc.org"
+genome_dir: "genome"
+genome_accession: "encode:starsolo-GRCh38-V29-male-index"
+#genome_index_url: https://woldlab.caltech.edu/~diane/genome/GRCh38-V29-male-2.7.8a.tar.gz
+inclusion_list_url: "https://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/10xv2_allowlist.txt"
+#star_container: "https://woldlab.caltech.edu/~diane/containers/star-bash-dev_EoI-head.sif"
+
+mem_mb: 49152
+disk_mb: 51200
