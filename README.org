@@ -1861,7 +1861,7 @@ other recent data.
 
 #+begin_src bash
 snakemake --use-singularity --snakefile starsolo.snakefile \
-  --cluster "sbatch --time 1-0 --mem {resources.mem_mb}" \
+  --cluster "sbatch --time 1-0 --mem {resources.mem_mb} --cpus-per-task {threads}" \
   --jobs 16 --cores 16
 #+end_src
 
