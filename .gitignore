@@ -147,16 +147,17 @@ encode3-rna-evaluation-kallisto/logs/
 *.pdf
 
 # Ignore some notebook html files
+adrenal/ENCSR724KET_16f_nuc/compare-10x-encode-annotations_2.7.9a_2021-06-25.html
+adrenal/ENCSR724KET_16f_nuc/compare-adrenal-10x-encode-annotations_multiread_2.7.9a_2021-06-25.html
+adrenal/ENCSR724KET_16f_nuc/compare-adrenal-10x-encode-annotations_multiread_2.7.9a_2021-06-25.slides.html
+adrenal/ENCSR724KET_16f_nuc/compare-adrenal-16f-10x-v-encode-annotations_eoi_em.html
+adrenal/ENCSR724KET_16f_nuc/compare-adrenal-16f-10x-v-encode-annotations_eoi_uniq.html
+adrenal/ENCSR724KET_16f_nuc/compare-adrenal-16f-10x-v-encode-full-annotations_eoi_uniq.html
 adrenal/ENCSR724KET_16f_nuc/compare-cell-ranger-to-star2.7.1a.html
 adrenal/ENCSR724KET_16f_nuc/compare-cell-ranger-to-star2.7.9a_2021-06-25-cr_compatibility.html
 adrenal/ENCSR724KET_16f_nuc/compare-cell-ranger-to-star2.7.9a_2021-06-25-encode+cr.html
 adrenal/ENCSR724KET_16f_nuc/compare-cell-ranger-to-star2.7.9a_2021-06-25-encode-forward+cr.html
 adrenal/ENCSR724KET_16f_nuc/compare-cell-ranger-to-tenxsolo_multi_dev_EoI.html
-adrenal/ENCSR724KET_16f_nuc/compare-10x-encode-annotations_2.7.9a_2021-06-25.html
-adrenal/ENCSR724KET_16f_nuc/compare-adrenal-10x-encode-annotations_multiread_2.7.9a_2021-06-25.html
-adrenal/ENCSR724KET_16f_nuc/compare-adrenal-16f-10x-v-encode-annotations_eoi_em.html
-adrenal/ENCSR724KET_16f_nuc/compare-adrenal-16f-10x-v-encode-annotations_eoi_uniq.html
-drenal/ENCSR724KET_16f_nuc/compare-adrenal-16f-10x-v-encode-full-annotations_eoi_uniq.html
 adrenal/ENCSR362YDM_26m_nuc/compare-adrenal-26m-10x-v-encode-annotations_eoi_uniq.html
 adrenal/ENCSR362YDM_26m_nuc/compare-adrenal-26m-10x-v-encode-annotations_eoi_em.html
 build-e10.5-population-fastqs.html
