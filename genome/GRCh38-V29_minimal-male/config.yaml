@@ -1,0 +1,12 @@
+# I think I'm going to try using yaml
+# because in-file comments are awesome.
+config_version: 1
+output_dir: "~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/GRCh38-V29_minimal-male/"
+star_dir: "~/proj/STAR/bin/Linux_x86_64_static/"
+rsem_dir: "~/proj/RSEM"
+refid: "GRCh38_no_alt_analysis_set_GCA_000001405.15"
+annid: "gencodeV29minimal"
+spikeid: ""
+fasta: "GRCh38_no_alt_analysis_set_GCA_000001405.15.fa"
+gtf: "minimal.V29.gtf"
+name: "GRCh38-V29_minimal-male-2.7.8a"
