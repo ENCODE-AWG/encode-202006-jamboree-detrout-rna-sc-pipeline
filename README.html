@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-11-16 Mon 16:20 -->
+<!-- 2021-12-22 Wed 11:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>README For scRNA pipeline analyses.</title>
@@ -234,101 +234,132 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org50380dd">1. Jamboree</a></li>
-<li><a href="#orgf429b8b">2. Ali</a></li>
-<li><a href="#orgcc477c1">3. Updates to jamboree environment.</a></li>
-<li><a href="#orgabf255c">4. Data</a></li>
-<li><a href="#orgd166824">5. Cellranger</a>
+<li><a href="#orgcebb7d7">1. Jamboree</a></li>
+<li><a href="#orgedd02ad">2. Ali</a></li>
+<li><a href="#orgf7de28c">3. Updates to jamboree environment.</a></li>
+<li><a href="#orgab02959">4. Data</a></li>
+<li><a href="#org0d199cf">5. Cellranger</a>
 <ul>
-<li><a href="#org7bd15c2">5.1. Download cell ranger</a></li>
-<li><a href="#orgbc808c1">5.2. Build new cell ranger index</a></li>
-<li><a href="#org04d142a">5.3. Download data</a></li>
-<li><a href="#org2c6f044">5.4. Run cell ranger</a></li>
+<li><a href="#org36b4a85">5.1. Download cell ranger</a></li>
+<li><a href="#org88cb4ec">5.2. Build new cell ranger index</a></li>
+<li><a href="#org3f8420a">5.3. Download data</a></li>
+<li><a href="#orgcbfe172">5.4. Run cell ranger</a></li>
 </ul>
 </li>
-<li><a href="#org04aaf22">6. Star Solo</a>
+<li><a href="#org1372b81">6. Star Solo</a>
 <ul>
-<li><a href="#org10b7e13">6.1. Build index</a></li>
-<li><a href="#org28421c5">6.2. Run star solo</a></li>
+<li><a href="#org135c397">6.1. Build index</a></li>
+<li><a href="#org36a6f4b">6.2. Run star solo</a></li>
 </ul>
 </li>
-<li><a href="#org78d62d1">7. Kallisto</a>
+<li><a href="#org7b69607">7. Kallisto</a>
 <ul>
-<li><a href="#org1532ed0">7.1. Download</a></li>
-<li><a href="#org2fc5172">7.2. Build 0.46.2 index</a></li>
-<li><a href="#org8bdcb98">7.3. Rebuild index on galvar</a></li>
-<li><a href="#org8861f0a">7.4. Count</a></li>
-<li><a href="#org447b88c">7.5. Count try 2</a></li>
-<li><a href="#orge303e45">7.6. Try 3</a></li>
-<li><a href="#org9b5b68d">7.7. Quantify locally using kallisto</a></li>
+<li><a href="#org8dc0245">7.1. Download</a></li>
+<li><a href="#org0bc21bb">7.2. Build 0.46.2 index</a></li>
+<li><a href="#org9e446cd">7.3. Rebuild index on galvar</a></li>
+<li><a href="#orgc1e3110">7.4. Count</a></li>
+<li><a href="#org366ab66">7.5. Count try 2</a></li>
+<li><a href="#orga7764d0">7.6. Try 3</a></li>
+<li><a href="#org724ac88">7.7. Quantify locally using kallisto</a></li>
 </ul>
 </li>
-<li><a href="#orgf4f1ad3">8. Salmon/Alevin</a>
+<li><a href="#org6d3d374">8. Salmon/Alevin</a>
 <ul>
-<li><a href="#org9e51105">8.1. Building salmon reference from GENCOE</a></li>
-<li><a href="#orga2bce48">8.2. Building salmon reference from ENCODE files.</a></li>
-<li><a href="#org5b46101">8.3. Make transcript to gene map</a></li>
-<li><a href="#orgd0586f1">8.4. Alevin 10x style alignment</a>
+<li><a href="#orgc6a6f0f">8.1. Building salmon reference from GENCOE</a></li>
+<li><a href="#orge63f4d3">8.2. Building salmon reference from ENCODE files.</a></li>
+<li><a href="#orge78c11b">8.3. Make transcript to gene map</a></li>
+<li><a href="#org8152384">8.4. Alevin 10x style alignment</a>
 <ul>
-<li><a href="#orgb934b45">8.4.1. third try, with encode annotation files</a></li>
+<li><a href="#org6face0c">8.4.1. third try, with encode annotation files</a></li>
 </ul>
 </li>
-<li><a href="#orge28d9c4">8.5. <span class="todo TODO">TODO</span> we need to compare the spearmans &amp; relative differences to the star values.</a></li>
+<li><a href="#org33435fb">8.5. <span class="todo TODO">TODO</span> we need to compare the spearmans &amp; relative differences to the star values.</a></li>
 </ul>
 </li>
-<li><a href="#orgbe8d999">9. How do tools handle multi-mapping reads?</a>
+<li><a href="#orge3b7c57">9. How do tools handle multi-mapping reads?</a>
 <ul>
-<li><a href="#org25ecc83">9.1. RSEM invented the use of an EM process to allocate multi-mapping reads</a></li>
-<li><a href="#org5b20517">9.2. Salmon/Alevin</a></li>
-<li><a href="#org12468e3">9.3. Does Kalisto handle multi-mapping reads?</a></li>
-<li><a href="#org02feb04">9.4. Review paper</a></li>
+<li><a href="#orga161303">9.1. RSEM invented the use of an EM process to allocate multi-mapping reads</a></li>
+<li><a href="#org4d0c148">9.2. Salmon/Alevin</a></li>
+<li><a href="#org8a3c98b">9.3. Does Kalisto handle multi-mapping reads?</a></li>
+<li><a href="#org6d24547">9.4. Review paper</a></li>
 </ul>
 </li>
-<li><a href="#orga55795f">10. Redo everything with 10x's smaller annotation set.</a>
+<li><a href="#org6ec5620">10. Redo everything with 10x's smaller annotation set.</a>
 <ul>
-<li><a href="#orgd7b698e">10.1. Generate smaller GTF file</a></li>
-<li><a href="#org4964c54">10.2. Building salmon reference from 10x files.</a>
+<li><a href="#orgb5f3bf9">10.1. Generate smaller GTF file</a></li>
+<li><a href="#org53c1391">10.2. Building salmon reference from 10x files.</a>
 <ul>
-<li><a href="#org881b011">10.2.1. Version with decoy</a></li>
-<li><a href="#org8f50bd0">10.2.2. Version without decoy</a></li>
+<li><a href="#org379647d">10.2.1. Version with decoy</a></li>
+<li><a href="#org85f5b1e">10.2.2. Version without decoy</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org61bf175">11. After jamboree notes</a>
+<li><a href="#orgacd4d90">11. After jamboree notes</a>
 <ul>
-<li><a href="#org6a2c15e">11.1. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-16 Thu&gt;</span></span></a>
+<li><a href="#org0399e4e">11.1. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-16 Thu&gt;</span></span></a>
 <ul>
-<li><a href="#org936bf15">11.1.1. Spikein expression found</a></li>
-<li><a href="#org45501e3">11.1.2. Cellranger &amp; STAR Solo missing tRNAs</a></li>
+<li><a href="#org44731c3">11.1.1. Spikein expression found</a></li>
+<li><a href="#orga023767">11.1.2. Cellranger &amp; STAR Solo missing tRNAs</a></li>
 </ul>
 </li>
-<li><a href="#org09471ee">11.2. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-20 Mon&gt; </span></span> Trying to build a better salmon index</a></li>
-<li><a href="#org616ab2e">11.3. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-24 Fri&gt; </span></span> Current problems</a></li>
-<li><a href="#org10e51b6">11.4. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-03 Mon&gt; </span></span> Once again RSEM fails with the same error that read maps and doesn't map.</a></li>
-<li><a href="#orgccbdd87">11.5. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-11 Tue&gt; </span></span> Trying to build minimal index.</a></li>
-<li><a href="#org5c2c599">11.6. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-27 Thu&gt; </span></span> Summary of things that went wrong</a></li>
-<li><a href="#org0a04641">11.7. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-02 Wed&gt; </span></span> Finished the C1 branch</a></li>
-<li><a href="#org6f8cc7e">11.8. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-03 Thu&gt; </span></span> Work on analyzing 10x</a></li>
-<li><a href="#org4fa2be9">11.9. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-25 Fri&gt; </span></span> lets rerun kallisto with a different fragment &amp; sd number</a></li>
-<li><a href="#org5805bb6">11.10. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-25 Fri&gt; </span></span> Also how well does kallisto match the spike in concentrations?</a></li>
-<li><a href="#org5da37cf">11.11. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-06 Tue&gt; </span></span> Presented spike in results to group</a></li>
-<li><a href="#org4282c77">11.12. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-14 Wed&gt; </span></span> Spike ins were worse than expected</a></li>
-<li><a href="#org5c53632">11.13. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-14 Wed&gt; </span></span> Presented&#x2026;</a></li>
-<li><a href="#org22d03b5">11.14. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-15 Thu&gt; </span></span> Process C1 data with pseduo mappers</a></li>
-<li><a href="#orgd67cf61">11.15. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-19 Mon&gt; </span></span> Need to run the minimal set.</a></li>
-<li><a href="#org96ba90d">11.16. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-20 Tue&gt; </span></span> Continuing to run the minimal set</a></li>
-<li><a href="#org7838727">11.17. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-02 Mon&gt; </span></span> minimal 10x results look good</a></li>
-<li><a href="#org0bc109a">11.18. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-16 Mon&gt; </span></span> Henry's instructions on making a assembly hub.</a></li>
-<li><a href="#org706f7ad">11.19. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-11 Wed&gt; </span></span> Collect files to diagnose kallisto ERCC issues</a></li>
-<li><a href="#orgf90af26">11.20. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-16 Mon&gt; </span></span> Trying to get help from Kallisto</a></li>
+<li><a href="#org3426b87">11.2. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-20 Mon&gt; </span></span> Trying to build a better salmon index</a></li>
+<li><a href="#orgf0ac865">11.3. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-24 Fri&gt; </span></span> Current problems</a></li>
+<li><a href="#orga8d293a">11.4. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-03 Mon&gt; </span></span> Once again RSEM fails with the same error that read maps and doesn't map.</a></li>
+<li><a href="#orgdab6f02">11.5. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-11 Tue&gt; </span></span> Trying to build minimal index.</a></li>
+<li><a href="#orgc9f3c63">11.6. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-27 Thu&gt; </span></span> Summary of things that went wrong</a></li>
+<li><a href="#org429cd58">11.7. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-02 Wed&gt; </span></span> Finished the C1 branch</a></li>
+<li><a href="#org9548f5a">11.8. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-03 Thu&gt; </span></span> Work on analyzing 10x</a></li>
+<li><a href="#org8fa6369">11.9. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-25 Fri&gt; </span></span> lets rerun kallisto with a different fragment &amp; sd number</a></li>
+<li><a href="#org22860d3">11.10. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-25 Fri&gt; </span></span> Also how well does kallisto match the spike in concentrations?</a></li>
+<li><a href="#org5419122">11.11. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-06 Tue&gt; </span></span> Presented spike in results to group</a></li>
+<li><a href="#orgbc5a5a3">11.12. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-14 Wed&gt; </span></span> Spike ins were worse than expected</a></li>
+<li><a href="#org6642a96">11.13. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-14 Wed&gt; </span></span> Presented&#x2026;</a></li>
+<li><a href="#org5b8cbb0">11.14. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-15 Thu&gt; </span></span> Process C1 data with pseduo mappers</a></li>
+<li><a href="#org65d89b4">11.15. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-19 Mon&gt; </span></span> Need to run the minimal set.</a></li>
+<li><a href="#org1e91070">11.16. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-20 Tue&gt; </span></span> Continuing to run the minimal set</a></li>
+<li><a href="#org080d696">11.17. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-02 Mon&gt; </span></span> minimal 10x results look good</a></li>
+<li><a href="#org11d4ec1">11.18. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-16 Mon&gt; </span></span> Henry's instructions on making a assembly hub.</a></li>
+<li><a href="#orgca19458">11.19. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-11 Wed&gt; </span></span> Collect files to diagnose kallisto ERCC issues</a></li>
+<li><a href="#orgc81ded5">11.20. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-16 Mon&gt; </span></span> Trying to get help from Kallisto</a></li>
+<li><a href="#orgd9b24eb">11.21. <span class="done DONE">DONE</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-23 Mon&gt; </span></span> Try Becha's long read version of kallisto</a></li>
+<li><a href="#orgf5429ea">11.22. <span class="todo TODO">TODO</span> is &#x2013;em on in my earlier 10x run?</a></li>
+<li><a href="#orga213855">11.23. <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-12-22 Tue&gt; </span></span> more analysis, not enough notes.</a></li>
+<li><a href="#org78c5bdb">11.24. <span class="timestamp-wrapper"><span class="timestamp">&lt;2021-02-02 Tue&gt; </span></span> Test running TCC quantification program</a></li>
+<li><a href="#orgfec4a25">11.25. <span class="timestamp-wrapper"><span class="timestamp">&lt;2021-02-05 Fri&gt; </span></span> Working with Pacter lab on salmon/alevin-fry comparison</a></li>
+<li><a href="#org7ac8fa5">11.26. Copied over the pass filter intersection.</a></li>
+<li><a href="#org098fb05">11.27. <span class="timestamp-wrapper"><span class="timestamp">&lt;2021-03-17 Wed&gt; </span></span> Generate list of 10x samples for Alex</a></li>
 </ul>
 </li>
+<li><a href="#org44b9083">12. compare-10x-e10.5-common-genes</a></li>
+<li><a href="#org6fb158b">13. Work toward a 10x pipeline</a>
+<ul>
+<li><a href="#org1d8c986">13.1. cellranger-arc run</a></li>
+<li><a href="#org07d9ec3">13.2. star solo run</a></li>
+<li><a href="#orgefb40ea">13.3. star solo 2.7.8a run</a></li>
+<li><a href="#orgd3136c7">13.4. cellranger's star using star defaults where possible.</a></li>
+<li><a href="#org91a8940">13.5. star 2.7.8a using STARsolo documented arguments.</a></li>
+<li><a href="#org91d1185">13.6. Story so far.</a></li>
+<li><a href="#orgbe52cf3">13.7. Star solo 2.7.9a_2021-06-25 with ENCODE setting and CR compatibility</a></li>
+<li><a href="#org4166de3">13.8. Alex says it's forward stranded</a></li>
+<li><a href="#org3b712f8">13.9. Tests with the 10x annotation look good, how about the ENCODE annotation?</a></li>
+<li><a href="#orgcbf549c">13.10. Forgot to also test some of the multi-read solvers</a></li>
+<li><a href="#orgfe252be">13.11. lung</a></li>
+<li><a href="#orgf967268">13.12. Ali wanted to see how well clustering separates tissues, lets do more tissues for the 16f_nuc</a></li>
+<li><a href="#orgbc5a622">13.13. Oops he actually wanted same tissue across multiple donors.</a></li>
+<li><a href="#orgac633db">13.14. Anshul asked for looking at a better analyzed dataset as well</a></li>
+</ul>
+</li>
+<li><a href="#org66c6771">14. working on getting snakemake working at Caltech HPC.</a></li>
+<li><a href="#orgf1e5afb">15. Forgot to update for quite some time.</a></li>
+<li><a href="#org00c6311">16. Checking for duplicates</a></li>
+<li><a href="#org74bf6e8">17. Building indexes</a></li>
+<li><a href="#orgec5331d">18. Trying to get split-seq working</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org50380dd" class="outline-2">
-<h2 id="org50380dd"><span class="section-number-2">1</span> Jamboree</h2>
+<div id="outline-container-orgcebb7d7" class="outline-2">
+<h2 id="orgcebb7d7"><span class="section-number-2">1</span> Jamboree</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 This is a VM for the June 2020 ENCODE jamboree. I should remember to grab my
@@ -346,8 +377,8 @@ Notes I'm sharing with other people are in this google doc
 </div>
 </div>
 
-<div id="outline-container-orgf429b8b" class="outline-2">
-<h2 id="orgf429b8b"><span class="section-number-2">2</span> Ali</h2>
+<div id="outline-container-orgedd02ad" class="outline-2">
+<h2 id="orgedd02ad"><span class="section-number-2">2</span> Ali</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 pick a pipeline that also works with
@@ -357,8 +388,8 @@ Liz has split-bio c2c12 data
 </div>
 </div>
 
-<div id="outline-container-orgcc477c1" class="outline-2">
-<h2 id="orgcc477c1"><span class="section-number-2">3</span> Updates to jamboree environment.</h2>
+<div id="outline-container-orgf7de28c" class="outline-2">
+<h2 id="orgf7de28c"><span class="section-number-2">3</span> Updates to jamboree environment.</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 I installed msmtp and configured an account on chaos so I can send
@@ -378,8 +409,8 @@ printf "From: diane@ghic.org\nTo: diane@caltech.edu\nSubject: $1\n\n$2\n" | msmt
 </div>
 </div>
 
-<div id="outline-container-orgabf255c" class="outline-2">
-<h2 id="orgabf255c"><span class="section-number-2">4</span> Data</h2>
+<div id="outline-container-orgab02959" class="outline-2">
+<h2 id="orgab02959"><span class="section-number-2">4</span> Data</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 In the google doc it looks like our best dataset shared among all
@@ -388,8 +419,8 @@ technologies is the e10.5 timepoint
 </div>
 </div>
 
-<div id="outline-container-orgd166824" class="outline-2">
-<h2 id="orgd166824"><span class="section-number-2">5</span> Cellranger</h2>
+<div id="outline-container-org0d199cf" class="outline-2">
+<h2 id="org0d199cf"><span class="section-number-2">5</span> Cellranger</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 One comparison that needs to be done is to run cellranger with a newer
@@ -397,8 +428,8 @@ annotation set.
 </p>
 </div>
 
-<div id="outline-container-org7bd15c2" class="outline-3">
-<h3 id="org7bd15c2"><span class="section-number-3">5.1</span> Download cell ranger</h3>
+<div id="outline-container-org36b4a85" class="outline-3">
+<h3 id="org36b4a85"><span class="section-number-3">5.1</span> Download cell ranger</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 I filled out their license agreement and downloaded the current
@@ -413,8 +444,8 @@ anyone else looks at this.
 </div>
 </div>
 
-<div id="outline-container-orgbc808c1" class="outline-3">
-<h3 id="orgbc808c1"><span class="section-number-3">5.2</span> Build new cell ranger index</h3>
+<div id="outline-container-org88cb4ec" class="outline-3">
+<h3 id="org88cb4ec"><span class="section-number-3">5.2</span> Build new cell ranger index</h3>
 <div class="outline-text-3" id="text-5-2">
 <div class="org-src-container">
 <pre class="src src-bash">mkdir ~/proj/mm10-M21-male
@@ -427,8 +458,8 @@ curl -L -O http://woldlab.caltech.edu/~diane/genome/mm10-M21-male/gencode.vM21-t
 </div>
 </div>
 
-<div id="outline-container-org04d142a" class="outline-3">
-<h3 id="org04d142a"><span class="section-number-3">5.3</span> Download data</h3>
+<div id="outline-container-org3f8420a" class="outline-3">
+<h3 id="org3f8420a"><span class="section-number-3">5.3</span> Download data</h3>
 <div class="outline-text-3" id="text-5-3">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">TARGET</span>=ENCSR874BOF_e10_5_limb
@@ -444,8 +475,8 @@ mv ENCFF111ISS_R2.fastq.gz ENCSR874BOF_S1_L001_R2_001.fastq.gz
 </div>
 </div>
 
-<div id="outline-container-org2c6f044" class="outline-3">
-<h3 id="org2c6f044"><span class="section-number-3">5.4</span> Run cell ranger</h3>
+<div id="outline-container-orgcbfe172" class="outline-3">
+<h3 id="orgcbfe172"><span class="section-number-3">5.4</span> Run cell ranger</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 <a href="proj/ENCSR874BOF-10x-10.5-limb/run-cellranger.sh">proj/ENCSR874BOF-10x-10.5-limb/run-cellranger.sh</a>
@@ -476,12 +507,12 @@ fraction mitochondria
 </div>
 </div>
 
-<div id="outline-container-org04aaf22" class="outline-2">
-<h2 id="org04aaf22"><span class="section-number-2">6</span> Star Solo</h2>
+<div id="outline-container-org1372b81" class="outline-2">
+<h2 id="org1372b81"><span class="section-number-2">6</span> Star Solo</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org10b7e13" class="outline-3">
-<h3 id="org10b7e13"><span class="section-number-3">6.1</span> Build index</h3>
+<div id="outline-container-org135c397" class="outline-3">
+<h3 id="org135c397"><span class="section-number-3">6.1</span> Build index</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 <a href="genome/mm10-M21-male/build-star.sh#!/bin/bash">build-star.sh</a>
@@ -489,8 +520,8 @@ fraction mitochondria
 </div>
 </div>
 
-<div id="outline-container-org28421c5" class="outline-3">
-<h3 id="org28421c5"><span class="section-number-3">6.2</span> Run star solo</h3>
+<div id="outline-container-org36a6f4b" class="outline-3">
+<h3 id="org36a6f4b"><span class="section-number-3">6.2</span> Run star solo</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 <a href="align-star-solo-ENCSR874BOF.condor">file:align-star-solo-ENCSR874BOF.condor</a>
@@ -499,12 +530,12 @@ fraction mitochondria
 </div>
 </div>
 
-<div id="outline-container-org78d62d1" class="outline-2">
-<h2 id="org78d62d1"><span class="section-number-2">7</span> Kallisto</h2>
+<div id="outline-container-org7b69607" class="outline-2">
+<h2 id="org7b69607"><span class="section-number-2">7</span> Kallisto</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org1532ed0" class="outline-3">
-<h3 id="org1532ed0"><span class="section-number-3">7.1</span> Download</h3>
+<div id="outline-container-org8dc0245" class="outline-3">
+<h3 id="org8dc0245"><span class="section-number-3">7.1</span> Download</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 ENCODE is using 0.44.0 but the newer versions did some work on bus
@@ -516,8 +547,8 @@ Latest version is: 0.46.2
 </div>
 </div>
 
-<div id="outline-container-org2fc5172" class="outline-3">
-<h3 id="org2fc5172"><span class="section-number-3">7.2</span> Build 0.46.2 index</h3>
+<div id="outline-container-org0bc21bb" class="outline-3">
+<h3 id="org0bc21bb"><span class="section-number-3">7.2</span> Build 0.46.2 index</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 We need the transcriptome file. RSEM has a copy laying around in it.
@@ -543,8 +574,8 @@ tar xavf ../ENCFF363TFV.tar.gz --strip=1
 </div>
 </div>
 
-<div id="outline-container-org8bdcb98" class="outline-3">
-<h3 id="org8bdcb98"><span class="section-number-3">7.3</span> Rebuild index on galvar</h3>
+<div id="outline-container-org9e446cd" class="outline-3">
+<h3 id="org9e446cd"><span class="section-number-3">7.3</span> Rebuild index on galvar</h3>
 <div class="outline-text-3" id="text-7-3">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>=~/proj/genome
@@ -557,8 +588,8 @@ tar xavf ../ENCFF363TFV.tar.gz --strip=1
 </div>
 </div>
 
-<div id="outline-container-org8861f0a" class="outline-3">
-<h3 id="org8861f0a"><span class="section-number-3">7.4</span> Count</h3>
+<div id="outline-container-orgc1e3110" class="outline-3">
+<h3 id="orgc1e3110"><span class="section-number-3">7.4</span> Count</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 First build the bus file
@@ -603,7 +634,7 @@ cat ~/proj/genome/mm10-M21-male/gencode.vM21-tRNAs-ERCC.gff | python3 ~/bustools
 
 
 <p>
-time ~/bustools<sub>linux</sub>-v0.39.3/bustools correct -w ~/proj/genome/10xv2<sub>whitelist.txt</sub> -o output.correct.bus output.bus
+time ~/bustools_linux-v0.39.3/bustools correct -w ~/proj/genome/10xv2_whitelist.txt -o output.correct.bus output.bus
 Found 737280 barcodes in the whitelist
 Number of hamming dist 1 barcodes = 20550336
 Processed 359437471 bus records
@@ -619,7 +650,7 @@ sys     0m17.139s
 </p>
 
 <p>
-time ~/bustools<sub>linux</sub>-v0.39.3/bustools sort -t 32 -o output.correct.sort.bus  output.correct.bus
+time ~/bustools_linux-v0.39.3/bustools sort -t 32 -o output.correct.sort.bus  output.correct.bus
 Read in 347534917 BUS records
 </p>
 
@@ -630,14 +661,14 @@ sys     0m29.536s
 </p>
 
 <p>
-(base) diane@ip-172-31-30-226:~/proj/ENCSR874BOF<sub>e10</sub><sub>5</sub><sub>limb</sub>/mm10-M21-male-kallisto-0.46.2$ time ~/bustools<sub>linux</sub>-v0.39.3/bustools count -o eqcount/tcc -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus 
+(base) diane@ip-172-31-30-226:~/proj/ENCSR874BOF_e10_5_limb/mm10-M21-male-kallisto-0.46.2$ time ~/bustools_linux-v0.39.3/bustools count -o eqcount/tcc -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus 
 </p>
 
 <p>
 real    0m32.146s
 user    0m20.013s
 sys     0m3.980s
-(base) diane@ip-172-31-30-226:~/proj/ENCSR874BOF<sub>e10</sub><sub>5</sub><sub>limb</sub>/mm10-M21-male-kallisto-0.46.2$ time ~/bustools<sub>linux</sub>-v0.39.3/bustools count -o genecount/gene -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt &#x2013;genecounts output.correct.sort.bus 
+(base) diane@ip-172-31-30-226:~/proj/ENCSR874BOF_e10_5_limb/mm10-M21-male-kallisto-0.46.2$ time ~/bustools_linux-v0.39.3/bustools count -o genecount/gene -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt &#x2013;genecounts output.correct.sort.bus 
 </p>
 
 <p>
@@ -648,8 +679,8 @@ sys     0m1.697s
 </div>
 </div>
 
-<div id="outline-container-org447b88c" class="outline-3">
-<h3 id="org447b88c"><span class="section-number-3">7.5</span> Count try 2</h3>
+<div id="outline-container-org366ab66" class="outline-3">
+<h3 id="org366ab66"><span class="section-number-3">7.5</span> Count try 2</h3>
 <div class="outline-text-3" id="text-7-5">
 <p>
 The above run didn't generate many results, I wonder if the order of
@@ -667,7 +698,7 @@ the fastq confused it.
 </div>
 
 <p>
-time ~/bustools<sub>linux</sub>-v0.39.3/bustools correct -w ~/proj/genome/10xv2<sub>whitelist.txt</sub> -o output.correct.bus output.bus
+time ~/bustools_linux-v0.39.3/bustools correct -w ~/proj/genome/10xv2_whitelist.txt -o output.correct.bus output.bus
 Found 737280 barcodes in the whitelist
 Number of hamming dist 1 barcodes = 20550336
 Processed 31470855 bus records
@@ -683,7 +714,7 @@ sys     0m1.825s
 </p>
 
 <p>
-time ~/bustools<sub>linux</sub>-v0.39.3/bustools sort -t 32 -o output.correct.sort.bus  output.correct.bus
+time ~/bustools_linux-v0.39.3/bustools sort -t 32 -o output.correct.sort.bus  output.correct.bus
 Read in 147125 BUS records
 </p>
 
@@ -694,7 +725,7 @@ sys     0m1.514s
 </p>
 
 <p>
-time ~/bustools<sub>linux</sub>-v0.39.3/bustools count -o eqcount/tcc -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus 
+time ~/bustools_linux-v0.39.3/bustools count -o eqcount/tcc -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus 
 </p>
 
 <p>
@@ -704,7 +735,7 @@ sys     0m0.152s
 </p>
 
 <p>
-time ~/bustools<sub>linux</sub>-v0.39.3/bustools count -o genecount/gene -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt &#x2013;genecounts output.correct.sort.bus
+time ~/bustools_linux-v0.39.3/bustools count -o genecount/gene -g ~/proj/genome/mm10-M21-male/mm10-M21-male-t2g.txt -e matrix.ec -t transcripts.txt &#x2013;genecounts output.correct.sort.bus
 </p>
 
 <p>
@@ -715,8 +746,8 @@ sys     0m0.132s
 </div>
 </div>
 
-<div id="outline-container-orge303e45" class="outline-3">
-<h3 id="orge303e45"><span class="section-number-3">7.6</span> Try 3</h3>
+<div id="outline-container-orga7764d0" class="outline-3">
+<h3 id="orga7764d0"><span class="section-number-3">7.6</span> Try 3</h3>
 <div class="outline-text-3" id="text-7-6">
 <p>
 does it work with kallisto provided index?
@@ -724,7 +755,7 @@ does it work with kallisto provided index?
 
 
 <div class="org-src-container">
-<pre class="src src-bash" id="org0843438"><span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">!/bin/</span><span style="font-weight: bold;">bash</span>
+<pre class="src src-bash" id="orgb178541"><span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">!/bin/</span><span style="font-weight: bold;">bash</span>
 <span style="font-weight: bold;">time</span> ~/kallisto_linux-v0.46.2/kallisto bus <span style="font-style: italic;">\</span>
     -t 32 <span style="font-style: italic;">\</span>
     -i ~/proj/genome/mus_musculus/transcriptome.idx <span style="font-style: italic;">\</span>
@@ -743,8 +774,8 @@ mkdir eqcount genecount
 </div>
 </div>
 
-<div id="outline-container-org9b5b68d" class="outline-3">
-<h3 id="org9b5b68d"><span class="section-number-3">7.7</span> Quantify locally using kallisto</h3>
+<div id="outline-container-org724ac88" class="outline-3">
+<h3 id="org724ac88"><span class="section-number-3">7.7</span> Quantify locally using kallisto</h3>
 <div class="outline-text-3" id="text-7-7">
 <p>
 This run was without enabling EM
@@ -789,6 +820,10 @@ mkdir ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/
   -e ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/matrix.ec <span style="font-style: italic;">\</span>
   -t ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/transcripts.txt <span style="font-style: italic;">\</span>
   --genecounts ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.correct.sort.bus
+
+<span style="font-weight: bold;">time</span> ${<span style="font-weight: bold; font-style: italic;">BUS_DIR</span>}/bustools whitelist <span style="font-style: italic;">\</span>
+     -o ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/filtered-barcodes.txt <span style="font-style: italic;">\</span>
+     ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.correct.sort.bus   
 </pre>
 </div>
 
@@ -835,6 +870,14 @@ mkdir ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/
   -e ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/matrix.ec <span style="font-style: italic;">\</span>
   -t ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/transcripts.txt <span style="font-style: italic;">\</span>
   --genecounts ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.correct.sort.bus
+
+<span style="font-weight: bold;">time</span> ${<span style="font-weight: bold; font-style: italic;">BUS_DIR</span>}/bustools whitelist <span style="font-style: italic;">\</span>
+   -o ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/filtered-barcodes.txt <span style="font-style: italic;">\</span>
+   ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.correct.sort.bus   
+
+<span style="font-weight: bold;">time</span> ${<span style="font-weight: bold; font-style: italic;">BUS_DIR</span>}/bustools whitelist <span style="font-style: italic;">\</span>
+     -o ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/filtered-barcodes.txt <span style="font-style: italic;">\</span>
+     ${<span style="font-weight: bold; font-style: italic;">TARGET_DIR</span>}/output.correct.sort.bus   
 </pre>
 </div>
 
@@ -878,8 +921,8 @@ sys     0m1.993s
 </div>
 </div>
 
-<div id="outline-container-orgf4f1ad3" class="outline-2">
-<h2 id="orgf4f1ad3"><span class="section-number-2">8</span> Salmon/Alevin</h2>
+<div id="outline-container-org6d3d374" class="outline-2">
+<h2 id="org6d3d374"><span class="section-number-2">8</span> Salmon/Alevin</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Ben had originally tried to get Salmon/Alevin to run but it was
@@ -910,8 +953,8 @@ cp /tmp/salmon-unstable.simg .
 </div>
 </div>
 
-<div id="outline-container-org9e51105" class="outline-3">
-<h3 id="org9e51105"><span class="section-number-3">8.1</span> Building salmon reference from GENCOE</h3>
+<div id="outline-container-orgc6a6f0f" class="outline-3">
+<h3 id="orgc6a6f0f"><span class="section-number-3">8.1</span> Building salmon reference from GENCOE</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 I'd suggested using the transcriptome file generated by RSEM, but
@@ -939,8 +982,8 @@ That eventually finished.
 </div>
 </div>
 
-<div id="outline-container-orga2bce48" class="outline-3">
-<h3 id="orga2bce48"><span class="section-number-3">8.2</span> Building salmon reference from ENCODE files.</h3>
+<div id="outline-container-orge63f4d3" class="outline-3">
+<h3 id="orge63f4d3"><span class="section-number-3">8.2</span> Building salmon reference from ENCODE files.</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 (This is the version using the decoy&#x2026; but I don't want the spikes to
@@ -985,8 +1028,8 @@ singularity run ../../salmon-container/salmon-unstable.simg index <span style="f
 </div>
 </div>
 
-<div id="outline-container-org5b46101" class="outline-3">
-<h3 id="org5b46101"><span class="section-number-3">8.3</span> Make transcript to gene map</h3>
+<div id="outline-container-orge78c11b" class="outline-3">
+<h3 id="orge78c11b"><span class="section-number-3">8.3</span> Make transcript to gene map</h3>
 <div class="outline-text-3" id="text-8-3">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="font-weight: bold;">pushd</span> genome/mm10-M21-for-salmon
@@ -997,8 +1040,8 @@ zgrep <span style="font-style: italic;">'&gt;'</span> gencode.vM21.transcripts.f
 </div>
 </div>
 
-<div id="outline-container-orgd0586f1" class="outline-3">
-<h3 id="orgd0586f1"><span class="section-number-3">8.4</span> Alevin 10x style alignment</h3>
+<div id="outline-container-org8152384" class="outline-3">
+<h3 id="org8152384"><span class="section-number-3">8.4</span> Alevin 10x style alignment</h3>
 <div class="outline-text-3" id="text-8-4">
 <p>
 It looks like they repurposed paired end sequencing to deal with
@@ -1117,8 +1160,8 @@ so again.
 </div>
 </div>
 
-<div id="outline-container-orgb934b45" class="outline-4">
-<h4 id="orgb934b45"><span class="section-number-4">8.4.1</span> third try, with encode annotation files</h4>
+<div id="outline-container-org6face0c" class="outline-4">
+<h4 id="org6face0c"><span class="section-number-4">8.4.1</span> third try, with encode annotation files</h4>
 <div class="outline-text-4" id="text-8-4-1">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">ANALYSIS_DIR</span>=ENCSR874BOF_e10_5_limb
@@ -1141,13 +1184,13 @@ so again.
 </div>
 </div>
 
-<div id="outline-container-orge28d9c4" class="outline-3">
-<h3 id="orge28d9c4"><span class="section-number-3">8.5</span> <span class="todo TODO">TODO</span> we need to compare the spearmans &amp; relative differences to the star values.</h3>
+<div id="outline-container-org33435fb" class="outline-3">
+<h3 id="org33435fb"><span class="section-number-3">8.5</span> <span class="todo TODO">TODO</span> we need to compare the spearmans &amp; relative differences to the star values.</h3>
 </div>
 </div>
 
-<div id="outline-container-orgbe8d999" class="outline-2">
-<h2 id="orgbe8d999"><span class="section-number-2">9</span> How do tools handle multi-mapping reads?</h2>
+<div id="outline-container-orge3b7c57" class="outline-2">
+<h2 id="orge3b7c57"><span class="section-number-2">9</span> How do tools handle multi-mapping reads?</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Anshul thinks this is import
@@ -1192,15 +1235,15 @@ GitHub at
 </p>
 </div>
 
-<div id="outline-container-org25ecc83" class="outline-3">
-<h3 id="org25ecc83"><span class="section-number-3">9.1</span> RSEM invented the use of an EM process to allocate multi-mapping reads</h3>
+<div id="outline-container-orga161303" class="outline-3">
+<h3 id="orga161303"><span class="section-number-3">9.1</span> RSEM invented the use of an EM process to allocate multi-mapping reads</h3>
 </div>
-<div id="outline-container-org5b20517" class="outline-3">
-<h3 id="org5b20517"><span class="section-number-3">9.2</span> Salmon/Alevin</h3>
+<div id="outline-container-org4d0c148" class="outline-3">
+<h3 id="org4d0c148"><span class="section-number-3">9.2</span> Salmon/Alevin</h3>
 </div>
 
-<div id="outline-container-org12468e3" class="outline-3">
-<h3 id="org12468e3"><span class="section-number-3">9.3</span> Does Kalisto handle multi-mapping reads?</h3>
+<div id="outline-container-org8a3c98b" class="outline-3">
+<h3 id="org8a3c98b"><span class="section-number-3">9.3</span> Does Kalisto handle multi-mapping reads?</h3>
 <div class="outline-text-3" id="text-9-3">
 <p>
 From <a href="https://arxiv.org/pdf/1505.02710.pdf">https://arxiv.org/pdf/1505.02710.pdf</a>
@@ -1228,8 +1271,8 @@ and fragments.
 </div>
 </div>
 
-<div id="outline-container-org02feb04" class="outline-3">
-<h3 id="org02feb04"><span class="section-number-3">9.4</span> Review paper</h3>
+<div id="outline-container-org6d24547" class="outline-3">
+<h3 id="org6d24547"><span class="section-number-3">9.4</span> Review paper</h3>
 <div class="outline-text-3" id="text-9-4">
 <p>
 Handling multi-mapped reads in RNA-seq
@@ -1240,11 +1283,11 @@ Gabrielle Deschamps-Francoeur, Joël Simoneau, Michelle S.Scott
 </div>
 </div>
 
-<div id="outline-container-orga55795f" class="outline-2">
-<h2 id="orga55795f"><span class="section-number-2">10</span> Redo everything with 10x's smaller annotation set.</h2>
+<div id="outline-container-org6ec5620" class="outline-2">
+<h2 id="org6ec5620"><span class="section-number-2">10</span> Redo everything with 10x's smaller annotation set.</h2>
 <div class="outline-text-2" id="text-10">
 <p>
-The analysis in count<sub>matrix</sub><sub>comparison</sub> found that
+The analysis in count_matrix_comparison found that
 cellranger/solo/alevin found quite a few fewer records than kallisto.
 </p>
 
@@ -1290,8 +1333,8 @@ cellranger/solo/alevin found quite a few fewer records than kallisto.
 </table>
 </div>
 
-<div id="outline-container-orgd7b698e" class="outline-3">
-<h3 id="orgd7b698e"><span class="section-number-3">10.1</span> Generate smaller GTF file</h3>
+<div id="outline-container-orgb5f3bf9" class="outline-3">
+<h3 id="orgb5f3bf9"><span class="section-number-3">10.1</span> Generate smaller GTF file</h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
 An earlier comparison found they were more similar, but it used the
@@ -1315,12 +1358,12 @@ smaller 10x set, so we need to try building a much smaller index.
 </div>
 </div>
 
-<div id="outline-container-org4964c54" class="outline-3">
-<h3 id="org4964c54"><span class="section-number-3">10.2</span> Building salmon reference from 10x files.</h3>
+<div id="outline-container-org53c1391" class="outline-3">
+<h3 id="org53c1391"><span class="section-number-3">10.2</span> Building salmon reference from 10x files.</h3>
 <div class="outline-text-3" id="text-10-2">
 </div>
-<div id="outline-container-org881b011" class="outline-4">
-<h4 id="org881b011"><span class="section-number-4">10.2.1</span> Version with decoy</h4>
+<div id="outline-container-org379647d" class="outline-4">
+<h4 id="org379647d"><span class="section-number-4">10.2.1</span> Version with decoy</h4>
 <div class="outline-text-4" id="text-10-2-1">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21_minimal-male
@@ -1339,8 +1382,8 @@ singularity run ../../salmon-container/salmon-unstable.simg index <span style="f
 </div>
 </div>
 
-<div id="outline-container-org8f50bd0" class="outline-4">
-<h4 id="org8f50bd0"><span class="section-number-4">10.2.2</span> Version without decoy</h4>
+<div id="outline-container-org85f5b1e" class="outline-4">
+<h4 id="org85f5b1e"><span class="section-number-4">10.2.2</span> Version without decoy</h4>
 <div class="outline-text-4" id="text-10-2-2">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">GENOME_DIR</span>=~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21_minimal-male
@@ -1357,8 +1400,8 @@ singularity run ../../salmon-container/salmon-unstable.simg index <span style="f
 </div>
 </div>
 
-<div id="outline-container-org61bf175" class="outline-2">
-<h2 id="org61bf175"><span class="section-number-2">11</span> After jamboree notes</h2>
+<div id="outline-container-orgacd4d90" class="outline-2">
+<h2 id="orgacd4d90"><span class="section-number-2">11</span> After jamboree notes</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 I'm struggling with how to record notes as I try to understand things
@@ -1370,12 +1413,12 @@ Maybe it'd be better to put journal notes into a separate heading?
 </p>
 </div>
 
-<div id="outline-container-org6a2c15e" class="outline-3">
-<h3 id="org6a2c15e"><span class="section-number-3">11.1</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-16 Thu&gt;</span></span></h3>
+<div id="outline-container-org0399e4e" class="outline-3">
+<h3 id="org0399e4e"><span class="section-number-3">11.1</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-16 Thu&gt;</span></span></h3>
 <div class="outline-text-3" id="text-11-1">
 </div>
-<div id="outline-container-org936bf15" class="outline-4">
-<h4 id="org936bf15"><span class="section-number-4">11.1.1</span> Spikein expression found</h4>
+<div id="outline-container-org44731c3" class="outline-4">
+<h4 id="org44731c3"><span class="section-number-4">11.1.1</span> Spikein expression found</h4>
 <div class="outline-text-4" id="text-11-1-1">
 <p>
 I did discover the last spikein does have some expression.
@@ -1383,8 +1426,8 @@ I did discover the last spikein does have some expression.
 </div>
 </div>
 
-<div id="outline-container-org45501e3" class="outline-4">
-<h4 id="org45501e3"><span class="section-number-4">11.1.2</span> Cellranger &amp; STAR Solo missing tRNAs</h4>
+<div id="outline-container-orga023767" class="outline-4">
+<h4 id="orga023767"><span class="section-number-4">11.1.2</span> Cellranger &amp; STAR Solo missing tRNAs</h4>
 <div class="outline-text-4" id="text-11-1-2">
 <p>
 I discovered the Cellranger &amp; Alex's STAR runs didn't have the tRNAs
@@ -1411,8 +1454,8 @@ Whatever this means I need to rerun Cellranger and STAR solo
 </div>
 </div>
 
-<div id="outline-container-org09471ee" class="outline-3">
-<h3 id="org09471ee"><span class="section-number-3">11.2</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-20 Mon&gt; </span></span> Trying to build a better salmon index</h3>
+<div id="outline-container-org3426b87" class="outline-3">
+<h3 id="org3426b87"><span class="section-number-3">11.2</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-20 Mon&gt; </span></span> Trying to build a better salmon index</h3>
 <div class="outline-text-3" id="text-11-2">
 <p>
 After some experimenting the small program I wrote to generate a
@@ -1431,27 +1474,27 @@ of the contig.
 </div>
 
 <p>
-Seq is empty chr1<sub>GL456213</sub><sub>random</sub> 39340 s ENSMUST00000115924.2 128554 129000 -1  0
-Seq is empty chrUn<sub>GL456359</sub> 22974 s ENSMUST00000183641.1 38437 38535 1  0
-Seq is empty chrUn<sub>GL456360</sub> 31704 s ENSMUST00000183641.1 38437 38535 1  0
-Seq is empty chrUn<sub>GL456366</sub> 47073 s ENSMUST00000183641.1 38437 38535 1  0
-Seq is empty chrUn<sub>GL456367</sub> 42057 s ENSMUST00000183641.1 38437 38535 1  0
-Seq is empty chrUn<sub>GL456368</sub> 20208 s ENSMUST00000183641.1 38437 38535 1  0
-Seq is empty chrUn<sub>GL456370</sub> 26764 s ENSMUST00000183641.1 38437 38535 1  0
-Seq is empty chrUn<sub>GL456378</sub> 31602 s ENSMUST00000178366.1 13261 13382 -1  0
-Seq is empty chrUn<sub>GL456379</sub> 72385 s ENSMUST00000178366.1 13261 13382 -1  0
-Seq is empty chrUn<sub>GL456382</sub> 23158 s ENSMUST00000184505.1 16622 16721 -1  0
-Seq is empty chrUn<sub>GL456383</sub> 38659 s ENSMUST00000184505.1 16622 16721 -1  0
-Seq is empty chrUn<sub>GL456387</sub> 24685 s ENSMUST00000180206.1 32718 32818 1  0
-Seq is empty chrUn<sub>GL456389</sub> 28772 s ENSMUST00000180206.1 32718 32818 1  0
-Seq is empty chrUn<sub>GL456390</sub> 24668 s ENSMUST00000180206.1 32718 32818 1  0
-Seq is empty chrUn<sub>GL456392</sub> 23629 s ENSMUST00000180206.1 32718 32818 1  0
-Seq is empty chrUn<sub>GL456393</sub> 55711 s ENSMUST00000180206.1 32718 32818 1  0
-Seq is empty chrUn<sub>GL456394</sub> 24323 s ENSMUST00000180206.1 32718 32818 1  0
-Seq is empty chrUn<sub>GL456396</sub> 21240 s ENSMUST00000180206.1 32718 32818 1  0
-Seq is empty chrY<sub>JH584300</sub><sub>random</sub> 182347 s ENSMUST00000179623.1 90838868 90839177 -1  0
-Seq is empty chrY<sub>JH584301</sub><sub>random</sub> 259875 s ENSMUST00000179623.1 90838868 90839177 -1  0
-Seq is empty chrY<sub>JH584302</sub><sub>random</sub> 155838 s ENSMUST00000179623.1 90838868 90839177 -1  0
+Seq is empty chr1_GL456213_random 39340 s ENSMUST00000115924.2 128554 129000 -1  0
+Seq is empty chrUn_GL456359 22974 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn_GL456360 31704 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn_GL456366 47073 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn_GL456367 42057 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn_GL456368 20208 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn_GL456370 26764 s ENSMUST00000183641.1 38437 38535 1  0
+Seq is empty chrUn_GL456378 31602 s ENSMUST00000178366.1 13261 13382 -1  0
+Seq is empty chrUn_GL456379 72385 s ENSMUST00000178366.1 13261 13382 -1  0
+Seq is empty chrUn_GL456382 23158 s ENSMUST00000184505.1 16622 16721 -1  0
+Seq is empty chrUn_GL456383 38659 s ENSMUST00000184505.1 16622 16721 -1  0
+Seq is empty chrUn_GL456387 24685 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn_GL456389 28772 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn_GL456390 24668 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn_GL456392 23629 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn_GL456393 55711 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn_GL456394 24323 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrUn_GL456396 21240 s ENSMUST00000180206.1 32718 32818 1  0
+Seq is empty chrY_JH584300_random 182347 s ENSMUST00000179623.1 90838868 90839177 -1  0
+Seq is empty chrY_JH584301_random 259875 s ENSMUST00000179623.1 90838868 90839177 -1  0
+Seq is empty chrY_JH584302_random 155838 s ENSMUST00000179623.1 90838868 90839177 -1  0
 </p>
 
 <p>
@@ -1466,8 +1509,8 @@ Add decoy
 </div>
 </div>
 
-<div id="outline-container-org616ab2e" class="outline-3">
-<h3 id="org616ab2e"><span class="section-number-3">11.3</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-24 Fri&gt; </span></span> Current problems</h3>
+<div id="outline-container-orgf0ac865" class="outline-3">
+<h3 id="orgf0ac865"><span class="section-number-3">11.3</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-07-24 Fri&gt; </span></span> Current problems</h3>
 <div class="outline-text-3" id="text-11-3">
 <p>
 I had a bunch of difficulties getting the shape of the alevin matrix
@@ -1476,7 +1519,7 @@ transformations to get it to fit.
 </p>
 
 <p>
-Then I needed to regenerate the h5ad files to get the alevin<sub>diff</sub> matrix to be
+Then I needed to regenerate the h5ad files to get the alevin_diff matrix to be
 have the right dimensions as well.
 </p>
 
@@ -1495,18 +1538,18 @@ and try again.
 </div>
 </div>
 
-<div id="outline-container-org10e51b6" class="outline-3">
-<h3 id="org10e51b6"><span class="section-number-3">11.4</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-03 Mon&gt; </span></span> Once again RSEM fails with the same error that read maps and doesn't map.</h3>
+<div id="outline-container-orga8d293a" class="outline-3">
+<h3 id="orga8d293a"><span class="section-number-3">11.4</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-03 Mon&gt; </span></span> Once again RSEM fails with the same error that read maps and doesn't map.</h3>
 <div class="outline-text-3" id="text-11-4">
 <p>
 So I went looking for the read:
 </p>
 
 <p>
-samtools view c1<sub>e10.5</sub>-mm10-M21-male-star2.7.5a<sub>anno.bam</sub>  | grep HISEQ:616:H5KWGBCXY:1:1101:10188:71310
+samtools view c1_e10.5-mm10-M21-male-star2.7.5a_anno.bam  | grep HISEQ:616:H5KWGBCXY:1:1101:10188:71310
 HISEQ:616:H5KWGBCXY:1:1101:10188:71310  516     *       0       0       *       *       0       0       GGATGTTGTTGTTAGCCACTTCTTTTTGTCTTTAAATATAAGGCGTGGTAGAATTACTGGCACCCAATTTGTTCCTTATACAGTCCTTAATGGACTTTAA    &lt;0&lt;@0GEEF11&lt;CCH11&lt;11F1DC1&lt;F?1&lt;DGH1&lt;1&lt;D1DF1FCCHCC&lt;111@@FF?&lt;11111101D1&lt;111&lt;1C111&lt;11111&lt;111D@&lt;111&lt;1&lt;111    NH:i:0  HI:i:0  AS:i:60 nM:i:1  uT:A:1
-HISEQ:616:H5KWGBCXY:1:1101:10188:71310  528     tSpikein<sub>ERCC</sub>-00046     247     255     50M     *       0       0      TACCACGCCTTATATTTAAAGACAAAAAGAAGTGGCTAACAACAACATCC       1&lt;CCHCCF1FD1D&lt;1&lt;1HGD&lt;1?F&lt;1CD1F11&lt;11HCC&lt;11FEEG0@&lt;0&lt;      NH:i:1 HI:i:1
-diane@galvar:~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/c1<sub>e10.5</sub>$ zgrep -A 3 'HISEQ:616:H5KWGBCXY:1:1101:10188:71310' c1<sub>e10.5.fastq.gz</sub> 
+HISEQ:616:H5KWGBCXY:1:1101:10188:71310  528     tSpikein_ERCC-00046     247     255     50M     *       0       0      TACCACGCCTTATATTTAAAGACAAAAAGAAGTGGCTAACAACAACATCC       1&lt;CCHCCF1FD1D&lt;1&lt;1HGD&lt;1?F&lt;1CD1F11&lt;11HCC&lt;11FEEG0@&lt;0&lt;      NH:i:1 HI:i:1
+diane@galvar:~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/c1_e10.5$ zgrep -A 3 'HISEQ:616:H5KWGBCXY:1:1101:10188:71310' c1_e10.5.fastq.gz 
 @HISEQ:616:H5KWGBCXY:1:1101:10188:71310 1:Y:0:GTAGAGGAAAGGATTA
 GGATGTTGTTGTTAGCCACTTCTTTTTGTCTTTAAATATAAGGCGTGGTAGAATTACTGGCACCCAATTTGTTCCTTATACAGTCCTTAATGGACTTTAA
 </p>
@@ -1541,8 +1584,8 @@ was to download them again skipping those 6 experiments.
 </div>
 
 
-<div id="outline-container-orgccbdd87" class="outline-3">
-<h3 id="orgccbdd87"><span class="section-number-3">11.5</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-11 Tue&gt; </span></span> Trying to build minimal index.</h3>
+<div id="outline-container-orgdab6f02" class="outline-3">
+<h3 id="orgdab6f02"><span class="section-number-3">11.5</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-11 Tue&gt; </span></span> Trying to build minimal index.</h3>
 <div class="outline-text-3" id="text-11-5">
 <p>
 After a discussion in slack we decided we need to test against a
@@ -1572,8 +1615,8 @@ the index was saved to the wrong location.
 </div>
 </div>
 
-<div id="outline-container-org5c2c599" class="outline-3">
-<h3 id="org5c2c599"><span class="section-number-3">11.6</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-27 Thu&gt; </span></span> Summary of things that went wrong</h3>
+<div id="outline-container-orgc9f3c63" class="outline-3">
+<h3 id="orgc9f3c63"><span class="section-number-3">11.6</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-08-27 Thu&gt; </span></span> Summary of things that went wrong</h3>
 <div class="outline-text-3" id="text-11-6">
 <p>
 I had a bunch of trouble getting the 10x population level run to work,
@@ -1619,8 +1662,8 @@ salmon.
 </div>
 </div>
 
-<div id="outline-container-org0a04641" class="outline-3">
-<h3 id="org0a04641"><span class="section-number-3">11.7</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-02 Wed&gt; </span></span> Finished the C1 branch</h3>
+<div id="outline-container-org429cd58" class="outline-3">
+<h3 id="org429cd58"><span class="section-number-3">11.7</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-02 Wed&gt; </span></span> Finished the C1 branch</h3>
 <div class="outline-text-3" id="text-11-7">
 <p>
 I ended up comparing, the single cell sum, and running the bulk
@@ -1640,8 +1683,8 @@ wasn't built correctly and didn't have any reads.
 </div>
 </div>
 
-<div id="outline-container-org6f8cc7e" class="outline-3">
-<h3 id="org6f8cc7e"><span class="section-number-3">11.8</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-03 Thu&gt; </span></span> Work on analyzing 10x</h3>
+<div id="outline-container-org9548f5a" class="outline-3">
+<h3 id="org9548f5a"><span class="section-number-3">11.8</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-03 Thu&gt; </span></span> Work on analyzing 10x</h3>
 <div class="outline-text-3" id="text-11-8">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1654,32 +1697,32 @@ wasn't built correctly and didn't have any reads.
 <tbody>
 <tr>
 <td class="org-left">single cell through cellranger</td>
-<td class="org-left">ENCSR874BOF<sub>e10</sub><sub>5</sub><sub>limb</sub>/ENCSR874BOF-10x-e10<sub>5</sub>-count-cells10000</td>
+<td class="org-left">ENCSR874BOF_e10_5_limb/ENCSR874BOF-10x-e10_5-count-cells10000</td>
 </tr>
 
 <tr>
 <td class="org-left">single cell through STAR</td>
-<td class="org-left">ENCSR874BOF<sub>e10</sub><sub>5</sub><sub>limb</sub>/diane<sub>star</sub><sub>solo</sub></td>
+<td class="org-left">ENCSR874BOF_e10_5_limb/diane_star_solo</td>
 </tr>
 
 <tr>
 <td class="org-left">single cell through kallisto</td>
-<td class="org-left">ENCSR874BOF<sub>e10</sub><sub>5</sub><sub>limb</sub>/kallisto<sub>em</sub></td>
+<td class="org-left">ENCSR874BOF_e10_5_limb/kallisto_em</td>
 </tr>
 
 <tr>
 <td class="org-left">single cell through salmon</td>
-<td class="org-left">ENCSR874BOF<sub>e10</sub><sub>5</sub><sub>limb</sub>/alevin<sub>output</sub><sub>encode</sub><sub>R1</sub><sub>R2</sub>?</td>
+<td class="org-left">ENCSR874BOF_e10_5_limb/alevin_output_encode_R1_R2?</td>
 </tr>
 
 <tr>
 <td class="org-left">population through RSEM</td>
-<td class="org-left">10x<sub>e10.5</sub>/10x<sub>e10.5</sub>-mm10-M21-male<sub>anno</sub><sub>rsem.genes.results</sub></td>
+<td class="org-left">10x_e10.5/10x_e10.5-mm10-M21-male_anno_rsem.genes.results</td>
 </tr>
 
 <tr>
 <td class="org-left">population through STAR</td>
-<td class="org-left">10x<sub>e10.5</sub>/ReadsPerGene.out.tab</td>
+<td class="org-left">10x_e10.5/ReadsPerGene.out.tab</td>
 </tr>
 
 <tr>
@@ -1709,11 +1752,11 @@ Rerunning the single cell version since it uses both ends.
 
 <p>
 ~/proj/kallisto/build/src/kallisto bus -t 16 \
-  -i ${ENCODE<sub>GENOME</sub>}/mm10-M21-male-kallisto-0.46.2.idx \
-  -o kallisto<sub>em</sub><sub>temp</sub> \
+  -i ${ENCODE_GENOME}/mm10-M21-male-kallisto-0.46.2.idx \
+  -o kallisto_em_temp \
   -x 10xv2 \
-  ENCSR874BOF<sub>S1</sub><sub>L001</sub><sub>R1</sub><sub>001.fastq.gz</sub> \
-  ENCSR874BOF<sub>S1</sub><sub>L001</sub><sub>R2</sub><sub>001.fastq.gz</sub>
+  ENCSR874BOF_S1_L001_R1_001.fastq.gz \
+  ENCSR874BOF_S1_L001_R2_001.fastq.gz
 </p>
 
 
@@ -1722,8 +1765,8 @@ Rerunning the single cell version since it uses both ends.
 [index] number of targets: 168,207
 [index] number of k-mers: 120,997,101
 [index] number of equivalence classes: 555,826
-[quant] will process sample 1: ENCSR874BOF<sub>S1</sub><sub>L001</sub><sub>R1</sub><sub>001.fastq.gz</sub>
-                               ENCSR874BOF<sub>S1</sub><sub>L001</sub><sub>R2</sub><sub>001.fastq.gz</sub>
+[quant] will process sample 1: ENCSR874BOF_S1_L001_R1_001.fastq.gz
+                               ENCSR874BOF_S1_L001_R2_001.fastq.gz
 [quant] finding pseudoalignments for the reads &#x2026; done
 [quant] processed 432,950,142 reads, 359,437,471 reads pseudoaligned
 </p>
@@ -1796,8 +1839,8 @@ end reads to the bulk pipeline &amp; kallisto
 </div>
 </div>
 
-<div id="outline-container-org4fa2be9" class="outline-3">
-<h3 id="org4fa2be9"><span class="section-number-3">11.9</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-25 Fri&gt; </span></span> lets rerun kallisto with a different fragment &amp; sd number</h3>
+<div id="outline-container-org8fa6369" class="outline-3">
+<h3 id="org8fa6369"><span class="section-number-3">11.9</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-25 Fri&gt; </span></span> lets rerun kallisto with a different fragment &amp; sd number</h3>
 <div class="outline-text-3" id="text-11-9">
 <p>
 A few days ago I presented this to my coworkers, one suggestion was to
@@ -1810,8 +1853,8 @@ bustools bonus em mode is rare, so lets ignore that.
 </div>
 </div>
 
-<div id="outline-container-org5805bb6" class="outline-3">
-<h3 id="org5805bb6"><span class="section-number-3">11.10</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-25 Fri&gt; </span></span> Also how well does kallisto match the spike in concentrations?</h3>
+<div id="outline-container-org22860d3" class="outline-3">
+<h3 id="org22860d3"><span class="section-number-3">11.10</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-09-25 Fri&gt; </span></span> Also how well does kallisto match the spike in concentrations?</h3>
 <div class="outline-text-3" id="text-11-10">
 <p>
 Interesting&#x2026; it looks like kallisto handles them better?
@@ -1830,8 +1873,8 @@ I need a new kallisto index
 </div>
 </div>
 
-<div id="outline-container-org5da37cf" class="outline-3">
-<h3 id="org5da37cf"><span class="section-number-3">11.11</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-06 Tue&gt; </span></span> Presented spike in results to group</h3>
+<div id="outline-container-org5419122" class="outline-3">
+<h3 id="org5419122"><span class="section-number-3">11.11</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-06 Tue&gt; </span></span> Presented spike in results to group</h3>
 <div class="outline-text-3" id="text-11-11">
 <p>
 <a href="http://woldlab.caltech.edu/~diane/encode-202006-jamboree-detrout-rna-sc-pipeline/compare-rsem-kallisto-spike-performance.slides.html#/">compare-rsem-kallisto-spike-performance</a>
@@ -1855,8 +1898,8 @@ if they are do they come from a similar place?</li>
 </div>
 </div>
 
-<div id="outline-container-org4282c77" class="outline-3">
-<h3 id="org4282c77"><span class="section-number-3">11.12</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-14 Wed&gt; </span></span> Spike ins were worse than expected</h3>
+<div id="outline-container-orgbc5a5a3" class="outline-3">
+<h3 id="orgbc5a5a3"><span class="section-number-3">11.12</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-14 Wed&gt; </span></span> Spike ins were worse than expected</h3>
 <div class="outline-text-3" id="text-11-12">
 <p>
 so it turns out that there were a bunch of different spike mixes
@@ -1882,8 +1925,8 @@ Now lets run RSEM, kallisto &amp; salmon on it
 </div>
 </div>
 
-<div id="outline-container-org5c53632" class="outline-3">
-<h3 id="org5c53632"><span class="section-number-3">11.13</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-14 Wed&gt; </span></span> Presented&#x2026;</h3>
+<div id="outline-container-org6642a96" class="outline-3">
+<h3 id="org6642a96"><span class="section-number-3">11.13</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-14 Wed&gt; </span></span> Presented&#x2026;</h3>
 <div class="outline-text-3" id="text-11-13">
 <ul class="org-ul">
 <li class="off"><code>[&#xa0;]</code> verify that other runs use the same spike sets.
@@ -1894,7 +1937,7 @@ different spike sets &#x2013; which is probably a mistake.</li>
 
 <li class="off"><code>[&#xa0;]</code> find kallisto paper that analyzed C1 data
 <a href="https://github.com/pachterlab/BYVSTZP_2020">https://github.com/pachterlab/BYVSTZP_2020</a></li>
-<li class="off"><code>[&#xa0;]</code> which version for kallisto bus tools? bulk? kb<sub>python</sub>?}</li>
+<li class="off"><code>[&#xa0;]</code> which version for kallisto bus tools? bulk? kb_python?}</li>
 
 <li class="off"><code>[&#xa0;]</code> heat map with respect single cell.
 stay focused on single cell data&#x2026;</li>
@@ -1906,8 +1949,8 @@ can show gallery of scatter plot
 </div>
 </div>
 
-<div id="outline-container-org22d03b5" class="outline-3">
-<h3 id="org22d03b5"><span class="section-number-3">11.14</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-15 Thu&gt; </span></span> Process C1 data with pseduo mappers</h3>
+<div id="outline-container-org5b8cbb0" class="outline-3">
+<h3 id="org5b8cbb0"><span class="section-number-3">11.14</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-15 Thu&gt; </span></span> Process C1 data with pseduo mappers</h3>
 <div class="outline-text-3" id="text-11-14">
 <p>
 Lets see what our C1 data looks like with the pseduo mappers
@@ -1941,41 +1984,41 @@ alevin, kallisto
 <p>
 C1 gene count details
 kallisto, rsem
-kallisto, salmon<sub>decoy</sub>
+kallisto, salmon_decoy
 kallisto, salmon
 kallisto, star
-rsem, salmon<sub>decoy</sub>
+rsem, salmon_decoy
 rsem, salmon
 rsem, star
-salmon<sub>decoy</sub>, salmon,
-salmon<sub>decoy</sub>, star
+salmon_decoy, salmon,
+salmon_decoy, star
 salmon, star
 </p>
 
 <p>
 c1 gene tpm details
 kallisto, rsem
-kallisto, salmon<sub>decoy</sub>
+kallisto, salmon_decoy
 kallisto, salmon
-rsem, salmon<sub>decoy</sub>
+rsem, salmon_decoy
 rsem, salmon
-salmon<sub>decoy</sub>, salmon
+salmon_decoy, salmon
 </p>
 
 <p>
 c1 transcript count
 kallisto, rsem
-kallisto, salmon<sub>decoy</sub>
+kallisto, salmon_decoy
 kallisto, salmon
-rsem, salmon<sub>decoy</sub>
+rsem, salmon_decoy
 rsem, salmon
-salmon<sub>decoy</sub>, salmon
+salmon_decoy, salmon
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd67cf61" class="outline-3">
-<h3 id="orgd67cf61"><span class="section-number-3">11.15</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-19 Mon&gt; </span></span> Need to run the minimal set.</h3>
+<div id="outline-container-org65d89b4" class="outline-3">
+<h3 id="org65d89b4"><span class="section-number-3">11.15</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-19 Mon&gt; </span></span> Need to run the minimal set.</h3>
 <div class="outline-text-3" id="text-11-15">
 <p>
 After looking at <a href="compare-single-cell.ipynb">compare-single-cell.ipynb</a> I remembered I was
@@ -1999,8 +2042,8 @@ Tuesday Ali told me I have to Nov 18th to get this worked out.
 </div>
 </div>
 
-<div id="outline-container-org96ba90d" class="outline-3">
-<h3 id="org96ba90d"><span class="section-number-3">11.16</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-20 Tue&gt; </span></span> Continuing to run the minimal set</h3>
+<div id="outline-container-org1e91070" class="outline-3">
+<h3 id="org1e91070"><span class="section-number-3">11.16</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-10-20 Tue&gt; </span></span> Continuing to run the minimal set</h3>
 <div class="outline-text-3" id="text-11-16">
 <p>
 I discovered I did have a directory with a minimal set built, but I
@@ -2033,8 +2076,8 @@ I decided to include the ERCC spikes as well as the 10x information.
 </div>
 </div>
 
-<div id="outline-container-org7838727" class="outline-3">
-<h3 id="org7838727"><span class="section-number-3">11.17</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-02 Mon&gt; </span></span> minimal 10x results look good</h3>
+<div id="outline-container-org080d696" class="outline-3">
+<h3 id="org080d696"><span class="section-number-3">11.17</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-02 Mon&gt; </span></span> minimal 10x results look good</h3>
 <div class="outline-text-3" id="text-11-17">
 <p>
 the minimal 10x results correlate well and look pretty decent, the
@@ -2048,8 +2091,8 @@ I think most of the trouble has been with the single ended C1 data.
 </div>
 
 
-<div id="outline-container-org0bc109a" class="outline-3">
-<h3 id="org0bc109a"><span class="section-number-3">11.18</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-16 Mon&gt; </span></span> Henry's instructions on making a assembly hub.</h3>
+<div id="outline-container-org11d4ec1" class="outline-3">
+<h3 id="org11d4ec1"><span class="section-number-3">11.18</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-16 Mon&gt; </span></span> Henry's instructions on making a assembly hub.</h3>
 <div class="outline-text-3" id="text-11-18">
 <p>
 <a href="https://woldlab.caltech.edu/~hamrhein/hubs/hg38_ercc_spikes_sirv/README.txt">https://woldlab.caltech.edu/~hamrhein/hubs/hg38_ercc_spikes_sirv/README.txt</a>
@@ -2057,8 +2100,8 @@ I think most of the trouble has been with the single ended C1 data.
 </div>
 </div>
 
-<div id="outline-container-org706f7ad" class="outline-3">
-<h3 id="org706f7ad"><span class="section-number-3">11.19</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-11 Wed&gt; </span></span> Collect files to diagnose kallisto ERCC issues</h3>
+<div id="outline-container-orgca19458" class="outline-3">
+<h3 id="orgca19458"><span class="section-number-3">11.19</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-11 Wed&gt; </span></span> Collect files to diagnose kallisto ERCC issues</h3>
 <div class="outline-text-3" id="text-11-19">
 <p>
 Brian provided a spreadsheet with the a sampling of avg cDNA &amp; CV %
@@ -2119,16 +2162,16 @@ star/rsem runs. <a href="http://woldlab.caltech.edu/~diane/C1_mouse_limb_timecou
 </div>
 </div>
 
-<div id="outline-container-orgf90af26" class="outline-3">
-<h3 id="orgf90af26"><span class="section-number-3">11.20</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-16 Mon&gt; </span></span> Trying to get help from Kallisto</h3>
+<div id="outline-container-orgc81ded5" class="outline-3">
+<h3 id="orgc81ded5"><span class="section-number-3">11.20</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-16 Mon&gt; </span></span> Trying to get help from Kallisto</h3>
 <div class="outline-text-3" id="text-11-20">
 <p>
 They use google colab, so I had to make some notebooks for them.
 </p>
 
 <ul class="org-ul">
-<li>compare<sub>c1</sub><sub>h5</sub><sub>on</sub><sub>colab.ipynb</sub> just loads the h5 files from my directory</li>
-<li>compare<sub>c1</sub><sub>minimal</sub><sub>on</sub><sub>colab.ipynb</sub> runs one of the cells through a
+<li>compare_c1_h5_on_colab.ipynb just loads the h5 files from my directory</li>
+<li>compare_c1_minimal_on_colab.ipynb runs one of the cells through a
 fresh kallisto install using prebuilt indexes</li>
 </ul>
 
@@ -2142,11 +2185,1549 @@ open directly.
 </p>
 </div>
 </div>
+
+<div id="outline-container-orgd9b24eb" class="outline-3">
+<h3 id="orgd9b24eb"><span class="section-number-3">11.21</span> <span class="done DONE">DONE</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-11-23 Mon&gt; </span></span> Try Becha's long read version of kallisto</h3>
+<div class="outline-text-3" id="text-11-21">
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2021-02-05 Fri 14:58]</span></span></li>
+</ul>
+<p>
+<a href="https://github.com/bound-to-love/kallisto">https://github.com/bound-to-love/kallisto</a>
+</p>
+
+<p>
+did it eventually. seemed to work better than using the wrong
+settings
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf5429ea" class="outline-3">
+<h3 id="orgf5429ea"><span class="section-number-3">11.22</span> <span class="todo TODO">TODO</span> is &#x2013;em on in my earlier 10x run?</h3>
+</div>
+
+<div id="outline-container-orga213855" class="outline-3">
+<h3 id="orga213855"><span class="section-number-3">11.23</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-12-22 Tue&gt; </span></span> more analysis, not enough notes.</h3>
+<div class="outline-text-3" id="text-11-23">
+<p>
+I showed Barbara some of my current presentation and she had a few questions
+</p>
+
+<p>
+Can star solo do visualizations like cellranger: no.
+ask them what bustools &#x2013;em do?
+</p>
+
+<p>
+She also noticed that I was missing some of the alevin decoy runs
+and wanted to see that.
+</p>
+
+<p>
+I've decided I much prefer having condor files for keeping track of
+runs then commands in org mode.
+</p>
+
+<p>
+I needed to add some decoy runs to the ENCODE annotation set in
+ENCSR874BOF_e10_5_limb
+</p>
+
+
+<p>
+Showed to the rest of the long read group
+</p>
+
+<p>
+Also run my analysis on one of the 10x reference sets&#x2026; 10x hematopoetic set.
+</p>
+
+<p>
+kallisto em full barcode vs genes detect plots shows some more reads
+in the same place like the minimal run does&#x2026; can we look into this
+to see what genes are different between
+</p>
+
+
+<p>
+alevin / alevin decoy mixing on screenshots on page 10 of try2 presentation
+</p>
+
+<p>
+Barbara mentions that ENCODE is thinking of alevin decoy, so the
+presentation needs to include it.
+</p>
+
+<p>
+cell-number set&#x2026;
+</p>
+
+<p>
+compare barcodes from larger cell ranger 2x vs 3x say the default
+filters between cellranger 3 and star solo settings are different.
+check for what the options are for varying what cell ranger is
+willing to return.
+</p>
+
+<p>
+Gabby thinks leiden is thought to be the improvement over louvain.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org78c5bdb" class="outline-3">
+<h3 id="org78c5bdb"><span class="section-number-3">11.24</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2021-02-02 Tue&gt; </span></span> Test running TCC quantification program</h3>
+<div class="outline-text-3" id="text-11-24">
+<p>
+I tried to script the steps going from the eqcount (equivalence
+count) values to transcript level counts in here:
+</p>
+
+<p>
+<a href="10x_paper/kallisto-tcc-em.sh">10x_paper/kallisto-tcc-em.sh</a>
+</p>
+
+<p>
+I started running it around 4:30 on tuesday Feb 2nd. Unfortunately
+I didn't launch it with nohup or time so I don't have detailed
+timing information.
+</p>
+
+<p>
+It finished running Feb 6 at 14:01&#x2026;.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> datetime
+
+<span style="font-weight: bold;">return</span> datetime.datetime(2020,2,6,14,1)-datetime.datetime(2020,2,2,16,30)
+</pre>
+</div>
+
+<p>
+Looks like it took almost 4 days with 8 threads on pongo for the
+full matrix.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfec4a25" class="outline-3">
+<h3 id="orgfec4a25"><span class="section-number-3">11.25</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2021-02-05 Fri&gt; </span></span> Working with Pacter lab on salmon/alevin-fry comparison</h3>
+<div class="outline-text-3" id="text-11-25">
+<p>
+<a href="file://scp:atlas:/home/diane/comparison/README.html#MissingReference">Introduction to 20 dataset alevin-fry comparison</a>
+</p>
+
+<p>
+So here I built Delaney's versions of kallisto and bustools in
+<a href="file://scp:pongo:/woldlab/loxcyc/home/diane/proj/delaney">file:/scp:pongo:/woldlab/loxcyc/home/diane/proj/delaney</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7ac8fa5" class="outline-3">
+<h3 id="org7ac8fa5"><span class="section-number-3">11.26</span> Copied over the pass filter intersection.</h3>
+</div>
+
+
+
+<div id="outline-container-org098fb05" class="outline-3">
+<h3 id="org098fb05"><span class="section-number-3">11.27</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2021-03-17 Wed&gt; </span></span> Generate list of 10x samples for Alex</h3>
+<div class="outline-text-3" id="text-11-27">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Wold10x-1</td>
+<td class="org-left">e13.5 mouse forelimb</td>
+<td class="org-left">ENCSR787QXE</td>
+</tr>
+
+<tr>
+<td class="org-left">Wold10x-3</td>
+<td class="org-left">e11.0 mouse forelimb</td>
+<td class="org-left">ENCSR642XVO</td>
+</tr>
+
+<tr>
+<td class="org-left">Wold10x-4</td>
+<td class="org-left">e12.0 mouse forelimb</td>
+<td class="org-left">ENCSR745DNK</td>
+</tr>
+
+<tr>
+<td class="org-left">Wold10x-5</td>
+<td class="org-left">e13.0 mouse forelimb</td>
+<td class="org-left">ENCSR476JWN</td>
+</tr>
+
+<tr>
+<td class="org-left">Wold10x-6</td>
+<td class="org-left">e15.0 mouse forelimb</td>
+<td class="org-left">ENCSR337QTQ</td>
+</tr>
+
+<tr>
+<td class="org-left">Wold10x-7</td>
+<td class="org-left">e10.5 forelimb</td>
+<td class="org-left">ENCSR874BOF</td>
+</tr>
+
+<tr>
+<td class="org-left">Wold10x-12</td>
+<td class="org-left">e13.0 forelimb</td>
+<td class="org-left">ENCSR156HHE</td>
+</tr>
+
+<tr>
+<td class="org-left">Wold10x-13</td>
+<td class="org-left">e14.0 forelimb</td>
+<td class="org-left">ENCSR792LNZ</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>
+Wold10x-8 	e15.0 forelimb whole 	ENCSR306UHC 	FT-BB01670/FT-SA17501_FT-TS92805
+Wold10x-9 	e15.0 forelimb proximal (failed) 	ENCSR847RRR 	FT-BB01671/FT-SA17505_FT-TS92809
+Wold10x-10 	e15.0 firelimb mid segment 	ENCSR698TMC 	FT-BB01672/FT-SA17509_FT-TS92813
+Wold10x-11 	e15.0 forelimb distal 	ENCSR416FHN 	FT-BB01673/FT-SA17513_FT-TS92817
+</p>
+
+<p>
+['ENCSR787QXE','ENCSR642XVO','ENCSR745DNK','ENCSR476JWN','ENCSR337QTQ','ENCSR874BOF','ENCSR156HHE','ENCSR792LNZ',]
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org44b9083" class="outline-2">
+<h2 id="org44b9083"><span class="section-number-2">12</span> compare-10x-e10.5-common-genes</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+We were curious how much of a difference using the full versus
+simplified annotation makes.
+</p>
+
+<p>
+The <a href="compare-10x-e10.5-common-genes.html">compare-10x-e10.5-common-genes.html</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6fb158b" class="outline-2">
+<h2 id="org6fb158b"><span class="section-number-2">13</span> Work toward a 10x pipeline</h2>
+<div class="outline-text-2" id="text-13">
+<p>
+ENCODE has several kinds of 10x data hosted.
+</p>
+
+<p>
+I'd only processed 10x 3' single cell data.
+</p>
+</div>
+
+<div id="outline-container-org1d8c986" class="outline-3">
+<h3 id="org1d8c986"><span class="section-number-3">13.1</span> cellranger-arc run</h3>
+<div class="outline-text-3" id="text-13-1">
+<p>
+The Snyder group is producing 10x multiomic data. The multiome
+protocol uses a different version of cell ranger than what I'd
+previously been trying to use.
+</p>
+
+<p>
+<a href="https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/overview/welcome">https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/overview/welcome</a>
+</p>
+
+<p>
+Download link here
+<a href="https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/downloads/latest">https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/downloads/latest</a>
+</p>
+
+<p>
+It shares the previous cell ranger file layout issues where they
+expect fastqs to be in subdirectories and have names like they're
+generated by bcl2fastq with the samplename S1 lane read and fragment
+information.
+</p>
+
+<p>
+The first experiment I thought I'd try has all it's files hosted in
+here <a href="adrenal/ENCSR724KET_16f_nuc">adrenal/ENCSR724KET_16f_nuc</a>
+</p>
+
+<p>
+I decided to start with adrenal data as we'd been working with it in
+mouse, although the snyder multiome data is in human, but at least
+we've completed a couple of bulk RNA-seq experiments on the same
+samples.
+</p>
+
+<p>
+Since it's not released I wrote a small snakemake file to download the
+fastqs
+<a href="adrenal/ENCSR724KET_16f_nuc/download-fastq.snakefile">adrenal/ENCSR724KET_16f_nuc/download-fastq.snakefile</a>
+using this <a href="adrenal/ENCSR724KET_16f_nuc/config.yaml">adrenal/ENCSR724KET_16f_nuc/config.yaml</a>
+</p>
+
+<p>
+I then made some symlinks that hopefully got them into the preferred
+file layout. 
+</p>
+
+<table id="org91c99e5" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 1:</span> Link read to RNA accession to flowcell and lane information</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">read</td>
+<td class="org-left">accession</td>
+<td class="org-left">flowcell_details</td>
+</tr>
+
+<tr>
+<td class="org-left">read1</td>
+<td class="org-left">ENCFF150FBF</td>
+<td class="org-left">HYHY3DRXX:1</td>
+</tr>
+
+<tr>
+<td class="org-left">read1</td>
+<td class="org-left">ENCFF385IAW</td>
+<td class="org-left">HYHY3DRXX:2</td>
+</tr>
+
+<tr>
+<td class="org-left">read2</td>
+<td class="org-left">ENCFF351VBS</td>
+<td class="org-left">HYHY3DRXX:1</td>
+</tr>
+
+<tr>
+<td class="org-left">read2</td>
+<td class="org-left">ENCFF503CCI</td>
+<td class="org-left">HYHY3DRXX:2</td>
+</tr>
+</tbody>
+</table>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>link fastqs in adrenal/ENCSR724KET_16f_nuc directory to cellranger expected names</label><pre class="src src-bash"><span style="font-weight: bold;">pushd</span> adrenal/ENCSR724KET_16f_nuc/HYHY3DRXX/ENCLB002DZK
+ln -s ../../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+ln -s ../../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+ln -s ../../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+ln -s ../../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+<p>
+Then I write  <a href="adrenal/ENCSR724KET_16f_nuc/cellranger_library.csv">adrenal/ENCSR724KET_16f_nuc/cellranger_library.csv</a>
+with paths to fastqs (which should look like table <a href="#org8a7ad8c">2</a>)
+</p>
+
+<p>
+I tried running cellranger-arc and then discovered it needs both the
+RNA and atac files. I'd mis-understood their layout documentation so
+tried a simpler tree for the atac data.
+</p>
+
+<p>
+In this case this <a href="adrenal/ENCSR724KET_16f_nuc/atac/download-fastq.snakefile">download-fastq.snakefile</a> snake file with this
+<a href="adrenal/ENCSR724KET_16f_nuc/atac/config.yaml#MissingReference">config.yaml</a> downloaded files into the
+<a href="adrenal/ENCSR724KET_16f_nuc/atac">adrenal/ENCSR724KET_16f_nuc/atac</a> directory.
+</p>
+
+<table id="org8a7ad8c" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 2:</span> accession to atac file map</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">file accession</td>
+<td class="org-left">target filename</td>
+</tr>
+
+<tr>
+<td class="org-left">ENCFF853WTH</td>
+<td class="org-left">ENCLB718TZI_S1_L001_R1_001.fastq.gz</td>
+</tr>
+
+<tr>
+<td class="org-left">ENCFF803RDM</td>
+<td class="org-left">ENCLB718TZI_S1_L001_R2_001.fastq.gz</td>
+</tr>
+
+<tr>
+<td class="org-left">ENCFF500VXA</td>
+<td class="org-left">ENCLB718TZI_S1_L001_R3_001.fastq.gz</td>
+</tr>
+
+<tr>
+<td class="org-left">ENCFF526JBZ</td>
+<td class="org-left">ENCLB718TZI_S1_L002_R1_001.fastq.gz</td>
+</tr>
+
+<tr>
+<td class="org-left">ENCFF760QLU</td>
+<td class="org-left">ENCLB718TZI_S1_L002_R2_001.fastq.gz</td>
+</tr>
+
+<tr>
+<td class="org-left">ENCFF112IMQ</td>
+<td class="org-left">ENCLB718TZI_S1_L002_R3_001.fastq.gz</td>
+</tr>
+</tbody>
+</table>
+
+<table id="org98a2da9" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 3:</span> cellranger_library.csv relative to this README</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">fastqs</td>
+<td class="org-left">sample</td>
+<td class="org-left">library_type</td>
+</tr>
+
+<tr>
+<td class="org-left">./adrenal/ENCSR724KET_16f_nuc/HYHY3DRXX/ENCLB002DZK</td>
+<td class="org-left">ENCLB002DZK</td>
+<td class="org-left">Gene Expression</td>
+</tr>
+
+<tr>
+<td class="org-left">./adrenal/ENCSR724KET_16f_nuc/atac</td>
+<td class="org-left">ENCLB718TZI</td>
+<td class="org-left">Chromatin Accessibility</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+This wasn't the best directory layout. I probably could have gotten it
+to be ENCSR724KET_16f_nuc/rna and ENCSR724KET_16f_nuc/atac. I'll
+probably try that next time if I need to.
+</p>
+
+
+<p>
+Run cellranger-arc
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> adrenal/ENCSR724KET_16f_nuc/ENCSR724KET_cr-arc
+<span style="font-weight: bold;">time</span> cellranger-arc count <span style="font-style: italic;">\</span>
+     --id ENCLB002DZK <span style="font-style: italic;">\</span>
+     --reference=/woldlab/loxcyc/home/diane/proj/illumina/refdata-cellranger-arc-GRCh38-2020-A-2.0.0 <span style="font-style: italic;">\</span>
+     --libraries=cellranger_library.csv <span style="font-style: italic;">\</span>
+     --localcores=16 <span style="font-style: italic;">\</span>
+     --localmem=128
+</pre>
+</div>
+
+<p>
+Here's the time stats for running the above command. There were many
+more log messages during the run though
+</p>
+
+<table id="orge33820a" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 4:</span> cellranger time statistics 128G ram 16 cores.</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">real</td>
+<td class="org-left">426m49.528s</td>
+</tr>
+
+<tr>
+<td class="org-left">user</td>
+<td class="org-left">5206m6.961s</td>
+</tr>
+
+<tr>
+<td class="org-left">sys</td>
+<td class="org-left">87m44.227s</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org07d9ec3" class="outline-3">
+<h3 id="org07d9ec3"><span class="section-number-3">13.2</span> star solo run</h3>
+<div class="outline-text-3" id="text-13-2">
+<p>
+Lets run the versions of STAR with 10x's annotations with something
+close to our parameters and see what happens.
+</p>
+
+<p>
+Looks to be version 2.7.1a, so several options in my first pass STAR
+solo pipeline don't work.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> adrenal/ENCSR724KET_16f_nuc/ENCSR724KET_starsolo/
+ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+<p>
+My first runs were missing the gene table. I had tried with GeneFull
+and SJ modes, and looking at the 2.7.1 source it looks like it was
+only writing the gene.tsv file if feature type mode was 0. Later STAR
+checked for more modes, I'm rerunning with Gene, GeneFull, and SJ
+modes to see if that gets me both parts of the matrix
+</p>
+
+<p>
+Adding the Gene mode did get me the genes.tsv file (later versions of
+star rename that to features.tsv)
+</p>
+
+<p>
+This version seems to only produce the raw matrix, not the filtered
+one. Hopefully the filters got added later.
+</p>
+
+<p>
+Now that we've got two matrices, we should compare them.
+</p>
+
+<p>
+Sadly the not Gene matrix was empty, there was only values for the
+GeneFull matrix and they were pretty different from the cellranger
+run.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgefb40ea" class="outline-3">
+<h3 id="orgefb40ea"><span class="section-number-3">13.3</span> star solo 2.7.8a run</h3>
+<div class="outline-text-3" id="text-13-3">
+<p>
+Organize fastqs links like a real run.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> adrenal/ENCSR724KET_16f_nuc/starsolo_2.7.8a/
+ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd3136c7" class="outline-3">
+<h3 id="orgd3136c7"><span class="section-number-3">13.4</span> cellranger's star using star defaults where possible.</h3>
+<div class="outline-text-3" id="text-13-4">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> adrenal/ENCSR724KET_16f_nuc/cr-arc-star_defaults/
+ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+<p>
+There's still quite a bit different, but the correlation histogram
+looks similiar between starsolo_2.7.8a and cr-arc-star_defaults.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org91a8940" class="outline-3">
+<h3 id="org91a8940"><span class="section-number-3">13.5</span> star 2.7.8a using STARsolo documented arguments.</h3>
+<div class="outline-text-3" id="text-13-5">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> adrenal/ENCSR724KET_16f_nuc/starsolo_2.7.8a_cr-compatibility/
+ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org91d1185" class="outline-3">
+<h3 id="org91d1185"><span class="section-number-3">13.6</span> Story so far.</h3>
+<div class="outline-text-3" id="text-13-6">
+<p>
+The scores are still quite different between cell ranger and all of my
+star solo runs.
+</p>
+
+<p>
+When i used defaults for splicing with cell ranger matching
+deconvolution many of the star solo counts were higher than cell
+ranger.
+</p>
+
+<p>
+However cell ranger had mapped more reads.
+</p>
+
+<p>
+With default splice settings, this read didn't map, but with the
+ENCODE settings it does.
+</p>
+
+<p>
+A00509:187:HYHY3DRXX:1:2264:19081:23766 0       chr2    229149949       255    58M5329N32M      *       0       0       TCTCATTCTGGCTGGGTGGTGGCTCAGGTCTATAATCTCAGCACTTTGGGAGGCCGAGGTGGGCAGATCATGAGGTCAGGAGATCGAGAC      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF      NH:i:1 HI:i:1   AS:i:83 NM:i:0  MD:Z:90 XS:A:+  CB:Z:AAAGGTTAGCGATACT   UB:Z:CACCTCCTTTGG
+</p>
+
+<p>
+It shows up in the cell ranger bam file as having been mapped.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbe52cf3" class="outline-3">
+<h3 id="orgbe52cf3"><span class="section-number-3">13.7</span> Star solo 2.7.9a_2021-06-25 with ENCODE setting and CR compatibility</h3>
+<div class="outline-text-3" id="text-13-7">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> adrenal/ENCSR724KET_16f_nuc/starsolo_2.7.9a_2021-06-25_encode+cr/
+ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org4166de3" class="outline-3">
+<h3 id="org4166de3"><span class="section-number-3">13.8</span> Alex says it's forward stranded</h3>
+<div class="outline-text-3" id="text-13-8">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> adrenal/ENCSR724KET_16f_nuc/starsolo_2.7.9a_2021-06-25_encode-forward+cr/
+ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3b712f8" class="outline-3">
+<h3 id="org3b712f8"><span class="section-number-3">13.9</span> Tests with the 10x annotation look good, how about the ENCODE annotation?</h3>
+<div class="outline-text-3" id="text-13-9">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> adrenal/ENCSR724KET_16f_nuc/fullsolo_2.7.9a_2021-06-25/
+ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> adrenal/ENCSR724KET_16f_nuc/minimalsolo_2.7.9a_2021-06-25/
+ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcbf549c" class="outline-3">
+<h3 id="orgcbf549c"><span class="section-number-3">13.10</span> Forgot to also test some of the multi-read solvers</h3>
+<div class="outline-text-3" id="text-13-10">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> adrenal/ENCSR724KET_16f_nuc/fullsolo_rescue_2.7.9a_2021-06-25/
+ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> adrenal/ENCSR724KET_16f_nuc/fullsolo_em_2.7.9a_2021-06-25/
+ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> adrenal/ENCSR724KET_16f_nuc/minimalsolo_rescue_2.7.9a_2021-06-25/
+ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> adrenal/ENCSR724KET_16f_nuc/minimalsolo_em_2.7.9a_2021-06-25/
+ln -s ../ENCFF150FBF_R1.fastq.gz ENCLB002DZK_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF351VBS_R2.fastq.gz ENCLB002DZK_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF385IAW_R1.fastq.gz ENCLB002DZK_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF503CCI_R2.fastq.gz ENCLB002DZK_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgfe252be" class="outline-3">
+<h3 id="orgfe252be"><span class="section-number-3">13.11</span> lung</h3>
+<div class="outline-text-3" id="text-13-11">
+<p>
+Ok adrenal was plausible, lets prepare a different tissue, how
+about lung?
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> lung/ENCSR966DDY_16f_nuc/HGFF3DRXY/ENCLB061STU
+ln -s ../../ENCFF045SOP_R1.fastq.gz ENCLB061STU_S1_L001_R1_001.fastq.gz
+ln -s ../../ENCFF981YFQ_R2.fastq.gz ENCLB061STU_S1_L001_R2_001.fastq.gz
+ln -s ../../ENCFF805MRO_R1.fastq.gz ENCLB061STU_S1_L002_R1_001.fastq.gz
+ln -s ../../ENCFF516OIR_R2.fastq.gz ENCLB061STU_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> lung/ENCSR966DDY_16f_nuc
+
+<span style="font-weight: bold;">time</span> <span style="font-weight: bold; font-style: italic;">PATH</span>=~/proj/illumina/cellranger-arc-2.0.0/bin:$<span style="font-weight: bold; font-style: italic;">PATH</span> cellranger-arc count <span style="font-style: italic;">\</span>
+     --id ENCLB061STU <span style="font-style: italic;">\</span>
+     --reference=/woldlab/loxcyc/home/diane/proj/illumina/refdata-cellranger-arc-GRCh38-2020-A-2.0.0 <span style="font-style: italic;">\</span>
+     --libraries=cellranger_library.csv <span style="font-style: italic;">\</span>
+     --localcores=16 <span style="font-style: italic;">\</span>
+     --localmem=128
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> lung/ENCSR966DDY_16f_nuc/starsolo_2.7.9a_2021-06-25_encode-forward+cr/
+ln -s ../ENCFF045SOP_R1.fastq.gz ENCLB061STU_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF981YFQ_R2.fastq.gz ENCLB061STU_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF805MRO_R1.fastq.gz ENCLB061STU_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF516OIR_R2.fastq.gz ENCLB061STU_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> lung/ENCSR966DDY_16f_nuc/fullsolo_2.7.9a_2021-06-25/
+ln -s ../ENCFF045SOP_R1.fastq.gz ENCLB061STU_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF981YFQ_R2.fastq.gz ENCLB061STU_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF805MRO_R1.fastq.gz ENCLB061STU_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF516OIR_R2.fastq.gz ENCLB061STU_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> lung/ENCSR966DDY_16f_nuc/minimalsolo_2.7.9a_2021-06-25/
+ln -s ../ENCFF045SOP_R1.fastq.gz ENCLB061STU_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF981YFQ_R2.fastq.gz ENCLB061STU_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF805MRO_R1.fastq.gz ENCLB061STU_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF516OIR_R2.fastq.gz ENCLB061STU_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> lung/ENCSR966DDY_16f_nuc/fullsolo_em_2.7.9a_2021-06-25/
+ln -s ../ENCFF045SOP_R1.fastq.gz ENCLB061STU_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF981YFQ_R2.fastq.gz ENCLB061STU_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF805MRO_R1.fastq.gz ENCLB061STU_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF516OIR_R2.fastq.gz ENCLB061STU_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> lung/ENCSR966DDY_16f_nuc/fullsolo_rescue_2.7.9a_2021-06-25/
+ln -s ../ENCFF045SOP_R1.fastq.gz ENCLB061STU_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF981YFQ_R2.fastq.gz ENCLB061STU_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF805MRO_R1.fastq.gz ENCLB061STU_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF516OIR_R2.fastq.gz ENCLB061STU_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> lung/ENCSR966DDY_16f_nuc/minimalsolo_em_2.7.9a_2021-06-25/
+ln -s ../ENCFF045SOP_R1.fastq.gz ENCLB061STU_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF981YFQ_R2.fastq.gz ENCLB061STU_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF805MRO_R1.fastq.gz ENCLB061STU_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF516OIR_R2.fastq.gz ENCLB061STU_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">pushd</span> lung/ENCSR966DDY_16f_nuc/minimalsolo_rescue_2.7.9a_2021-06-25/
+ln -s ../ENCFF045SOP_R1.fastq.gz ENCLB061STU_S1_L001_R1_001.fastq.gz
+ln -s ../ENCFF981YFQ_R2.fastq.gz ENCLB061STU_S1_L001_R2_001.fastq.gz
+ln -s ../ENCFF805MRO_R1.fastq.gz ENCLB061STU_S1_L002_R1_001.fastq.gz
+ln -s ../ENCFF516OIR_R2.fastq.gz ENCLB061STU_S1_L002_R2_001.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+
+<p>
+for a in ../../adrenal/ENCSR724KET_16f_nuc/{minimal,full}solo_{em,rescue}_2.7.9a_2021-06-25; do cp -v $a/{config.yaml,starsolo.snakefile} $(basename $a) ; done
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf967268" class="outline-3">
+<h3 id="orgf967268"><span class="section-number-3">13.12</span> Ali wanted to see how well clustering separates tissues, lets do more tissues for the 16f_nuc</h3>
+<div class="outline-text-3" id="text-13-12">
+<p>
+have
+adrenal ENCSR724KET
+lung ENCSR966DDY
+</p>
+
+<p>
+lets add in more tissues
+pancreas ENCSR281NBH
+ovary ENCSR876EUH
+right lobe liver ENCSR602SGU
+psoas_muscle ENCSR741YTA
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbc5a622" class="outline-3">
+<h3 id="orgbc5a622"><span class="section-number-3">13.13</span> Oops he actually wanted same tissue across multiple donors.</h3>
+<div class="outline-text-3" id="text-13-13">
+<p>
+Lets set up adrenal &amp; lung.
+</p>
+
+<p>
+Also I renamed
+ENCSR724KET_16f_nuc/starsolo_2.7.9a_2021-06-25_encode-forward+cr/
+to ENCSR724KET_16f_nuc/tenxsolo_2.7.9a_2021-06-25 to better match
+this processing matrix
+</p>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">tissue</td>
+<td class="org-left">directory</td>
+<td class="org-left">full</td>
+<td class="org-left">minimal</td>
+<td class="org-left">full+50%exon</td>
+<td class="org-left">minimal+50%exon</td>
+<td class="org-left">tenx</td>
+<td class="org-left">tenx+50%exon</td>
+</tr>
+
+<tr>
+<td class="org-left">adrenal</td>
+<td class="org-left">ENCSR724KET_16f_nuc</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+</tr>
+
+<tr>
+<td class="org-left">adrenal</td>
+<td class="org-left">ENCSR362YDM_26m_nuc</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+</tr>
+
+<tr>
+<td class="org-left">adrenal (not multiome)</td>
+<td class="org-left">ENCSR620AJZ_41f_nuc</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">adrenal</td>
+<td class="org-left">ENCSR726IPC_59f_nuc</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+</tr>
+
+<tr>
+<td class="org-left">liver (not multiome)</td>
+<td class="org-left">ENCSR602SGU_16f_nuc</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">lung.</td>
+<td class="org-left">ENCSR966DDY_16f_nuc</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+</tr>
+
+<tr>
+<td class="org-left">pancreas</td>
+<td class="org-left">ENCSR478FQR_47f_nuc</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">pancreas.</td>
+<td class="org-left">ENCSR281NBH_16f_nuc</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">pancreas</td>
+<td class="org-left">ENCSR472RRP_59f_nuc</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">pancreas</td>
+<td class="org-left">ENCSR684KYI_61f_nuc</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">pancreas</td>
+<td class="org-left">ENCSR261BXB_26m_nuc</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">psoas muscle.</td>
+<td class="org-left">ENCSR471YTA_16f_nuc</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+</tr>
+
+<tr>
+<td class="org-left">psoas muscle</td>
+<td class="org-left">ENCSR281RIH_59f_nuc</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">psoas muscle</td>
+<td class="org-left">ENCSR203THX_41f_nuc</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">psoas muscle</td>
+<td class="org-left">ENCSR005TCL_47f_nuc</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Stage new set of configs
+</p>
+
+<p>
+for a in fullsolo_multi_2.7.9a_2021-06-25 fullsolo_multi_dev_EoI_2.7.9a_2021-09-10 minimalsolo_multi_2.7.9a_2021-06-25 minimalsolo_multi_dev_EoI_2.7.9a_2021-09-10 tenxsolo_multi_2.7.9a_2021-06-25 tenxsolo_multi_dev_EoI_2.7.9a_2021-09-10 ; do mkdir $a ; cp -v ~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/adrenal/ENCSR362YDM_26m_nuc/$a/starsolo.snakefile $a ; cp config.yaml $a/ ; done
+</p>
+
+
+<p>
+adjust star
+</p>
+
+<p>
+for b in <b>multi_2</b> ; do vi $b/config.yaml ; done
+for b in <b>dev</b> ; do vi $b/config.yaml ; done
+grep ^star_command */config.yaml
+</p>
+
+<p>
+Adjust index
+for b in tenx* ; do vi $b/config.yaml ; done
+for b in minimal* ; do vi $b/config.yaml ; done
+for b in full* ; do vi $b/config.yaml ; done
+</p>
+
+<p>
+minimalsolo_multi_dev_EoI_2.7.9a_2021-09-10
+</p>
+
+<p>
+Run some of them overnight
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">for</span> tissue<span style="font-weight: bold;"> in</span> lung/ENCSR966DDY_16f_nuc pancreas/ENCSR281NBH_16f_nuc psoas_muscle/ENCSR471YTA_16f_nuc; <span style="font-weight: bold;">do</span>
+    <span style="font-weight: bold;">pushd</span> $<span style="font-weight: bold; font-style: italic;">tissue</span>         
+    <span style="font-weight: bold;">for</span> run<span style="font-weight: bold;"> in</span> fullsolo_multi_2.7.9a_2021-06-25 fullsolo_multi_dev_EoI_2.7.9a_2021-09-10 minimalsolo_multi_2.7.9a_2021-06-25 minimalsolo_multi_dev_EoI_2.7.9a_2021-09-10 tenxsolo_multi_2.7.9a_2021-06-25 tenxsolo_multi_dev_EoI_2.7.9a_2021-09-10; <span style="font-weight: bold;">do</span>
+        <span style="font-weight: bold;">pushd</span> $<span style="font-weight: bold; font-style: italic;">run</span>
+        snakemake --snakefile starsolo.snakefile --jobs 20
+        <span style="font-weight: bold;">popd</span>
+    <span style="font-weight: bold;">done</span>
+<span style="font-weight: bold;">done</span>
+</pre>
+</div>
+
+<p>
+At least one job failed
+</p>
+
+<pre class="example">
+STAR version: dev_EoI_2.7.9a_2021-09-10   compiled: 2021-09-10T17:55:43-04:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Sep 16 15:52:18 ..... started STAR run
+Sep 16 15:52:18 ..... loading genome
+Sep 16 15:52:36 ..... started mapping
+EXITING because of fatal error: buffer size for SJ output is too small
+Solution: increase input parameter --limitOutSJcollapsed
+Sep 16 18:37:48 ...... FATAL ERROR, exiting
+</pre>
+
+<p>
+I'm trying again with "&#x2013;limitOutSJcollapsed 10000000"
+</p>
+
+<p>
+I've also been building up notebooks comparing across the different
+run parameters.
+</p>
+
+<p>
+I should do a genes detected by biotype plot
+Ali's group is using EnrichR
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgac633db" class="outline-3">
+<h3 id="orgac633db"><span class="section-number-3">13.14</span> Anshul asked for looking at a better analyzed dataset as well</h3>
+<div class="outline-text-3" id="text-13-14">
+<p>
+He suggested
+"A multicenter study benchmarking single-cell RNA sequencing
+technologies using reference samples"
+<a href="https://www.nature.com/articles/s41587-020-00748-9">https://www.nature.com/articles/s41587-020-00748-9</a>
+and
+"A multi-center cross-platform single-cell RNA sequencing reference dataset"
+<a href="https://www.nature.com/articles/s41597-021-00809-x">https://www.nature.com/articles/s41597-021-00809-x</a>
+for identifying an example well studied dataset.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">mkdir -p SRP199641/SRX5908538_HCC1395_LLU_10x
+<span style="font-weight: bold;">pushd</span>
+fastq-dump --split-files -v --gzip SRX5908538
+mv SRX5908538_1.fastq.gz SRX5908538_R1.fastq.gz
+mv SRX5908538_2.fastq.gz SRX5908538_R2.fastq.gz
+<span style="font-weight: bold;">popd</span>
+</pre>
+</div>
+
+<p>
+After that I setup the config.yaml file and staged the
+starsolo.snakemake file to process the data.
+</p>
+
+<p>
+Then after getting it wrong the first time I figured out that this
+dataset was 10x Chromium v2 chemistry and I needed to adjust the UMI
+and permit lists from the multiome ARC settings I was using for the
+other recent data.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org66c6771" class="outline-2">
+<h2 id="org66c6771"><span class="section-number-2">14</span> working on getting snakemake working at Caltech HPC.</h2>
+<div class="outline-text-2" id="text-14">
+<div class="org-src-container">
+<pre class="src src-bash">snakemake --use-singularity --snakefile starsolo.snakefile <span style="font-style: italic;">\</span>
+  --cluster <span style="font-style: italic;">"sbatch --time 1-0 --mem {resources.mem_mb} --cpus-per-task {threads}"</span> <span style="font-style: italic;">\</span>
+  --jobs 16 --cores 16
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash">snakemake --use-singularity <span style="font-style: italic;">\</span>
+          --singularity-args <span style="font-style: italic;">"-B /woldlab/loxcyc/home/diane/proj/genome/GRCh38-V29-male-2.7.8a:$(</span><span style="font-weight: bold;">pwd</span><span style="font-style: italic;">)/genome:ro "</span> <span style="font-style: italic;">\</span>
+          --snakefile starsolo.snakefile <span style="font-style: italic;">\</span>
+          --jobs 20
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf1e5afb" class="outline-2">
+<h2 id="orgf1e5afb"><span class="section-number-2">15</span> Forgot to update for quite some time.</h2>
+<div class="outline-text-2" id="text-15">
+<p>
+I made a bunch of progress.
+</p>
+
+<p>
+I have a pipeline that can go from one configuration file to
+submitting data to the DCC. It's modularized, though doesn't use
+conda. Though the scientifically meaningful components use
+singularity. (Running STAR)
+</p>
+
+
+<p>
+I broke several components out and submitted the matrix exchange
+utility to pypi. I should commit fixes to my encoded_client library
+and post that too.
+</p>
+
+<p>
+I do have requests for generating a UMAP plot, and Anshul would like a
+sequencing saturation plot.
+</p>
+
+
+<div id="org9c39886" class="figure">
+<p><img src="./_images/example-sequence-saturation.png" alt="example-sequence-saturation.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>An example of the sequence saturation plot reported by cell ranger</p>
+</div>
+
+<p>
+I put together a presentation for Nov 17 on why the ENCODE full
+annotation with STAR EM is probably fine.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org00c6311" class="outline-2">
+<h2 id="org00c6311"><span class="section-number-2">16</span> Checking for duplicates</h2>
+<div class="outline-text-2" id="text-16">
+<p>
+  <span class="timestamp-wrapper"><span class="timestamp">&lt;2021-11-24 Wed&gt;</span></span>
+Anshul was asking for an attempt at estimating the the sequencing
+saturation for the RNA multiome samples.
+</p>
+
+<p>
+This is the 10x write up on how the value is calculated
+<a href="https://kb.10xgenomics.com/hc/en-us/articles/115003646912-How-is-sequencing-saturation-calculated">https://kb.10xgenomics.com/hc/en-us/articles/115003646912-How-is-sequencing-saturation-calculated</a>-
+STAR produces a single value which seems to be similar to the method
+described above&#x2026; However 10x also produces a plot, and we're not
+quite sure how.
+</p>
+
+<p>
+In an effort to develop a similar plot I tried using picard's mark
+duplicate command like I found in the scATAC pipeline but it didn't
+seem to work. the generated bam file lacked any of the DT tags they
+implied.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">java -jar picard-2.25.7.jar MarkDuplicates <span style="font-style: italic;">\</span>
+     --INPUT Aligned.sortedByCoord.out.bam <span style="font-style: italic;">\</span>
+     --OUTPUT ENCLB002DZK_genome.bam <span style="font-style: italic;">\</span>
+     --METRICS_FILE ENCLB002DZK.markdup_stats <span style="font-style: italic;">\</span>
+     --VALIDATION_STRINGENCY LENIENT  <span style="font-style: italic;">\</span>
+     --REMOVE_DUPLICATES false <span style="font-style: italic;">\</span>
+     --BARCODE_TAG CB
+</pre>
+</div>
+
+<p>
+I'm low on disk space so I want to delete the extra bam file
+</p>
+
+<p>
+But I tried this and didn't find any tags and as far as I can tell
+from
+<a href="https://gatk.broadinstitute.org/hc/en-us/articles/360037052812-MarkDuplicates-Picard">https://gatk.broadinstitute.org/hc/en-us/articles/360037052812-MarkDuplicates-Picard</a>-
+DT should have been the tag.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">samtools view ENCLB002DZK_genome.bam | grep DT: | head
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org74bf6e8" class="outline-2">
+<h2 id="org74bf6e8"><span class="section-number-2">17</span> Building indexes</h2>
+<div class="outline-text-2" id="text-17">
+<p>
+Command to build indexes on HPC.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">snakemake --use-singularity <span style="font-style: italic;">\</span>
+          --snakefile ~/woldlab-rna-seq/workflow/build-index.snakefile <span style="font-style: italic;">\</span>
+          --cluster <span style="font-style: italic;">"sbatch --time 1-0 --mem {resources.mem_mb} --cpus-per-task {threads}"</span> <span style="font-style: italic;">\</span>
+          --jobs 20 --cores 20
+
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash">snakemake --use-singularity --snakefile ~/woldlab-rna-seq/workflow/process-encode-10x.snakefile <span style="font-style: italic;">\</span>
+  --cluster <span style="font-style: italic;">"sbatch --time 1-0 --mem {resources.mem_mb} --cpus-per-task {threads}"</span> <span style="font-style: italic;">\</span>
+  --jobs 20 --cores 20
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgec5331d" class="outline-2">
+<h2 id="orgec5331d"><span class="section-number-2">18</span> Trying to get split-seq working</h2>
+<div class="outline-text-2" id="text-18">
+<p>
+Alex first suggested something like this command
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">STAR --genomeDir genome <span style="font-style: italic;">\</span>
+     --readFilesIn ENCFF955PGO_R2.fastq.gz ENCFF910URO_R1.fastq.gz <span style="font-style: italic;">\</span>
+     --readFilesCommand zcat <span style="font-style: italic;">\</span>
+     --runThreadN 16 <span style="font-style: italic;">\</span>
+     --genomeLoad NoSharedMemory <span style="font-style: italic;">\</span>
+     --outFilterMultimapNmax 20 <span style="font-style: italic;">\</span>
+     --alignSJoverhangMin 8 <span style="font-style: italic;">\</span>
+     --alignSJDBoverhangMin 1 <span style="font-style: italic;">\</span>
+     --outFilterMismatchNmax 999 <span style="font-style: italic;">\</span>
+     --outFilterMismatchNoverReadLmax 0.04 <span style="font-style: italic;">\</span>
+     --alignIntronMin 20 <span style="font-style: italic;">\</span>
+     --alignIntronMax 1000000 <span style="font-style: italic;">\</span>
+     --alignMatesGapMax 1000000 <span style="font-style: italic;">\</span>
+     --outSAMheaderCommentFile COfile.txt <span style="font-style: italic;">\</span>
+     --outSAMheaderHD @HD VN:1.4 SO:coordinate <span style="font-style: italic;">\</span>
+     --outSAMunmapped Within <span style="font-style: italic;">\</span>
+     --outFilterType BySJout <span style="font-style: italic;">\</span>
+     --outSAMattributes NH HI AS NM MD CB CR CY UB UR UY gx gn <span style="font-style: italic;">\</span>
+     --outSAMstrandField intronMotif <span style="font-style: italic;">\</span>
+     --outSAMtype BAM SortedByCoordinate <span style="font-style: italic;">\</span>
+     --sjdbScore 1 <span style="font-style: italic;">\</span>
+     --clipAdapterType CellRanger4 <span style="font-style: italic;">\</span>
+     --clip5pAdapterSeq AAGCAGTGGTATCAACGCAGAGTGAATGGG <span style="font-style: italic;">\</span>
+     --outFilterScoreMin 30 <span style="font-style: italic;">\</span>
+     --soloUMIdedup 1MM_CR <span style="font-style: italic;">\</span>
+     --soloUMIfiltering MultiGeneUMI_CR <span style="font-style: italic;">\</span>
+     --soloType CB_UMI_Complex <span style="font-style: italic;">\</span>
+     --soloCellFilter EmptyDrops_CR <span style="font-style: italic;">\</span>
+     --soloCBmatchWLtype ParseBio_ED3 <span style="font-style: italic;">\</span>
+     --soloCBposition 0_0_0_7 0_8_0_15 0_16_0_23 <span style="font-style: italic;">\</span>
+     --soloUMIposition 0_24_0_31 <span style="font-style: italic;">\</span>
+     --soloCBwhitelist parse-splitseq-v1/CB23.txt parse-splitseq-v1/CB23.txt parse-splitseq-v1/CB1.txt <span style="font-style: italic;">\</span>
+     --soloStrand Unstranded <span style="font-style: italic;">\</span>
+     --soloFeatures Gene SJ <span style="font-style: italic;">\</span>
+     --soloMultiMappers Unique EM <span style="font-style: italic;">\</span>
+     --limitBAMsortRAM 68719476736 <span style="font-style: italic;">\</span>
+     --outTmpDir _STARtmp <span style="font-style: italic;">\</span>
+     --outFileNamePrefix ./
+</pre>
+</div>
+
+<p>
+But the clip5padapter parameter didnt work.
+</p>
+
+<p>
+So I tried using cutadapt inline.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">STAR --genomeDir genome <span style="font-style: italic;">\</span>
+     --readFilesIn ENCFF955PGO_R2.fastq.gz ENCFF910URO_R1.fastq.gz <span style="font-style: italic;">\</span>
+     --readFilesCommand <span style="font-style: italic;">"cutadapt --cores 8 -g AAGCAGTGGTATCAACGCAGAGTGAATGGG"</span> <span style="font-style: italic;">\</span>
+     --runThreadN 16 <span style="font-style: italic;">\</span>
+     --genomeLoad NoSharedMemory <span style="font-style: italic;">\</span>
+     --outFilterMultimapNmax 20 <span style="font-style: italic;">\</span>
+     --alignSJoverhangMin 8 <span style="font-style: italic;">\</span>
+     --alignSJDBoverhangMin 1 <span style="font-style: italic;">\</span>
+     --outFilterMismatchNmax 999 <span style="font-style: italic;">\</span>
+     --outFilterMismatchNoverReadLmax 0.04 <span style="font-style: italic;">\</span>
+     --alignIntronMin 20 <span style="font-style: italic;">\</span>
+     --alignIntronMax 1000000 <span style="font-style: italic;">\</span>
+     --alignMatesGapMax 1000000 <span style="font-style: italic;">\</span>
+     --outSAMheaderCommentFile COfile.txt <span style="font-style: italic;">\</span>
+     --outSAMheaderHD @HD VN:1.4 SO:coordinate <span style="font-style: italic;">\</span>
+     --outSAMunmapped Within <span style="font-style: italic;">\</span>
+     --outFilterType BySJout <span style="font-style: italic;">\</span>
+     --outSAMattributes NH HI AS NM MD CB CR CY UB UR UY gx gn <span style="font-style: italic;">\</span>
+     --outSAMstrandField intronMotif <span style="font-style: italic;">\</span>
+     --outSAMtype BAM SortedByCoordinate <span style="font-style: italic;">\</span>
+     --sjdbScore 1 <span style="font-style: italic;">\</span>
+     --clipAdapterType CellRanger4 <span style="font-style: italic;">\</span>
+     --outFilterScoreMin 30 <span style="font-style: italic;">\</span>
+     --soloUMIdedup 1MM_CR <span style="font-style: italic;">\</span>
+     --soloUMIfiltering MultiGeneUMI_CR <span style="font-style: italic;">\</span>
+     --soloType CB_UMI_Complex <span style="font-style: italic;">\</span>
+     --soloCellFilter EmptyDrops_CR <span style="font-style: italic;">\</span>
+     --soloCBmatchWLtype ParseBio_ED3 <span style="font-style: italic;">\</span>
+     --soloCBposition 0_0_0_7 0_8_0_15 0_16_0_23 <span style="font-style: italic;">\</span>
+     --soloUMIposition 0_24_0_31 <span style="font-style: italic;">\</span>
+     --soloCBwhitelist parse-splitseq-v1/CB23.txt parse-splitseq-v1/CB23.txt parse-splitseq-v1/CB1.txt <span style="font-style: italic;">\</span>
+     --soloStrand Unstranded <span style="font-style: italic;">\</span>
+     --soloFeatures Gene SJ <span style="font-style: italic;">\</span>
+     --soloMultiMappers Unique EM <span style="font-style: italic;">\</span>
+     --limitBAMsortRAM 68719476736 <span style="font-style: italic;">\</span>
+     --outTmpDir _STARtmp <span style="font-style: italic;">\</span>
+     --outFileNamePrefix ./
+</pre>
+</div>
+
+<p>
+but it still didn't work so I asked him and he said there were some
+commits missing and gave me a further altered command line.
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-bash">STAR --genomeDir genome <span style="font-style: italic;">\</span>
+     --readFilesIn ENCFF955PGO_R2.fastq.gz ENCFF910URO_R1.fastq.gz <span style="font-style: italic;">\</span>
+     --readFilesCommand <span style="font-style: italic;">"cutadapt --cores 8 -g AAGCAGTGGTATCAACGCAGAGTGAATGGG"</span> <span style="font-style: italic;">\</span>
+     --runThreadN 16 <span style="font-style: italic;">\</span>
+     --genomeLoad NoSharedMemory <span style="font-style: italic;">\</span>
+     --outFilterMultimapNmax 20 <span style="font-style: italic;">\</span>
+     --alignSJoverhangMin 8 <span style="font-style: italic;">\</span>
+     --alignSJDBoverhangMin 1 <span style="font-style: italic;">\</span>
+     --outFilterMismatchNmax 999 <span style="font-style: italic;">\</span>
+     --outFilterMismatchNoverReadLmax 0.04 <span style="font-style: italic;">\</span>
+     --alignIntronMin 20 <span style="font-style: italic;">\</span>
+     --alignIntronMax 1000000 <span style="font-style: italic;">\</span>
+     --alignMatesGapMax 1000000 <span style="font-style: italic;">\</span>
+     --outSAMheaderCommentFile COfile.txt <span style="font-style: italic;">\</span>
+     --outSAMheaderHD @HD VN:1.4 SO:coordinate <span style="font-style: italic;">\</span>
+     --outSAMunmapped Within <span style="font-style: italic;">\</span>
+     --outFilterType BySJout <span style="font-style: italic;">\</span>
+     --outSAMattributes NH HI AS NM MD CB CR CY UB UR UY gx gn <span style="font-style: italic;">\</span>
+     --outSAMstrandField intronMotif <span style="font-style: italic;">\</span>
+     --outSAMtype BAM SortedByCoordinate <span style="font-style: italic;">\</span>
+     --sjdbScore 1 <span style="font-style: italic;">\</span>
+     --clipAdapterType CellRanger4 <span style="font-style: italic;">\</span>
+     --outFilterScoreMin 30 <span style="font-style: italic;">\</span>
+     --soloUMIdedup 1MM_CR <span style="font-style: italic;">\</span>
+     --soloUMIfiltering MultiGeneUMI_CR <span style="font-style: italic;">\</span>
+     --soloType CB_UMI_Complex <span style="font-style: italic;">\</span>
+     --soloCellFilter EmptyDrops_CR <span style="font-style: italic;">\</span>
+     --soloCBmatchWLtype ParseBio_ED3 <span style="font-style: italic;">\</span>
+     --soloCBposition 0_0_0_7 0_8_0_15 0_16_0_23 <span style="font-style: italic;">\</span>
+     --soloUMIposition 0_24_0_31 <span style="font-style: italic;">\</span>
+     --soloCBwhitelist parse-splitseq-v1/CB23.txt parse-splitseq-v1/CB23.txt parse-splitseq-v1/CB1.txt <span style="font-style: italic;">\</span>
+     --soloStrand Unstranded <span style="font-style: italic;">\</span>
+     --soloFeatures Gene SJ <span style="font-style: italic;">\</span>
+     --soloMultiMappers Unique EM <span style="font-style: italic;">\</span>
+     --limitBAMsortRAM 68719476736 <span style="font-style: italic;">\</span>
+     --outTmpDir _STARtmp <span style="font-style: italic;">\</span>
+     --outFileNamePrefix ./
+</pre>
+</div>
+
+
+<p>
+Now trying commit b195c19987a382b1e4e80cccacd88144c4260ec4
+</p>
+
+<p>
+Read1 should cDNA and Read2 barcode.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">STAR --genomeDir genome <span style="font-style: italic;">\</span>
+     --readFilesIn ENCFF910URO_R1.fastq.gz ENCFF955PGO_R2.fastq.gz <span style="font-style: italic;">\</span>
+     --readFilesCommand <span style="font-style: italic;">"cutadapt --cores 8 -g AAGCAGTGGTATCAACGCAGAGTGAATGGG"</span> <span style="font-style: italic;">\</span>
+     --runThreadN 16 <span style="font-style: italic;">\</span>
+     --genomeLoad NoSharedMemory <span style="font-style: italic;">\</span>
+     --outFilterMultimapNmax 20 <span style="font-style: italic;">\</span>
+     --alignSJoverhangMin 8 <span style="font-style: italic;">\</span>
+     --alignSJDBoverhangMin 1 <span style="font-style: italic;">\</span>
+     --outFilterMismatchNmax 999 <span style="font-style: italic;">\</span>
+     --outFilterMismatchNoverReadLmax 0.04 <span style="font-style: italic;">\</span>
+     --alignIntronMin 20 <span style="font-style: italic;">\</span>
+     --alignIntronMax 1000000 <span style="font-style: italic;">\</span>
+     --alignMatesGapMax 1000000 <span style="font-style: italic;">\</span>
+     --outSAMheaderCommentFile COfile.txt <span style="font-style: italic;">\</span>
+     --outSAMheaderHD @HD VN:1.4 SO:coordinate <span style="font-style: italic;">\</span>
+     --outSAMunmapped Within <span style="font-style: italic;">\</span>
+     --outFilterType BySJout <span style="font-style: italic;">\</span>
+     --outSAMattributes NH HI AS NM MD CB CR CY UB UR UY gx gn <span style="font-style: italic;">\</span>
+     --outSAMstrandField intronMotif <span style="font-style: italic;">\</span>
+     --outSAMtype BAM SortedByCoordinate <span style="font-style: italic;">\</span>
+     --sjdbScore 1 <span style="font-style: italic;">\</span>
+     --clipAdapterType CellRanger4 <span style="font-style: italic;">\</span>
+     --outFilterScoreMin 30 <span style="font-style: italic;">\</span>
+     --soloUMIdedup 1MM_CR <span style="font-style: italic;">\</span>
+     --soloUMIfiltering MultiGeneUMI_CR <span style="font-style: italic;">\</span>
+     --soloType CB_UMI_Complex <span style="font-style: italic;">\</span>
+     --soloCellFilter EmptyDrops_CR <span style="font-style: italic;">\</span>
+     --soloCBmatchWLtype EditDist_2 <span style="font-style: italic;">\</span>
+     --clip5pAdapterSeq AAGCAGTGGTATCAACGCAGAGTGAATGGG <span style="font-style: italic;">\</span>
+     --soloCBposition 0_10_0_17 0_48_0_55 0_78_0_85
+     --soloUMIposition 0_0_0_9
+     --soloCBwhitelist parse-splitseq-v1/CB23.txt parse-splitseq-v1/CB23.txt parse-splitseq-v1/CB1.txt <span style="font-style: italic;">\</span>
+     --soloStrand Forward <span style="font-style: italic;">\</span>
+     --soloFeatures GeneFull_Ex50pAS SJ <span style="font-style: italic;">\</span>
+     --soloMultiMappers Unique EM <span style="font-style: italic;">\</span>
+     --limitBAMsortRAM 68719476736 <span style="font-style: italic;">\</span>
+     --outTmpDir _STARtmp <span style="font-style: italic;">\</span>
+     --outFileNamePrefix ./
+</pre>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Diane Trout</p>
-<p class="date">Created: 2020-11-16 Mon 16:20</p>
+<p class="date">Created: 2021-12-22 Wed 11:33</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
