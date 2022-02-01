@@ -1,0 +1,14 @@
+# cDNA
+read1:
+  - ENCFF475AKY
+  - ENCFF474XWT
+# barcode cell+UMI
+read2:
+  - ENCFF421HXO
+  - ENCFF575ZNZ
+intron: True
+
+genome_dir: "~/proj/genome/GRCh38-V29-male-2.7.8a"
+allow_list: "~/proj/illumina/cellranger-arc-2.0.0/lib/python/cellranger/barcodes/737K-arc-v1.txt.gz"
+star_command: "~/proj/STAR/bin/Linux_x86_64"
+outdir: "~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/liver/ENCSR602SGU_16f_nuc"
