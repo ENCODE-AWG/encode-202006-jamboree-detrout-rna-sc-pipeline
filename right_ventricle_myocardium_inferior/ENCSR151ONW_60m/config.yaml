@@ -1,0 +1,24 @@
+automatic_submission: true
+award: UM1HG009443
+description: snRNA on human right ventricle myocardium inferior. Please note that
+  this experiment is part of 10x multiome and has a corresponding scATAC experiment
+  (ENCSR628POB)
+disk_mb: 51200
+encode_portal_host: encd-6248-24bd77146-qing.demo.encodedcc.org
+experiment_accession: ENCSR151ONW
+genome_accession: TSTFF984371
+genome_index_url: https://woldlab.caltech.edu/~diane/genome/GRCh38-V29-male-2.7.8a.tar.gz
+include_intron: true
+inclusion_accession: 737K-arc-v1(GEX)
+lab: /labs/barbara-wold/
+library_accession: ENCLB297FDO
+mem_mb: 65536
+read1:
+- ENCFF424PGM
+- ENCFF989IIG
+read2:
+- ENCFF906BLI
+- ENCFF859KJN
+stranded: Forward
+umi_length: 12
+

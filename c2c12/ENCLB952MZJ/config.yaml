@@ -1,0 +1,22 @@
+# splitseq
+automatic_submission: true
+award: UM1HG009443
+description: short-read deep Split-seq single-cell myoblast 1,000 cell lib
+disk_mb: 51200
+encode_portal_host: encd-6248-24bd77146-qing.demo.encodedcc.org
+experiment_accession: ENCSR388EIN
+genome_accession: TSTFF635432
+genome_index_url: https://woldlab.caltech.edu/~diane/genome/mm10-M21-male-2.7.9a/mm10-M21-male-2.7.9a-star.tar.gz
+include_intron: false
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library_accession: ENCLB952MZJ
+mem_mb: 65536
+read1:
+- ENCFF245RLN
+read2:
+- ENCFF094EDS
+star_container: https://woldlab.caltech.edu/~diane/containers/star-bash-dev_EoI_2021-12-22-b195c199.sif
+stranded: Forward
+
+

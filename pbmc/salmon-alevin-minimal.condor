@@ -1,0 +1,46 @@
+universe=vanilla
+
+log=logs/salmon-alevin.log
+output=logs/salmon-alevin.$(process).out
+error=logs/salmon-alevin.$(process).out
+
+request_cpus=16
+request_memory=20G
+
+HOME=/woldlab/loxcyc/home/diane
+PROJECT_DIR=$(HOME)/proj/encode-202006-jamboree-detrout-rna-sc-pipeline
+GENOME_DIR=$(PROJECT_DIR)/genome/mm10-M21_minimal-male
+EXPERIMENT_DIR=$(PROJECT_DIR)/pbmc
+FASTQ_DIR=$(EXPERIMENT_DIR)/pbmc3k_fastqs
+SALMON=$(PROJECT_DIR)/salmon-container/salmon-unstable.simg
+
+READ1=$(FASTQ_DIR)/read-RA_si-ACGCGGAA_lane-001-chunk-001.fastq.gz $(FASTQ_DIR)/read-RA_si-CGCTATCC_lane-001-chunk-001.fastq.gz $(FASTQ_DIR)/read-RA_si-GTTGCATG_lane-001-chunk-001.fastq.gz $(FASTQ_DIR)/read-RA_si-TAAATCGT_lane-001-chunk-001.fastq.gz
+
+READ2=$(FASTQ_DIR)/read-RA_si-ACGCGGAA_lane-002-chunk-000.fastq.gz $(FASTQ_DIR)/read-RA_si-CGCTATCC_lane-002-chunk-000.fastq.gz $(FASTQ_DIR)/read-RA_si-GTTGCATG_lane-002-chunk-000.fastq.gz $(FASTQ_DIR)/read-RA_si-TAAATCGT_lane-002-chunk-000.fastq.gz
+
+executable=/usr/bin/singularity
+
+
+arguments="run $(SALMON) alevin \
+  -l ISR \
+  -1 $(READ1) \
+  -2 $(READ2) \
+  --chromium \
+  -i $(GENOME_DIR)/salmon_index \
+  -p 16 \
+  -o $(EXPERIMENT_DIR)/alevin_minimal \
+  --dumpMtx \
+  --tgMap $(GENOME_DIR)/txp2gene.tsv"
+queue
+
+arguments="run $(SALMON) alevin \
+  -l ISR \
+  -1 $(READ1) \
+  -2 $(READ2) \
+  --chromium \
+  -i $(GENOME_DIR)/salmon_index_decoy \
+  -p 16 \
+  -o $(EXPERIMENT_DIR)/alevin_decoy_minimal \
+  --dumpMtx \
+  --tgMap $(GENOME_DIR)/txp2gene.tsv"
+queue

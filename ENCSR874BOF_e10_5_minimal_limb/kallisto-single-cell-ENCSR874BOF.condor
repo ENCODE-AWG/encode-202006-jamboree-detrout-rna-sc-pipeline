@@ -1,0 +1,12 @@
+universe=vanilla
+
+log=logs/kallisto-bus.log
+output=logs/kallisto-bus.$(process).out
+error=logs/kallisto-bus.$(process).out
+
+request_cpus=16
+request_memory=20G
+
+executable=kallisto-single-cell-ENCSR874BOF.sh
+
+queue

@@ -1,0 +1,25 @@
+#!/usr/bin/condor_submit
+
+universe=vanilla
+log=salmon_decoy_e10.5/salmon_decoy_c1_e10.5.log
+output=salmon_decoy_e10.5/salmon_decoy_c1_e10.5.out
+error=salmon_decoy_e10.5/salmon_decoy_c1_e10.5.out
+
+HOME=/woldlab/loxcyc/home/diane
+PROJECT=$(HOME)/proj/encode-202006-jamboree-detrout-rna-sc-pipeline
+SINGULARITY_IMAGE=$(PROJECT)/salmon-container/salmon-unstable.simg 
+ENCODE_GENOME=$(PROJECT)/genome/mm10-M21-male/
+TARGET_DIR=salmon_decoy_e10.5
+THREADS=16
+
+request_cpus=$(THREADS)
+executable=/usr/bin/singularity
+
+
+arguments="run $(SINGULARITY_IMAGE) quant \
+  -p $(THREADS) \
+  -i $(ENCODE_GENOME)/salmon_index_decoy \
+  -o $(TARGET_DIR) \
+  --libType U \
+  -r c1_e10.5_ENCSR535LMC_spikes.fastq.gz"
+queue

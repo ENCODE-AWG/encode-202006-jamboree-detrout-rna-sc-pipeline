@@ -1,0 +1,27 @@
+# cDNA
+read1:
+  - ENCFF067ABO
+  - ENCFF434RFM
+# barcode cell+UMI
+read2:
+  - ENCFF895EDQ
+  - ENCFF272DQZ
+include_intron: True
+stranded: "Forward"
+experiment_accession: "ENCSR281RIH"
+description: "Please note that this experiment is part of 10x multiome and has a corresponding scATAC experiment (ENCSR869LEV)."
+library_accession: "ENCLB513JLQ"
+umi_length: 12
+
+# STAR index built with using 10x provided genome and gtf file (minimal)
+# genome_dir: ~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/GRCh38-arc2.0-2.7.8a
+# STAR index built with ENCODE genome and gtf filtered like 10x
+# genome_dir: "~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/GRCh38-V29_minimal-male/"
+# STAR index built with full ENCODE genome
+genome_dir: "~/proj/genome/GRCh38-V29-male-2.7.8a"
+allow_list: "~/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/737K-arc-v1.txt"
+star_command: "~/proj/STAR_2.7.9a-2021-06-25"
+# star_command: "~/proj/STAR_dev_EoI_2.7.9a_2021-09-10"                                                                
+
+mem_mb: 49152
+disk_mb: 51200   

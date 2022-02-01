@@ -1,0 +1,15 @@
+universe=vanilla
+
+log=logs/kallisto-bus-minimal.log
+output=logs/kallisto-bus-minimal.$(process).out
+error=logs/kallisto-bus-minimal.$(process).out
+
+request_cpus=16
+request_memory=20G
+
+executable=kallisto-minimal-wrapper.sh
+arguments="--target kallisto-pbmc3k-minimal"
+queue
+
+arguments="--em --target kallisto-em-pbmc3k-minimal"
+queue

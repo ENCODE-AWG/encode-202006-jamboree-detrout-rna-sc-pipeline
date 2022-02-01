@@ -1,0 +1,28 @@
+universe=vanilla
+
+HOME=/woldlab/loxcyc/home/diane
+PROJECT_DIR=$(HOME)/proj/encode-202006-jamboree-detrout-rna-sc-pipeline
+FASTQ_DIR=$(PROJECT_DIR)/ENCSR874BOF_e10_5_limb
+ANALYSIS_DIR=$(PROJECT_DIR)/ENCSR874BOF_e10_5_minimal_limb
+GENOME_DIR=$(PROJECT_DIR)/genome/mm10-M21_minimal-male
+
+log=logs/cellranger.log
+output=logs/cellranger.$(process).out
+error=logs/cellranger.$(process).out
+
+environment="PATH=/woldlab/loxcyc/home/diane/proj/illumina/cellranger-3.1.0:/woldlab/castor/proj/programs/bcl2fastq-2.19.1/bin:/woldlab/loxcyc/home/diane/bin:/woldlab/loxcyc/home/diane/.local/bin:/usr/bin:/bin"
+
+request_cpus=16
+request_memory=100G
+request_disk=800G
+
+executable=/woldlab/loxcyc/home/diane/proj/illumina/cellranger-3.1.0/cellranger
+
+initial_dir=$(ANALYSIS_DIR)
+arguments="count \
+  --id=ENCSR874BOF-minimal-e10_5-count-cells10000 \
+  --sample ENCSR874BOF \
+  --transcriptome $(GENOME_DIR)/mm10-M21_minimal-male/ \
+  --expect-cells 10000 \
+  --fastqs $(FASTQ_DIR) "
+queue

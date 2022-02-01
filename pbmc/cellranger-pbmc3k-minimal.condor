@@ -1,0 +1,29 @@
+universe=vanilla
+
+HOME=/woldlab/loxcyc/home/diane
+PROJECT_DIR=$(HOME)/proj/encode-202006-jamboree-detrout-rna-sc-pipeline
+# The 10x genome index has the same name as the genome directory
+# so it ends up getting repeated
+GENOME_DIR=$(PROJECT_DIR)/genome/mm10-M21_minimal-male/
+FASTQ_DIR=$(PROJECT_DIR)/pbmc/pbmc3k_fastqs
+ANALYSIS_DIR=$(PROJECT_DIR)/pbmc
+
+log=$(ANALYSIS_DIR)/logs/cellranger-pbmc3k-minimal.log
+output=$(ANALYSIS_DIR)/logs/cellranger-pbmc3k-minimal.$(process).out
+error=$(ANALYSIS_DIR)/logs/cellranger-pbmc3k-minimal.$(process).out
+
+environment="PATH=/woldlab/loxcyc/home/diane/proj/illumina/cellranger-3.1.0:/woldlab/castor/proj/programs/bcl2fastq-2.19.1/bin:/woldlab/loxcyc/home/diane/bin:/woldlab/loxcyc/home/diane/.local/bin:/usr/bin:/bin"
+
+request_cpus=16
+request_memory=100G
+request_disk=800G
+
+executable=/woldlab/loxcyc/home/diane/proj/illumina/cellranger-3.1.0/cellranger
+
+initial_dir=$(ANALYSIS_DIR)
+arguments="count \
+  --id=cellranger-pbmc3k-minimal \
+  --transcriptome $(GENOME_DIR)/mm10-M21_minimal-male/ \
+  --expect-cells 3000 \
+  --fastqs $(FASTQ_DIR) "
+queue

@@ -1,0 +1,22 @@
+automatic_submission: false
+award: UM1HG009443
+description: snRNA on human psoas muscle. Please note that this experiment is part
+  of 10x multiome and has a correspoding scATAC experiment (ENCSR332XEW).
+disk_mb: 51200
+encode_portal_host: encd-6248-24bd77146-qing.demo.encodedcc.org
+experiment_accession: ENCSR005TCL
+genome_accession: TSTFF984371
+genome_index_url: https://woldlab.caltech.edu/~diane/genome/GRCh38-V29-male-2.7.8a.tar.gz
+include_intron: true
+inclusion_accession: 737K-arc-v1(GEX)
+lab: /labs/barbara-wold/
+library_accession: ENCLB549KAN
+mem_mb: 65536
+read1:
+- ENCFF121UIQ
+- ENCFF663ZRK
+read2:
+- ENCFF194KTM
+- ENCFF364QFJ
+stranded: Forward
+umi_length: 12

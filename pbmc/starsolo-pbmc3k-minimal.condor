@@ -1,0 +1,61 @@
+universe=vanilla
+
+HOME=/woldlab/loxcyc/home/diane
+STAR_DIR=$(HOME)/proj/STAR/bin/Linux_x86_64
+PROJECT_ROOT=$(HOME)/proj/encode-202006-jamboree-detrout-rna-sc-pipeline
+GENOME_ROOT=$(PROJECT_ROOT)/genome
+EXPERIMENT_ROOT=$(PROJECT_ROOT)/pbmc
+ANALYSIS_DIR=$(EXPERIMENT_ROOT)/starsolo-pbmc3k-minimal
+FASTQ_DIR=$(EXPERIMENT_ROOT)/pbmc3k_fastqs
+GENOME=mm10
+ANNOTATION=M21_minimal
+SEX=male
+GENOME_TRIPLET=$(GENOME)-$(ANNOTATION)-$(SEX)
+GENOME_DIR=$(GENOME_ROOT)/$(GENOME_TRIPLET)
+
+READ1=$(FASTQ_DIR)/read-RA_si-ACGCGGAA_lane-001-chunk-001.fastq.gz,$(FASTQ_DIR)/read-RA_si-CGCTATCC_lane-001-chunk-001.fastq.gz,$(FASTQ_DIR)/read-RA_si-GTTGCATG_lane-001-chunk-001.fastq.gz,$(FASTQ_DIR)/read-RA_si-TAAATCGT_lane-001-chunk-001.fastq.gz
+
+READ2=$(FASTQ_DIR)/read-RA_si-ACGCGGAA_lane-002-chunk-000.fastq.gz,$(FASTQ_DIR)/read-RA_si-CGCTATCC_lane-002-chunk-000.fastq.gz,$(FASTQ_DIR)/read-RA_si-GTTGCATG_lane-002-chunk-000.fastq.gz,$(FASTQ_DIR)/read-RA_si-TAAATCGT_lane-002-chunk-000.fastq.gz
+
+log=$(EXPERIMENT_ROOT)/logs/starsolo-pbmc3k-minimal.$(Process).log
+output=$(EXPERIMENT_ROOT)/logs/starsolo-pbmc3k-minimal.$(Process).out
+error=$(EXPERIMENT_ROOT)/logs/starsolo-pbmc3k-minimal.$(Process).out
+
+THREADS=16
+request_cpus=$(THREADS)
+request_memory=30G
+request_disk=60G
+
+executable=$(STAR_DIR)/STAR
+transfer_executable=false
+
+arguments="--genomeDir $(GENOME_DIR) \
+           --readFilesIn $(READ1) $(READ2) \
+           --readFilesCommand zcat \
+	   --runThreadN $(THREADS) \
+	   --genomeLoad NoSharedMemory \
+	   --outFilterMultimapNmax 20 \
+	   --alignSJoverhangMin 8 \
+	   --alignSJDBoverhangMin 1 \
+	   --outFilterMismatchNmax 999 \
+	   --outFilterMismatchNoverReadLmax 0.04 \
+	   --alignIntronMin 20 \
+	   --alignIntronMax 1000000 \
+	   --alignMatesGapMax 1000000 \
+	   --outSAMheaderCommentFile COfile.txt \
+	   --outSAMheaderHD @HD VN:1.4 SO:coordinate \
+	   --outSAMunmapped Within \
+	   --outFilterType BySJout \
+	   --outSAMattributes NH HI AS NM MD CB UB \
+	   --outSAMtype BAM SortedByCoordinate \
+           --soloType CB_UMI_Simple \
+           --soloBarcodeReadLength 0 \
+           --soloCBwhitelist $(PROJECT_ROOT)/10xv2_whitelist.txt \
+	   --quantMode TranscriptomeSAM GeneCounts \
+	   --sjdbScore 1 \
+           --outTmpDir $(ANALYSIS_DIR)/_STARtmp \
+	   --outFileNamePrefix $(ANALYSIS_DIR)/ \
+	   --limitBAMsortRAM 90000000000 \
+           $(EXTRA_ARGS) \
+"
+queue

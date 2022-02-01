@@ -1,0 +1,32 @@
+
+universe=vanilla
+
+log=logs/salmon-alevin-decoy.log
+output=logs/salmon-alevin-decoy.$(process).out
+error=logs/salmon-alevin-decoy.$(process).out
+
+request_cpus=16
+request_memory=20G
+
+HOME=/woldlab/loxcyc/home/diane
+PROJECT_DIR=$(HOME)/proj/encode-202006-jamboree-detrout-rna-sc-pipeline
+FASTQ_DIR=$(PROJECT_DIR)/ENCSR874BOF_e10_5_limb
+GENOME_DIR=$(PROJECT_DIR)/genome/mm10-M21_minimal-male/
+EXPERIMENT_DIR=$(PROJECT_DIR)/ENCSR874BOF_e10_5_minimal_limb
+TARGET_DIR=$(EXPERIMENT_DIR)/alevin_decoy
+SALMON=$(PROJECT_DIR)/salmon-container/salmon-unstable.simg
+
+executable=/usr/bin/singularity
+
+arguments="run $(SALMON) alevin \
+  -l ISR \
+  -1 $(FASTQ_DIR)/ENCSR874BOF_S1_L001_R1_001.fastq.gz \
+  -2 $(FASTQ_DIR)/ENCSR874BOF_S1_L001_R2_001.fastq.gz \
+  --chromium \
+  -i $(GENOME_DIR)/salmon_index_decoy \
+  -p 16 \
+  -o $(TARGET_DIR) \
+  --dumpMtx \
+  --tgMap $(GENOME_DIR)/txp2gene.tsv"
+
+queue
