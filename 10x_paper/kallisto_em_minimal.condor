@@ -1,0 +1,35 @@
+#!/usr/bin/condor_submit
+
+universe=vanilla
+log=logs/kallisto_em_minimal.log
+output=logs/kallisto_em_minimal.$(process).out
+error=logs/kallisto_em_minimal.$(process).out
+
+THREADS=8
+
+request_cpus=$(THREADS)
+request_memory=4G
+executable=/woldlab/loxcyc/home/diane/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/10x_paper/kallisto-em-minimal.sh
+
+arguments="10x-1 /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/Chromium_20170819/SI-GA-D5_1/wold10x_1_e13_5_mouse_limb_S1_L008_R1_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/Chromium_20170819/SI-GA-D5_1/wold10x_1_e13_5_mouse_limb_S1_L008_R2_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/Chromium_20170819/SI-GA-D5_2/wold10x_1_e13_5_mouse_limb_S2_L008_R1_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/Chromium_20170819/SI-GA-D5_2/wold10x_1_e13_5_mouse_limb_S2_L008_R2_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/Chromium_20170819/SI-GA-D5_3/wold10x_1_e13_5_mouse_limb_S3_L008_R1_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/Chromium_20170819/SI-GA-D5_3/wold10x_1_e13_5_mouse_limb_S3_L008_R2_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/Chromium_20170819/SI-GA-D5_4/wold10x_1_e13_5_mouse_limb_S4_L008_R1_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/Chromium_20170819/SI-GA-D5_4/wold10x_1_e13_5_mouse_limb_S4_L008_R2_001.fastq.gz"
+queue
+arguments="10x-3 /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/SE731_new/outs/fastq_path/Wold10x-3_S1_L001_R1_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/SE731_new/outs/fastq_path/Wold10x-3_S1_L001_R2_001.fastq.gz"
+queue
+arguments="10x-4 /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/SE732_new/outs/fastq_path/Wold10x-4_S1_L002_R1_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/SE732_new/outs/fastq_path/Wold10x-4_S1_L002_R2_001.fastq.gz"
+queue
+arguments="10x-5 /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/SE733/outs/fastq_path/Wold10x-5_S1_L003_R1_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/SE733/outs/fastq_path/Wold10x-5_S1_L003_R2_001.fastq.gz"
+queue
+arguments="10x-6 /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/SE734/outs/fastq_path/Wold10x-6_S1_L004_R1_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/SE734/outs/fastq_path/Wold10x-6_S1_L004_R2_001.fastq.gz"
+queue
+arguments="10x-7 /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/FT-BB01669/FT-SA17497_FT-TS92801/FT-SA17497_S1_L004_R1_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/FT-BB01669/FT-SA17497_FT-TS92801/FT-SA17497_S1_L004_R2_001.fastq.gz"
+queue
+arguments="10x-8 /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/FT-BB01670/FT-SA17501_FT-TS92805/FT-SA17501_S2_L005_R1_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/FT-BB01670/FT-SA17501_FT-TS92805/FT-SA17501_S2_L005_R2_001.fastq.gz"
+queue
+arguments="10x-10 /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/FT-BB01672/FT-SA17509_FT-TS92813/FT-SA17509_S4_L007_R1_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/FT-BB01672/FT-SA17509_FT-TS92813/FT-SA17509_S4_L007_R2_001.fastq.gz"
+queue
+arguments="10x-11 /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/FT-BB01673/FT-SA17513_FT-TS92817/FT-SA17513_S5_L008_R1_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/FT-BB01673/FT-SA17513_FT-TS92817/FT-SA17513_S5_L008_R2_001.fastq.gz"
+queue
+arguments="10x-12 /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/FT-BB01674/FT-SA17517_FT-TS92821/FT-SA17517_S1_L001_R1_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/FT-BB01674/FT-SA17517_FT-TS92821/FT-SA17517_S1_L001_R2_001.fastq.gz"
+queue
+arguments="10x-13 /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/FT-BB01675/FT-SA17521_FT-TS92825/FT-SA17521_S2_L002_R1_001.fastq.gz /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/FT-BB01675/FT-SA17521_FT-TS92825/FT-SA17521_S2_L002_R2_001.fastq.gz"
+queue

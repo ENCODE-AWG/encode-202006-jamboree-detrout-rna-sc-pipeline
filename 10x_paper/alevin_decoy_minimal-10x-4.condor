@@ -1,0 +1,17 @@
+#!/usr/bin/condor_submit
+
+universe=vanilla
+log=logs/alevin_decoy_minimal.log
+output=logs/alevin_decoy_minimal-4.$(process).out
+error=logs/alevin_decoy_minimal-4.$(process).out
+
+THREADS=8
+HOME=/woldlab/loxcyc/home/diane
+TGMAP=/woldlab/loxcyc/home/diane/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21_minimal-male/txp2gene.tsv
+SALMON_SIMG=$(HOME)/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/salmon-container/salmon-unstable.simg
+
+request_cpus=$(THREADS)
+executable=/usr/bin/singularity
+
+arguments="run $(SALMON_SIMG) alevin -l ISR -2 /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/SE732_new/outs/fastq_path/Wold10x-4_S1_L002_R2_001.fastq.gz -1 /woldlab/loxcyc/home/diane/proj/brian-2018-01-10x/SE732_new/outs/fastq_path/Wold10x-4_S1_L002_R1_001.fastq.gz --chromium -i /woldlab/loxcyc/home/diane/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/genome/mm10-M21_minimal-male/salmon_index_decoy -p $(THREADS) -o /woldlab/loxcyc/home/diane/proj/encode-202006-jamboree-detrout-rna-sc-pipeline/10x_paper/alevin_decoy_minimal/10x-4 --dumpMtx --tgMap $(TGMAP)"
+queue
