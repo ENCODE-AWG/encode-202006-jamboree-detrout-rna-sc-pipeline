@@ -49,6 +49,8 @@ NOTEBOOKS = adrenal/ENCSR724KET_16f_nuc/compare-cell-ranger-to-star2.7.1a.html \
             compare-kallisto-fragment-and-transcript-length.html \
             generate-c1-pseudo-minimal-runs.html \
             single-cell-to-process.html \
+            SRP199641/SRX5908538_HCC1395_LLU_10x/compare-HCC1395-10x-v-encode-annotations_eoi_em.html \
+            SRP199641/SRX5908538_HCC1395_LLU_10x/compare-HCC1395-10x-v-encode-annotations_eoi_uniq.html \
             BP_comparison/dataset-algorithm-sample-cell-scatter-plots.html \
 	    BP_comparison/intersection-of-pass-filters.html \
             ENCLB129LMS-did-we-get-anywhere-close-split-seq.html \
