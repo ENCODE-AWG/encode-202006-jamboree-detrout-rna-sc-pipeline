@@ -5,7 +5,7 @@ disk_mb: 51200
 encode_portal_host: www.encodeproject.org
 experiment_accession: ENCSR224RWH
 genome_accession: encode:starsolo-mm10-M21-male-index
-include_intron: false
+include_intron: true
 inclusion_accession: 737K-arc-v1(GEX)
 lab: /labs/barbara-wold/
 library_accession: ENCLB275OVJ
