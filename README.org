@@ -2204,3 +2204,14 @@ I launched jobs on HPC using this slurm command.
 
 And I decided to archive all the final configuration files in
 [[file:production/stanford]]
+
+* Submitting configuration file
+
+For the 10X scRNA pipeline (and split seq) it would make sense to
+submit the pipeline configuratin files.
+
+Config files for runs (?): Strand settings were forward for all runs, which doesn’t match portal metadata 
+
+Only txt, json accepted for documents
+
+http://localhost:8888/notebooks/submit-scrna-seq-config-files.ipynb
