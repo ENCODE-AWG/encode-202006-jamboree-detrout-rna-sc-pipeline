@@ -4,7 +4,6 @@ description: Please note that this experiment is part of 10x multiome and has a 
   scATAC experiment (ENCSR318ERF).
 disk_mb: 51200
 encode_portal_host: www.encodeproject.org
-#encode_portal_host: test.encodedcc.org
 experiment_accession: ENCSR405YKM
 genome_accession: encode:starsolo-GRCh38-V29-male-index
 include_intron: true
