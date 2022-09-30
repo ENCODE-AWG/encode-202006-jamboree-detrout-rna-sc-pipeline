@@ -2215,3 +2215,41 @@ Config files for runs (?): Strand settings were forward for all runs, which does
 Only txt, json accepted for documents
 
 http://localhost:8888/notebooks/submit-scrna-seq-config-files.ipynb
+
+* Annika had another batch to process.
+
+https://www.encodeproject.org/experiments/ENCSR485GOL/ 335m read depth, 21k cells
+https://www.encodeproject.org/experiments/ENCSR906MRL/ 319m read depth, 22k cells
+https://www.encodeproject.org/experiments/ENCSR630LZS/ 396m read depth, 22k cells
+https://www.encodeproject.org/experiments/ENCSR084XKX/ 265m read depth, 21k cells
+https://www.encodeproject.org/experiments/ENCSR076ZLE/ 314m read depth, 13k cells
+https://www.encodeproject.org/experiments/ENCSR002SMQ/ 265m read depth, 22k cells
+https://www.encodeproject.org/experiments/ENCSR349AHE/ 386m read depth, 13k cells
+https://www.encodeproject.org/experiments/ENCSR762LML/ 330m read depth, 20k cells
+https://www.encodeproject.org/experiments/ENCSR540DHJ/ 408m read depth, 16k cells
+https://www.encodeproject.org/experiments/ENCSR488UUT/ 350m read depth, 16k cells
+https://www.encodeproject.org/experiments/ENCSR994VEG/ 365m read depth, 24k cells
+https://www.encodeproject.org/experiments/ENCSR157FDD/ 394m read depth, 20k cells
+https://www.encodeproject.org/experiments/ENCSR008CVR/ 608m read depth, 20k cells
+https://www.encodeproject.org/experiments/ENCSR455MGH/ 341m read depth, 17k cells
+https://www.encodeproject.org/experiments/ENCSR328GTN/ 266m read depth, 22k cells
+https://www.encodeproject.org/experiments/ENCSR489URW/ 317m read depth, 21k cells
+https://www.encodeproject.org/experiments/ENCSR204RHR/ 326m read depth, 23k cells
+https://www.encodeproject.org/experiments/ENCSR190TRK/ 242m read depth, 19k cells
+https://www.encodeproject.org/experiments/ENCSR991LHO/ 369m read depth, 15k cells
+https://www.encodeproject.org/experiments/ENCSR273JWD/ 443m read depth, 26k cells
+https://www.encodeproject.org/experiments/ENCSR654MFX/ 385m read depth, 17k cells
+https://www.encodeproject.org/experiments/ENCSR681GPY/ 217m read depth, 14k cells
+https://www.encodeproject.org/experiments/ENCSR962JKS/ 387m read depth, 12k cells
+https://www.encodeproject.org/experiments/ENCSR753YOZ/ 254m read depth, 23k cells
+https://www.encodeproject.org/experiments/ENCSR175TRJ/ 402m read depth, 20k cells
+https://www.encodeproject.org/experiments/ENCSR203YOV/ 370m read depth, 21k cells
+https://www.encodeproject.org/experiments/ENCSR763BII/ 354m read depth, 15k cells
+https://www.encodeproject.org/experiments/ENCSR788SNY/ 342m read depth, 15k cells
+https://www.encodeproject.org/experiments/ENCSR899GYX/ 349m read depth, 7.0k cells
+https://www.encodeproject.org/experiments/ENCSR056QLB/ 285m read depth, 9.6k cells
+
+
+https://www.encodeproject.org/experiments/ENCSR345CVL/ (not processed)
+ENCFF557AWH had an upload error.
+

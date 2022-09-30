@@ -1,0 +1,17 @@
+automatic_submission: true
+award: UM1HG009443
+description: Illumina short-read B6/Cast F1 adrenal P18-20mo female ont_match 2k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR201SNQ
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library_accession: ENCLB048VRI
+mem_mb: 65536
+read1: [ENCFF545RJB]
+read2: [ENCFF586VFG]
+star_container: https://woldlab.caltech.edu/~diane/containers/star-bash-2.7.10a.sif
+stranded: Forward
