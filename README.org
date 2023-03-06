@@ -1327,10 +1327,10 @@ I showed Barbara some of my current presentation and she had a few questions
   
 ** <2021-02-05 Fri> Working with Pacter lab on salmon/alevin-fry comparison
 
-   [[file:/scp:atlas:/home/diane/comparison/README.org::*Introduction][Introduction to 20 dataset alevin-fry comparison]]
+  Introduction to 20 dataset alevin-fry comparison
 
 So here I built Delaney's versions of kallisto and bustools in
-[[file:/scp:pongo:/woldlab/loxcyc/home/diane/proj/delaney][file:/scp:pongo:/woldlab/loxcyc/home/diane/proj/delaney]]
+[[file:/woldlab/loxcyc/home/diane/proj/delaney][~diane/proj/delaney]]
 
 ** Copied over the pass filter intersection.
 
