@@ -1,0 +1,45 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS886UFP
+description: Illumina short-read B6/Cast F1 adrenal P8mo male 8mo 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR409OGG
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB300RAN:
+    read1:
+    - ENCFF327OGA
+    read2:
+    - ENCFF097WHO
+  ENCLB301WLF:
+    read1:
+    - ENCFF428KOM
+    read2:
+    - ENCFF781MOP
+  ENCLB329QVE:
+    read1:
+    - ENCFF257PLA
+    read2:
+    - ENCFF153JJR
+  ENCLB406MFQ:
+    read1:
+    - ENCFF798MYV
+    read2:
+    - ENCFF950TCR
+  ENCLB563OPT:
+    read1:
+    - ENCFF678KIQ
+    read2:
+    - ENCFF129YQO
+  ENCLB836CYK:
+    read1:
+    - ENCFF891THP
+    read2:
+    - ENCFF157EVI
+mem_mb: 65536
+stranded: Forward

@@ -1,0 +1,35 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS171VCQ
+description: Illumina short-read B6/Cast F1 heart P2mo male normal 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR617CNE
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB059FSA:
+    read1:
+    - ENCFF741AKY
+    read2:
+    - ENCFF914RPD
+  ENCLB060MXC:
+    read1:
+    - ENCFF827JQR
+    read2:
+    - ENCFF831RKM
+  ENCLB205TMG:
+    read1:
+    - ENCFF554XAQ
+    read2:
+    - ENCFF604VMV
+  ENCLB943NUY:
+    read1:
+    - ENCFF117UEZ
+    read2:
+    - ENCFF782CSV
+mem_mb: 65536
+stranded: Forward

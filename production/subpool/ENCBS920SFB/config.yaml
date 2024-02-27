@@ -1,0 +1,45 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS920SFB
+description: Illumina short-read B6/Cast F1 cortex P25 female normal 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR611QJH
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB007JAX:
+    read1:
+    - ENCFF467DAJ
+    read2:
+    - ENCFF594JMC
+  ENCLB087EXR:
+    read1:
+    - ENCFF390YLN
+    read2:
+    - ENCFF297XMO
+  ENCLB152LTU:
+    read1:
+    - ENCFF165OTG
+    read2:
+    - ENCFF927BNU
+  ENCLB306YYV:
+    read1:
+    - ENCFF414OEC
+    read2:
+    - ENCFF533AMB
+  ENCLB628SLJ:
+    read1:
+    - ENCFF712SKA
+    read2:
+    - ENCFF348XCI
+  ENCLB685DFI:
+    read1:
+    - ENCFF629BTC
+    read2:
+    - ENCFF730TUZ
+mem_mb: 65536
+stranded: Forward

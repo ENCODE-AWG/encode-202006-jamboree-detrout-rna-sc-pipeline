@@ -1,0 +1,40 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS857GBI
+description: Illumina short-read B6/Cast F1 hippocampus P14 male normal 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR642QUS
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB036ZDV:
+    read1:
+    - ENCFF004NXR
+    read2:
+    - ENCFF316KDX
+  ENCLB219ZNS:
+    read1:
+    - ENCFF773ACI
+    read2:
+    - ENCFF799QXI
+  ENCLB460CTE:
+    read1:
+    - ENCFF620YUR
+    read2:
+    - ENCFF746PVX
+  ENCLB575ODB:
+    read1:
+    - ENCFF182MDF
+    read2:
+    - ENCFF047NES
+  ENCLB758IRF:
+    read1:
+    - ENCFF959GWR
+    read2:
+    - ENCFF101AQX
+mem_mb: 65536
+stranded: Forward

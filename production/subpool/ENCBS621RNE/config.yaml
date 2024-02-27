@@ -1,0 +1,45 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS621RNE
+description: Illumina short-read B6/Cast F1 adrenal P18-20mo male normal 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR526LFP
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB000OHC:
+    read1:
+    - ENCFF603TMP
+    read2:
+    - ENCFF442SKJ
+  ENCLB067HYZ:
+    read1:
+    - ENCFF346OSU
+    read2:
+    - ENCFF301MXX
+  ENCLB206ZOP:
+    read1:
+    - ENCFF763GLX
+    read2:
+    - ENCFF522EMU
+  ENCLB303KCS:
+    read1:
+    - ENCFF473SCB
+    read2:
+    - ENCFF530BTS
+  ENCLB953KNE:
+    read1:
+    - ENCFF361ZFH
+    read2:
+    - ENCFF354KXZ
+  ENCLB961ECB:
+    read1:
+    - ENCFF815GLO
+    read2:
+    - ENCFF270HVE
+mem_mb: 65536
+stranded: Forward

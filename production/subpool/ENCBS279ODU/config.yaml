@@ -1,0 +1,45 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS279ODU
+description: Illumina short-read B6/Cast F1 cortex P10 male normal 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR527LIA
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB200QHS:
+    read1:
+    - ENCFF793AFN
+    read2:
+    - ENCFF537OUR
+  ENCLB408NJK:
+    read1:
+    - ENCFF345HQP
+    read2:
+    - ENCFF586YNT
+  ENCLB726AOO:
+    read1:
+    - ENCFF485ZFM
+    read2:
+    - ENCFF099PMB
+  ENCLB820EWT:
+    read1:
+    - ENCFF514WCL
+    read2:
+    - ENCFF610XKY
+  ENCLB944HIA:
+    read1:
+    - ENCFF935TZF
+    read2:
+    - ENCFF139JZF
+  ENCLB953SQY:
+    read1:
+    - ENCFF709QZK
+    read2:
+    - ENCFF310BHV
+mem_mb: 65536
+stranded: Forward

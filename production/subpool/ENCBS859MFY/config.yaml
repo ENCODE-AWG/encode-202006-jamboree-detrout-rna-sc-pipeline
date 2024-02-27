@@ -1,0 +1,45 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS859MFY
+description: Illumina short-read 5xFAD/Cast F1 heart P8mo female 8mo 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR141EJG
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB020GII:
+    read1:
+    - ENCFF134UTX
+    read2:
+    - ENCFF920SAG
+  ENCLB219YAZ:
+    read1:
+    - ENCFF367WRA
+    read2:
+    - ENCFF240TEP
+  ENCLB776LBL:
+    read1:
+    - ENCFF011SRY
+    read2:
+    - ENCFF386CAU
+  ENCLB777BAA:
+    read1:
+    - ENCFF357FXX
+    read2:
+    - ENCFF358WLK
+  ENCLB783WOJ:
+    read1:
+    - ENCFF958UQG
+    read2:
+    - ENCFF084VHB
+  ENCLB851FSS:
+    read1:
+    - ENCFF013GSF
+    read2:
+    - ENCFF855IDY
+mem_mb: 65536
+stranded: Forward

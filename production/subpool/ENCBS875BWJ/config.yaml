@@ -1,0 +1,25 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS875BWJ
+description: Illumina short-read B6/Cast F1 gastrocnemius P36 male normal 15k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR580UNE
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB466TZK:
+    read1:
+    - ENCFF071PSZ
+    read2:
+    - ENCFF194ILP
+  ENCLB629IHZ:
+    read1:
+    - ENCFF377AMZ
+    read2:
+    - ENCFF649WOQ
+mem_mb: 65536
+stranded: Forward

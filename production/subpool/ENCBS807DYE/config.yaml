@@ -1,0 +1,45 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS807DYE
+description: Illumina short-read 5xFAD/Cast F1 adrenal P8mo male 8mo 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR943REW
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB055MEO:
+    read1:
+    - ENCFF775WNO
+    read2:
+    - ENCFF629CPG
+  ENCLB151UGB:
+    read1:
+    - ENCFF651JYD
+    read2:
+    - ENCFF997IYA
+  ENCLB416OOA:
+    read1:
+    - ENCFF067OOJ
+    read2:
+    - ENCFF736GAM
+  ENCLB645KPT:
+    read1:
+    - ENCFF737MYX
+    read2:
+    - ENCFF977DER
+  ENCLB721WTE:
+    read1:
+    - ENCFF929WHF
+    read2:
+    - ENCFF121OJZ
+  ENCLB737CIY:
+    read1:
+    - ENCFF386HXB
+    read2:
+    - ENCFF136LHN
+mem_mb: 65536
+stranded: Forward

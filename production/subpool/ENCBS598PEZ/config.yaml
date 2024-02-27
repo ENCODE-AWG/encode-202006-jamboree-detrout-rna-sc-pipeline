@@ -1,0 +1,35 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS598PEZ
+description: Illumina short-read B6/Cast F1 heart P14 female normal 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR938YKJ
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB329OPQ:
+    read1:
+    - ENCFF056MGB
+    read2:
+    - ENCFF510LEJ
+  ENCLB381XIC:
+    read1:
+    - ENCFF698CPO
+    read2:
+    - ENCFF155JHM
+  ENCLB423MTY:
+    read1:
+    - ENCFF048YVC
+    read2:
+    - ENCFF569DDF
+  ENCLB633MFB:
+    read1:
+    - ENCFF367OWH
+    read2:
+    - ENCFF049JSJ
+mem_mb: 65536
+stranded: Forward

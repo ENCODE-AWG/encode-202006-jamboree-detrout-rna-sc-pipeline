@@ -1,0 +1,35 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS073VUQ
+description: Illumina short-read B6/Cast F1 heart P36 male normal 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR860LQG
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB296YAB:
+    read1:
+    - ENCFF639TDJ
+    read2:
+    - ENCFF272FJS
+  ENCLB439PTN:
+    read1:
+    - ENCFF932GHH
+    read2:
+    - ENCFF587VNA
+  ENCLB705MMZ:
+    read1:
+    - ENCFF288TZE
+    read2:
+    - ENCFF629IQF
+  ENCLB967SPX:
+    read1:
+    - ENCFF232DTJ
+    read2:
+    - ENCFF238UFB
+mem_mb: 65536
+stranded: Forward

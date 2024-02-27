@@ -1,0 +1,45 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS983SKY
+description: Illumina short-read B6/Cast F1 cortex P18-20mo male normal 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR883XZK
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB064BAG:
+    read1:
+    - ENCFF384FLL
+    read2:
+    - ENCFF236QJI
+  ENCLB073JEC:
+    read1:
+    - ENCFF347GYH
+    read2:
+    - ENCFF527ISN
+  ENCLB494JPK:
+    read1:
+    - ENCFF894YIV
+    read2:
+    - ENCFF827VQC
+  ENCLB547YDV:
+    read1:
+    - ENCFF181TXT
+    read2:
+    - ENCFF955OTI
+  ENCLB732IPN:
+    read1:
+    - ENCFF988MTJ
+    read2:
+    - ENCFF715OAB
+  ENCLB756ZTK:
+    read1:
+    - ENCFF462TSN
+    read2:
+    - ENCFF601AMT
+mem_mb: 65536
+stranded: Forward

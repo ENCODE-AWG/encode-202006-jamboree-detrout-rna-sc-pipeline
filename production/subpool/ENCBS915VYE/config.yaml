@@ -1,0 +1,45 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS915VYE
+description: Illumina short-read 5xFAD/Cast F1 gastrocnemius P8mo female 8mo 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR136FOI
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB221EQJ:
+    read1:
+    - ENCFF533HAM
+    read2:
+    - ENCFF454DYT
+  ENCLB376VCF:
+    read1:
+    - ENCFF016IWF
+    read2:
+    - ENCFF061ESH
+  ENCLB413VCH:
+    read1:
+    - ENCFF030QVT
+    read2:
+    - ENCFF810MYS
+  ENCLB540WYG:
+    read1:
+    - ENCFF941IAL
+    read2:
+    - ENCFF570KOL
+  ENCLB708BOW:
+    read1:
+    - ENCFF999BPS
+    read2:
+    - ENCFF987EKI
+  ENCLB958WSA:
+    read1:
+    - ENCFF977HHM
+    read2:
+    - ENCFF838KBV
+mem_mb: 65536
+stranded: Forward

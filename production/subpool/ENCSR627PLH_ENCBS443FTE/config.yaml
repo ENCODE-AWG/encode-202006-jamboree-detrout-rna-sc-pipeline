@@ -1,0 +1,40 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS443FTE
+description: Illumina short-read B6/Cast F1 gastrocnemius P4 female normal 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR627PLH
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB032CWY:
+    read1:
+    - ENCFF898MZE
+    read2:
+    - ENCFF488EQJ
+  ENCLB218CMH:
+    read1:
+    - ENCFF462VLI
+    read2:
+    - ENCFF957OJC
+  ENCLB378IQC:
+    read1:
+    - ENCFF250UZF
+    read2:
+    - ENCFF095FZI
+  ENCLB409JEJ:
+    read1:
+    - ENCFF108RGO
+    read2:
+    - ENCFF843PQX
+  ENCLB510DSL:
+    read1:
+    - ENCFF641OIG
+    read2:
+    - ENCFF068SHA
+mem_mb: 65536
+stranded: Forward

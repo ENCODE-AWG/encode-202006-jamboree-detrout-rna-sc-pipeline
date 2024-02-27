@@ -1,0 +1,45 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS829KDQ
+description: Illumina short-read B6/Cast F1 adrenal P14 female normal 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR998YMP
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB298FCI:
+    read1:
+    - ENCFF761GGC
+    read2:
+    - ENCFF492PDY
+  ENCLB354MNN:
+    read1:
+    - ENCFF742ZXD
+    read2:
+    - ENCFF127OJH
+  ENCLB400DOF:
+    read1:
+    - ENCFF707HWK
+    read2:
+    - ENCFF786LTY
+  ENCLB779JXT:
+    read1:
+    - ENCFF118EKG
+    read2:
+    - ENCFF234OHZ
+  ENCLB905XCB:
+    read1:
+    - ENCFF742GKU
+    read2:
+    - ENCFF355YXP
+  ENCLB970APW:
+    read1:
+    - ENCFF529FGO
+    read2:
+    - ENCFF976KIT
+mem_mb: 65536
+stranded: Forward

@@ -1,0 +1,45 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS772KDD
+description: Illumina short-read B6/Cast F1 gastrocnemius P8mo female 8mo 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR467JRI
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB184VXV:
+    read1:
+    - ENCFF814BSQ
+    read2:
+    - ENCFF887DRJ
+  ENCLB282EPG:
+    read1:
+    - ENCFF377PPM
+    read2:
+    - ENCFF786IGX
+  ENCLB436BYL:
+    read1:
+    - ENCFF254GOF
+    read2:
+    - ENCFF838LAK
+  ENCLB529PLH:
+    read1:
+    - ENCFF489OQE
+    read2:
+    - ENCFF567ASN
+  ENCLB560UAG:
+    read1:
+    - ENCFF953XKT
+    read2:
+    - ENCFF508MVI
+  ENCLB685VNY:
+    read1:
+    - ENCFF901NUU
+    read2:
+    - ENCFF444STA
+mem_mb: 65536
+stranded: Forward

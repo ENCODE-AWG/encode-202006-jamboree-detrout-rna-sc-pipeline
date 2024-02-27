@@ -1,0 +1,45 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS257LBM
+description: Illumina short-read 5xFAD/Cast F1 cortex P8mo female 8mo 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR531SRE
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB085PBM:
+    read1:
+    - ENCFF169FYT
+    read2:
+    - ENCFF508JVY
+  ENCLB408QXH:
+    read1:
+    - ENCFF221CEO
+    read2:
+    - ENCFF413VLF
+  ENCLB535IYI:
+    read1:
+    - ENCFF428MOC
+    read2:
+    - ENCFF988FYN
+  ENCLB667XDQ:
+    read1:
+    - ENCFF339KZP
+    read2:
+    - ENCFF906OOQ
+  ENCLB808UGN:
+    read1:
+    - ENCFF319PXS
+    read2:
+    - ENCFF014YIG
+  ENCLB915DTK:
+    read1:
+    - ENCFF436FLD
+    read2:
+    - ENCFF934TYP
+mem_mb: 65536
+stranded: Forward

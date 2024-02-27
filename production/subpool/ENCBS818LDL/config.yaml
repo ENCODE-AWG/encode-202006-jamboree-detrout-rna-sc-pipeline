@@ -1,0 +1,45 @@
+automatic_submission: true
+award: UM1HG009443
+biosample: ENCBS818LDL
+description: Illumina short-read 5xFAD/Cast F1 adrenal P8mo male 8mo 12k
+disk_mb: 51200
+encode_portal_host: www.encodeproject.org
+experiment_accession: ENCSR943REW
+genome_accession: encode:starsolo-mm10-M21-male-index
+include_intron: true
+inclusion_accession: encode:parse-biosciences-v1
+inclusion_list_url: https://woldlab.caltech.edu/~diane/genome/parse-splitseq-v1.tar.gz
+lab: /labs/barbara-wold/
+library:
+  ENCLB174YPQ:
+    read1:
+    - ENCFF463RTN
+    read2:
+    - ENCFF996ZXZ
+  ENCLB318KTQ:
+    read1:
+    - ENCFF705ZEN
+    read2:
+    - ENCFF775RBN
+  ENCLB358MQM:
+    read1:
+    - ENCFF659EVH
+    read2:
+    - ENCFF703IIY
+  ENCLB668YGF:
+    read1:
+    - ENCFF234XTT
+    read2:
+    - ENCFF973LFW
+  ENCLB805ZPV:
+    read1:
+    - ENCFF172OFE
+    read2:
+    - ENCFF844TYT
+  ENCLB996GNY:
+    read1:
+    - ENCFF783ODK
+    read2:
+    - ENCFF603AHL
+mem_mb: 65536
+stranded: Forward
